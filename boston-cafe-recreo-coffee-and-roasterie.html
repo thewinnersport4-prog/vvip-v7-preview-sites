@@ -68,6 +68,27 @@ section{padding:6rem 3rem;position:relative}
 .gallery-slide img{width:100%;height:100%;object-fit:cover}
 .swiper-button-next,.swiper-button-prev{color:var(--primary)!important}
 .swiper-pagination-bullet{background:var(--primary)!important}
+
+.testimonials{padding:5rem 3rem;background:var(--dark)}
+.testimonials .section-title h2{color:var(--light)}
+.testimonials .section-title p{color:var(--text-muted)}
+.testimonial-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;max-width:1200px;margin:0 auto}
+.testimonial-card{background:var(--card);border-radius:20px;padding:2rem;border:1px solid rgba(255,255,255,.08);transition:all .4s}
+.testimonial-card:hover{transform:translateY(-5px);border-color:var(--primary)}
+.testimonial-card .stars{color:var(--primary);font-size:1.2rem;margin-bottom:1rem}
+.testimonial-card p{color:var(--text-muted);line-height:1.7;font-style:italic;margin-bottom:1.5rem}
+.testimonial-card .author{display:flex;align-items:center;gap:1rem}
+.testimonial-card .author img{width:50px;height:50px;border-radius:50%;object-fit:cover}
+.testimonial-card .author h4{color:var(--light);font-size:1rem}
+.testimonial-card .author span{color:var(--text-muted);font-size:.85rem}
+.faq{padding:5rem 3rem}
+.faq .container{max-width:800px;margin:0 auto}
+.faq-item{background:var(--card);border-radius:15px;margin-bottom:1rem;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+.faq-item summary{padding:1.5rem 2rem;cursor:pointer;color:var(--light);font-size:1.1rem;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faq-item summary::after{content:'+';color:var(--primary);font-size:1.5rem;transition:transform .3s}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item p{padding:0 2rem 1.5rem;color:var(--text-muted);line-height:1.7}
+
 .cta{text-align:center;padding:5rem 3rem;background:linear-gradient(135deg,var(--dark-2),rgba(232,176,75,.1))}
 .cta h2{font-size:clamp(2rem,4vw,3.5rem);margin-bottom:1rem;color:var(--light)}
 .cta p{color:var(--text-muted);margin-bottom:2rem;font-size:1.1rem}
@@ -91,7 +112,7 @@ footer .copyright{color:var(--text-muted);font-size:.85rem;padding-top:1rem;bord
 <div class="cursor-ring" id="cursorRing"></div>
 <nav id="navbar">
 <div class="logo">Recreo<span> Coffee & Roasterie</span></div>
-<ul class="nav-links"><li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#contact">Contact</a></li></ul>
+<ul class="nav-links"><li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#testimonials">Reviews</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul>
 </nav>
 <section class="hero" id="home">
 <div class="hero-bg"></div>
@@ -141,6 +162,51 @@ footer .copyright{color:var(--text-muted);font-size:.85rem;padding-top:1rem;bord
 <div class="swiper-slide gallery-slide"><img src="https://loremflickr.com/800/600/espresso?lock=542" alt="Gallery 6" loading="lazy"></div>
 </div>
 <div class="swiper-button-next"></div><div class="swiper-button-prev"></div><div class="swiper-pagination"></div></div>
+</section>
+<section class="testimonials" id="testimonials">
+<div class="section-title"><h2>What Our Clients Say</h2><div class="line"></div><p>Trusted by satisfied customers</p></div>
+<div class="testimonial-grid">
+<div class="testimonial-card">
+<div class="stars">★★★★★</div>
+<p>"Absolutely outstanding service! The team went above and beyond our expectations. Highly recommended for anyone looking for quality and professionalism."</p>
+<div class="author"><img src="https://loremflickr.com/100/100/person?lock=20" alt="Client"><div><h4>Sarah Johnson</h4><span>Verified Client</span></div></div>
+</div>
+<div class="testimonial-card">
+<div class="stars">★★★★★</div>
+<p>"Professional, reliable, and truly exceptional results. Recreo Coffee & Roasterie | Cafe/Coffee Shop in Boston transformed our experience completely. We couldn't be happier with the outcome."</p>
+<div class="author"><img src="https://loremflickr.com/100/100/person?lock=21" alt="Client"><div><h4>Michael Chen</h4><span>Verified Client</span></div></div>
+</div>
+<div class="testimonial-card">
+<div class="stars">★★★★★</div>
+<p>"From start to finish, the experience was seamless. The attention to detail and customer care is second to none. Five stars without hesitation!"</p>
+<div class="author"><img src="https://loremflickr.com/100/100/person?lock=22" alt="Client"><div><h4>Emma Williams</h4><span>Verified Client</span></div></div>
+</div>
+</div>
+</section>
+<section class="faq" id="faq">
+<div class="section-title"><h2>Frequently Asked Questions</h2><div class="line"></div><p>Got questions? We have answers</p></div>
+<div class="container">
+<details class="faq-item">
+<summary>What services do you offer?</summary>
+<p>We offer a comprehensive range of professional services tailored to meet your needs. Contact us for a detailed consultation and personalized service plan.</p>
+</details>
+<details class="faq-item">
+<summary>How can I book an appointment?</summary>
+<p>You can book an appointment by calling us at 6175532379, sending us an email at miriam@recreocoffee.com, or using the WhatsApp button to chat with us directly.</p>
+</details>
+<details class="faq-item">
+<summary>What are your operating hours?</summary>
+<p>Our standard operating hours are Monday to Friday, 9:00 AM to 6:00 PM. We also offer weekend appointments by prior arrangement. Please contact us for availability.</p>
+</details>
+<details class="faq-item">
+<summary>Do you offer services for businesses?</summary>
+<p>Yes, we provide both individual and business services. Our team can customize a solution that fits your specific requirements and budget.</p>
+</details>
+<details class="faq-item">
+<summary>How do I get a quote?</summary>
+<p>Simply reach out to us via phone, email, or WhatsApp, and we'll provide you with a free, no-obligation quote tailored to your specific needs.</p>
+</details>
+</div>
 </section>
 <section class="cta" id="contact">
 <h2>Ready to Get Started?</h2>
