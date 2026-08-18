@@ -1888,5 +1888,77 @@
     "country": "USA",
     "phone": "(206) 656-1900",
     "filename": "seattle-travel-stellar-travel.html"
+  },
+  {
+    "business_name": "OOIIO Interior Design Studio",
+    "email": "jobs@ooiio.com",
+    "niche": "Interior Design",
+    "city": "Madrid",
+    "country": "Spain",
+    "phone": "+34 912 82 62 19",
+    "filename": "madrid-interior-design-ooiio.html"
+  },
+  {
+    "business_name": "Physion Barcelona",
+    "email": "info@physionbarcelona.com",
+    "niche": "Physiotherapy",
+    "city": "Barcelona",
+    "country": "Spain",
+    "phone": "",
+    "filename": "barcelona-physiotherapy-physion.html"
+  },
+  {
+    "business_name": "Beehive Tattoo Studio",
+    "email": "hello@beehive.tattoo",
+    "niche": "Tattoo Studio",
+    "city": "Stockholm",
+    "country": "Sweden",
+    "phone": "",
+    "filename": "stockholm-tattoo-beehive.html"
+  },
+  {
+    "business_name": "Ophelia Flowers & Decor",
+    "email": "info@opheliafloral.se",
+    "niche": "Florist",
+    "city": "Stockholm",
+    "country": "Sweden",
+    "phone": "",
+    "filename": "stockholm-florist-ophelia.html"
+  },
+  {
+    "business_name": "Natural Light Studio Paris",
+    "email": "hello@naturallightstudioparis.com",
+    "niche": "Photography Studio",
+    "city": "Paris",
+    "country": "France",
+    "phone": "",
+    "filename": "paris-photography-natural-light.html"
+  },
+  {
+    "business_name": "The Room Studio",
+    "email": "info@theroom-studio.com",
+    "niche": "Interior Design",
+    "city": "Madrid",
+    "country": "Spain",
+    "phone": "+34 93 200 28 30",
+    "filename": "madrid-interior-design-the-room.html"
+  },
+  {
+    "business_name": "Northblomst",
+    "email": "office@northblomst.dk",
+    "niche": "Florist",
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "phone": "+45 42 83 33 14",
+    "filename": "copenhagen-florist-northblomst.html"
+  },
+  {
+    "business_name": "Ministry of Yoga Portugal",
+    "email": "ztaylorministry@gmail.com",
+    "niche": "Yoga/Fitness",
+    "city": "Lisbon",
+    "country": "Portugal",
+    "phone": "",
+    "filename": "lisbon-yoga-ministry-of-yoga.html"
   }
 ]
