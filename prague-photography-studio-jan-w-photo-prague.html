@@ -1,1 +1,260 @@
-<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Jan W Photo Prague | OnyxDigital</title><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=DM+Sans&display=swap" rel=stylesheet><link rel=stylesheet href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><style>body{margin:0;background:#0b0b0d;color:#f5f2ec;font:16px DM Sans}nav{padding:24px 7%;display:flex;justify-content:space-between}a{color:#a0a0a0}section{padding:90px 8%;max-width:1100px;margin:auto}.hero{min-height:80vh;display:grid;place-items:center;text-align:center;background:linear-gradient(#0008,#0b0b0d),url(https://loremflickr.com/1600/900/photography,studio?lock=1400) center/cover}h1,h2{font-family:Playfair Display;font-weight:500}h1{font-size:clamp(3rem,8vw,7rem)}h2{font-size:3rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}.card{padding:28px;background:#151519;border:1px solid #29292f;border-radius:16px}.card span{color:#a0a0a0}.btn{display:inline-block;padding:14px 24px;border-radius:40px;margin:8px;text-decoration:none;background:#a0a0a0;color:#111}.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.gallery img{width:100%;height:200px;object-fit:cover;border-radius:12px}p{color:#aaa;line-height:1.8}footer{padding:40px 8%;border-top:1px solid #29292f}</style></head><body><nav><b>OnyxDigital</b><a href=#contact>Contact</a></nav><section class=hero><div><small>Photography Studio · Prague</small><h1>Jan W Photo Prague</h1><p>Premium digital presence, crafted with intention.</p><a class=btn href=#contact>Explore the experience</a></div></section><section id=services><small>WHAT WE DO</small><h2>Designed around excellence.</h2><div class=grid><article class=card><span>01</span><h3>Signature Experience</h3><p>Thoughtful, professional service shaped around your needs.</p></article><article class=card><span>02</span><h3>Personalized Service</h3><p>Thoughtful, professional service shaped around your needs.</p></article><article class=card><span>03</span><h3>Quality & Care</h3><p>Thoughtful, professional service shaped around your needs.</p></article><article class=card><span>04</span><h3>Made for You</h3><p>Thoughtful, professional service shaped around your needs.</p></article></div></section><section><small>A CLOSER LOOK</small><h2>Made to be remembered.</h2><div class=swiper><div class=swiper-wrapper><div class=swiper-slide><img style="width:100%;height:400px;object-fit:cover" src="https://loremflickr.com/1200/700/photography,studio?lock=1450"></div><div class=swiper-slide><img style="width:100%;height:400px;object-fit:cover" src="https://loremflickr.com/1200/700/photography,studio?lock=1451"></div><div class=swiper-slide><img style="width:100%;height:400px;object-fit:cover" src="https://loremflickr.com/1200/700/photography,studio?lock=1452"></div><div class=swiper-slide><img style="width:100%;height:400px;object-fit:cover" src="https://loremflickr.com/1200/700/photography,studio?lock=1453"></div></div></div><div class=gallery><img src="https://loremflickr.com/800/600/photography,studio?lock=1430"><img src="https://loremflickr.com/800/600/photography,studio?lock=1431"><img src="https://loremflickr.com/800/600/photography,studio?lock=1432"><img src="https://loremflickr.com/800/600/photography,studio?lock=1433"></div></section><section id=contact><small>START A CONVERSATION</small><h2>Let's create something exceptional.</h2><p>Prague · jan@janwphoto.cz</p><a class=btn href=https://wa.me/9233390025902>WhatsApp OnyxDigital</a><a class=btn href=https://onyx-digital-sidd.vercel.app/>View portfolio</a></section><footer>© 2026 Jan W Photo Prague · Website by OnyxDigital</footer><script src=https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js></script><script>new Swiper('.swiper',{loop:true,autoplay:{delay:3000}});gsap.from('.hero h1',{opacity:0,y:40,duration:1})</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jan W Photo Prague | OnyxDigital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#9c88ff;--bg:#0a0a0b;--surface:#111113;--surface2:#161618;--text:#f5f5f7;--muted:#86868b;--border:rgba(255,255,255,.06);--radius:14px}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;font-weight:400}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+::selection{background:var(--accent);color:#fff}
+#loader{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .5s}
+#loader.hide{opacity:0;pointer-events:none}
+.loader-ring{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:9998;transition:width .15s}
+nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.4rem 3rem;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
+nav.scrolled{padding:.9rem 3rem;background:rgba(10,10,11,.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--accent);letter-spacing:.3px}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{font-size:.88rem;font-weight:400;color:var(--muted);transition:color .3s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.cta{color:var(--bg);background:var(--accent);padding:.5rem 1.3rem;border-radius:100px;font-weight:500}
+.nav-links a.cta:hover{opacity:.85}
+@media(max-width:768px){nav{padding:1rem 1.5rem}nav.scrolled{padding:.8rem 1.5rem}.nav-links{display:none}}
+section{padding:7rem 2rem;position:relative}
+@media(max-width:768px){section{padding:4.5rem 1.5rem}}
+.container{max-width:1080px;margin:0 auto}
+.s-title{text-align:center;margin-bottom:4rem}
+.s-title h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:500;letter-spacing:-.5px;margin-bottom:.7rem}
+.s-title p{color:var(--muted);font-size:1.05rem;font-weight:300}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;position:relative}
+.hero-img{position:absolute;inset:0;z-index:-1}
+.hero-img img{width:100%;height:100%;object-fit:cover;opacity:.1}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,11,.3) 0%,rgba(10,10,11,.5) 40%,rgba(10,10,11,.95) 100%)}
+.hero-content{position:relative;z-index:1;padding:0 1rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:500;letter-spacing:-1.5px;line-height:1.05;margin-bottom:1.5rem;max-width:900px;margin-left:auto;margin-right:auto}
+.hero p{color:var(--muted);font-size:clamp(1.05rem,2vw,1.3rem);font-weight:300;margin-bottom:2.5rem;max-width:580px;margin-left:auto;margin-right:auto}
+.hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:var(--muted);font-size:.8rem;letter-spacing:1px;text-transform:uppercase;opacity:.5;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+.btn{padding:.85rem 2rem;border-radius:100px;font-weight:500;font-size:.95rem;transition:all .3s;display:inline-block;cursor:pointer;border:none}
+.btn-fill{background:var(--accent);color:#0a0a0b}
+.btn-fill:hover{opacity:.85;transform:translateY(-1px)}
+.btn-ghost{color:var(--text);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.about{background:var(--surface)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:2.5rem}}
+.about-img{border-radius:var(--radius);overflow:hidden}
+.about-img img{width:100%;height:420px;object-fit:cover;transition:transform .6s ease}
+.about-img:hover img{transform:scale(1.03)}
+.about-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:500;letter-spacing:-.5px;margin-bottom:1.3rem;line-height:1.15}
+.about-text p{color:var(--muted);margin-bottom:1rem;font-size:1.05rem;font-weight:300}
+.about-tags{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.8rem}
+.about-tags span{font-size:.82rem;padding:.4rem 1rem;border:1px solid var(--border);border-radius:100px;color:var(--muted)}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+.svc-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem 2rem;transition:all .4s ease}
+.svc-card:hover{background:var(--surface2);border-color:rgba(255,255,255,.1);transform:translateY(-4px)}
+.svc-num{font-family:'Playfair Display',serif;font-size:.9rem;color:var(--accent);font-weight:600;margin-bottom:1rem;letter-spacing:1px}
+.svc-card h3{font-size:1.2rem;font-weight:500;margin-bottom:.7rem}
+.svc-card p{color:var(--muted);font-size:.95rem;font-weight:300;line-height:1.6}
+.stats{background:var(--surface);padding:4.5rem 2rem}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;max-width:900px;margin:0 auto;text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,4vw,3.5rem);font-weight:500;color:var(--accent);line-height:1}
+.stat-label{color:var(--muted);font-size:.92rem;margin-top:.5rem;font-weight:300}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media(max-width:768px){.gallery-grid{grid-template-columns:repeat(2,1fr);gap:.7rem}}
+.gal-item{border-radius:var(--radius);overflow:hidden;cursor:pointer;position:relative}
+.gal-item img{width:100%;height:260px;object-fit:cover;transition:transform .5s ease}
+.gal-item:hover img{transform:scale(1.06)}
+.tst-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.tst-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;transition:all .4s ease}
+.tst-card:hover{background:var(--surface2);transform:translateY(-3px)}
+.tst-stars{color:var(--accent);font-size:.9rem;margin-bottom:1.2rem;letter-spacing:2px}
+.tst-card p{color:var(--muted);font-style:italic;margin-bottom:1.5rem;line-height:1.7;font-weight:300}
+.tst-author{display:flex;align-items:center;gap:.8rem}
+.tst-author img{width:42px;height:42px;border-radius:50%;object-fit:cover}
+.tst-author h4{font-size:.92rem;font-weight:500}
+.tst-author small{color:var(--muted);font-size:.8rem}
+.faq-container{max-width:720px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border);transition:border-color .3s}
+.faq-item[open]{border-color:var(--accent)}
+.faq-item summary{padding:1.5rem 0;cursor:pointer;font-weight:500;font-size:1.05rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';color:var(--accent);font-size:1.4rem;font-weight:300;transition:transform .3s}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item p{padding:0 0 1.5rem;color:var(--muted);line-height:1.7;font-weight:300}
+.contact{text-align:center;padding:8rem 2rem;position:relative;overflow:hidden}
+.contact h2{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4.5vw,3.8rem);font-weight:500;letter-spacing:-.8px;margin-bottom:1rem}
+.contact p{color:var(--muted);margin-bottom:2.5rem;font-size:1.1rem;font-weight:300}
+.contact-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+footer{padding:3rem 2rem;text-align:center;border-top:1px solid var(--border)}
+.social{display:flex;justify-content:center;gap:.8rem;margin-bottom:1.5rem}
+.social a{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all .3s}
+.social a:hover{background:var(--accent);border-color:var(--accent)}
+.social svg{width:16px;height:16px;fill:var(--muted);transition:fill .3s}
+.social a:hover svg{fill:#0a0a0b}
+.footer-info{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.footer-info span,.footer-info a{color:var(--muted);font-size:.85rem;font-weight:300}
+.footer-info a:hover{color:var(--accent)}
+.copyright{color:var(--muted);font-size:.8rem;padding-top:1.2rem;border-top:1px solid var(--border);font-weight:300}
+.copyright a{color:var(--accent)}
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;display:none;align-items:center;justify-content:center;cursor:pointer}
+#lightbox.show{display:flex}
+#lightbox img{max-width:90%;max-height:85%;border-radius:10px}
+#backtop{position:fixed;bottom:88px;right:22px;z-index:999;width:44px;height:44px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(10px);transition:all .3s}
+#backtop.show{opacity:1;transform:translateY(0)}
+#backtop:hover{background:var(--accent)}
+#backtop svg{width:18px;height:18px;fill:var(--text)}
+.wa{position:fixed;bottom:22px;right:22px;z-index:999;width:56px;height:56px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.4);transition:transform .3s}
+.wa:hover{transform:scale(1.08)}
+.wa svg{width:28px;height:28px;fill:#0a0a0b}
+</style>
+</head>
+<body>
+<div id="loader"><div class="loader-ring"></div></div>
+<div id="progress"></div>
+<nav><div class="logo">Jan</div><ul class="nav-links"><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact" class="cta">Contact</a></li></ul></nav>
+
+<section class="hero" id="home">
+<div class="hero-img"><img src="https://loremflickr.com/1920/1080/photography-studio?lock=1" alt=""></div>
+<div class="hero-content">
+<h1>Capture Every Moment</h1>
+<p>Professional photography in Prague</p>
+<div class="hero-cta">
+<a href="#contact" class="btn btn-fill">Get in Touch</a>
+<a href="#services" class="btn btn-ghost">Our Services</a>
+</div>
+</div>
+<div class="scroll-hint">Scroll</div>
+</section>
+
+<section class="about" id="about">
+<div class="container">
+<div class="about-grid">
+<div class="about-img reveal"><img src="https://loremflickr.com/600/420/photography-studio?lock=3" alt="About Jan W Photo Prague"></div>
+<div class="about-text reveal">
+<h2>About Jan W Photo Prague</h2>
+<p>We capture life's most precious moments with artistry and precision at our photography studio in Prague. Every shot tells a story.</p>
+<p>Located in Prague, we are committed to delivering exceptional service and building lasting relationships with every client we serve.</p>
+<div class="about-tags"><span>Certified Professionals</span><span>Quality Guaranteed</span><span>Trusted &amp; Reliable</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="services">
+<div class="container">
+<div class="s-title reveal"><h2>Our Services</h2><p>What we offer</p></div>
+<div class="svc-grid">
+<div class="svc-card reveal"><div class="svc-num">01</div><h3>Portrait Sessions</h3><p>Professional portrait sessions delivered with expertise and dedication to excellence.</p></div>
+<div class="svc-card reveal"><div class="svc-num">02</div><h3>Event Photography</h3><p>Professional event photography delivered with expertise and dedication to excellence.</p></div>
+<div class="svc-card reveal"><div class="svc-num">03</div><h3>Commercial Shoots</h3><p>Professional commercial shoots delivered with expertise and dedication to excellence.</p></div>
+<div class="svc-card reveal"><div class="svc-num">04</div><h3>Photo Editing</h3><p>Professional photo editing delivered with expertise and dedication to excellence.</p></div>
+
+</div>
+</div>
+</section>
+
+<section class="stats">
+<div class="stats-grid">
+<div class="reveal"><div class="stat-num"><span class="counter" data-target="1000">1000</span></div><div class="stat-label">Shoots Completed</div></div>
+<div class="reveal"><div class="stat-num"><span class="counter" data-target="10">10</span></div><div class="stat-label">Years Experience</div></div>
+<div class="reveal"><div class="stat-num"><span class="counter" data-target="500">500</span></div><div class="stat-label">Happy Clients</div></div>
+<div class="reveal"><div class="stat-num"><span class="counter" data-target="4.9">4.9</span></div><div class="stat-label">Client Rating</div></div>
+
+</div>
+</section>
+
+<section id="gallery">
+<div class="container">
+<div class="s-title reveal"><h2>Gallery</h2><p>A glimpse of our work</p></div>
+<div class="gallery-grid">
+<div class="gal-item reveal"><img src="https://loremflickr.com/800/600/photography?lock=11" alt="Gallery 1" loading="lazy"></div>
+<div class="gal-item reveal"><img src="https://loremflickr.com/800/600/photography?lock=12" alt="Gallery 2" loading="lazy"></div>
+<div class="gal-item reveal"><img src="https://loremflickr.com/800/600/photography?lock=13" alt="Gallery 3" loading="lazy"></div>
+<div class="gal-item reveal"><img src="https://loremflickr.com/800/600/photography?lock=14" alt="Gallery 4" loading="lazy"></div>
+<div class="gal-item reveal"><img src="https://loremflickr.com/800/600/photography?lock=15" alt="Gallery 5" loading="lazy"></div>
+<div class="gal-item reveal"><img src="https://loremflickr.com/800/600/photography?lock=16" alt="Gallery 6" loading="lazy"></div>
+
+</div>
+</div>
+</section>
+
+<section class="about" id="reviews">
+<div class="container">
+<div class="s-title reveal"><h2>What Our Clients Say</h2><p>Trusted by satisfied customers</p></div>
+<div class="tst-grid">
+<div class="tst-card reveal"><div class="tst-stars">★★★★★</div><p>"Absolutely outstanding service! The team went above and beyond our expectations. Highly recommended."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/person?lock=20" alt="Client"><div><h4>Sarah Johnson</h4><small>Verified Client</small></div></div></div>
+<div class="tst-card reveal"><div class="tst-stars">★★★★★</div><p>"Absolutely outstanding service! The team went above and beyond our expectations. Highly recommended."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/person?lock=21" alt="Client"><div><h4>Michael Chen</h4><small>Verified Client</small></div></div></div>
+<div class="tst-card reveal"><div class="tst-stars">★★★★★</div><p>"Absolutely outstanding service! The team went above and beyond our expectations. Highly recommended."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/person?lock=22" alt="Client"><div><h4>Emma Williams</h4><small>Verified Client</small></div></div></div>
+
+</div>
+</div>
+</section>
+
+<section id="faq">
+<div class="container">
+<div class="s-title reveal"><h2>Frequently Asked Questions</h2><p>Got questions? We have answers</p></div>
+<div class="faq-container">
+<details class="faq-item reveal"><summary>What services do you offer?</summary><p>We offer a comprehensive range of professional photography studio services. Contact us for a detailed consultation and personalized service plan.</p></details>
+<details class="faq-item reveal"><summary>How can I book an appointment?</summary><p>You can book by calling us, emailing jan@janwphoto.cz, or using the WhatsApp button to chat with us directly.</p></details>
+<details class="faq-item reveal"><summary>What are your operating hours?</summary><p>Our standard hours are Monday to Friday, 9:00 AM to 6:00 PM. Weekend appointments are available by prior arrangement.</p></details>
+<details class="faq-item reveal"><summary>Do you offer services for businesses?</summary><p>Yes, we provide both individual and business services with customized solutions tailored to your specific needs.</p></details>
+<details class="faq-item reveal"><summary>How do I get a quote?</summary><p>Reach out via phone, email, or WhatsApp for a free, no-obligation quote tailored to your specific requirements.</p></details>
+</div>
+</div>
+</section>
+
+<section class="contact" id="contact">
+<h2>Book a Session</h2>
+<p>Contact Jan W Photo Prague today and experience the difference</p>
+<div class="contact-btns">
+<a href="https://wa.me/9233390025902" target="_blank" class="btn btn-fill">WhatsApp Us</a>
+<a href="mailto:jan@janwphoto.cz" class="btn btn-ghost">Email Us</a>
+</div>
+</section>
+
+<footer>
+<div class="social">
+<a href="https://wa.me/9233390025902" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.5 0-3-.4-4.3-1.1l-.3-.2-3.1.8.8-3-.2-.3C4.4 14.9 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8z"/></svg></a><a href="mailto:jan@janwphoto.cz" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+</div>
+<div class="footer-info"><span>Prague</span><a href="mailto:jan@janwphoto.cz">jan@janwphoto.cz</a></div>
+<div class="copyright">&copy; 2026 Jan W Photo Prague. Premium website by <a href="https://onyx-digital-sidd.vercel.app/" target="_blank">OnyxDigital</a>.</div>
+</footer>
+
+<div id="lightbox"><img id="lb-img" src="" alt=""></div>
+<div id="backtop"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg></div>
+<a href="https://wa.me/9233390025902" target="_blank" class="wa"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg></a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+window.addEventListener('load',function(){var l=document.getElementById('loader');setTimeout(function(){l.classList.add('hide');setTimeout(function(){l.style.display='none'},500)},200)});
+var p=document.getElementById('progress');
+window.addEventListener('scroll',function(){var s=document.documentElement.scrollHeight-document.documentElement.clientHeight;p.style.width=(document.documentElement.scrollTop/s*100)+'%'});
+var n=document.querySelector('nav');
+window.addEventListener('scroll',function(){if(window.scrollY>50){n.classList.add('scrolled')}else{n.classList.remove('scrolled')}});
+gsap.utils.toArray('.reveal').forEach(function(el){gsap.from(el,{opacity:0,y:40,duration:.8,scrollTrigger:{trigger:el,start:'top 88%'}})});
+gsap.from('.hero h1',{opacity:0,y:50,duration:1.1,delay:.3,ease:'power3.out'});
+gsap.from('.hero p',{opacity:0,y:30,duration:.9,delay:.6,ease:'power3.out'});
+gsap.from('.hero-cta',{opacity:0,y:20,duration:.7,delay:.9,ease:'power3.out'});
+gsap.from('.scroll-hint',{opacity:0,duration:.8,delay:1.3});
+ScrollTrigger.create({trigger:'.stats',start:'top 82%',once:true,onEnter:function(){document.querySelectorAll('.counter').forEach(function(c){var t=c.dataset.target,num=parseInt(t.replace(/[^0-9]/g,'')),suf=t.replace(/[0-9]/g,''),cur=0,step=Math.max(1,Math.ceil(num/30));var timer=setInterval(function(){cur+=step;if(cur>=num){cur=num;clearInterval(timer)}c.textContent=cur+suf},28)})}});
+var lb=document.getElementById('lightbox'),lbI=document.getElementById('lb-img');
+document.querySelectorAll('.gal-item img').forEach(function(img){img.addEventListener('click',function(){lbI.src=this.src.replace('800/600','1200/900');lb.classList.add('show')})});
+lb.addEventListener('click',function(){lb.classList.remove('show')});
+var bt=document.getElementById('backtop');
+window.addEventListener('scroll',function(){if(window.scrollY>500){bt.classList.add('show')}else{bt.classList.remove('show')}});
+bt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+</script>
+</body>
+</html>
