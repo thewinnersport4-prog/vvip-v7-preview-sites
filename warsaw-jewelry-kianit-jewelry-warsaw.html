@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KiANIT Jewelry Warsaw | OnyxDigital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#ffb300;--bg:#0a0a0b;--surface:#111113;--surface2:#161618;--text:#f5f5f7;--muted:#86868b;--border:rgba(255,255,255,.06);--radius:14px}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;font-weight:400}
+img{display:block;max-width:100%}a{text-decoration:none;color:inherit}
+::selection{background:var(--accent);color:#fff}
+#loader{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .5s}
+#loader.hide{opacity:0;pointer-events:none}
+.loader-ring{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:99998;width:0;transition:width .1s}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
+nav.scrolled{background:rgba(10,10,11,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;letter-spacing:-.5px}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{color:var(--muted);font-size:.9rem;font-weight:400;transition:color .3s}
+.nav-links a:hover,.nav-links a.cta{color:var(--text)}
+.nav-links a.cta{border:1px solid var(--border);padding:.5rem 1.2rem;border-radius:100px}
+.nav-links a.cta:hover{border-color:var(--accent);color:var(--accent)}
+@media(max-width:768px){.nav-links{display:none}}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:2rem}
+.hero-img{position:absolute;inset:0;z-index:0}
+.hero-img img{width:100%;height:100%;object-fit:cover;opacity:.1}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,11,.3) 0%,rgba(10,10,11,.5) 40%,rgba(10,10,11,.95) 100%)}
+.hero-content{position:relative;z-index:1;padding:0 1rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:500;letter-spacing:-1.5px;line-height:1.05;margin-bottom:1.5rem;max-width:900px;margin-left:auto;margin-right:auto}
+.hero p{color:var(--muted);font-size:clamp(1.05rem,2vw,1.3rem);font-weight:300;margin-bottom:2.5rem;max-width:580px;margin-left:auto;margin-right:auto}
+.hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:var(--muted);font-size:.8rem;letter-spacing:1px;text-transform:uppercase;opacity:.5;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+.btn{padding:.85rem 2rem;border-radius:100px;font-weight:500;font-size:.95rem;transition:all .3s;display:inline-block;cursor:pointer;border:none}
+.btn-fill{background:var(--accent);color:#0a0a0b}.btn-fill:hover{opacity:.85;transform:translateY(-1px)}
+.btn-ghost{color:var(--text);border:1px solid var(--border)}.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.container{max-width:1080px;margin:0 auto;padding:0 2rem}
+section{padding:7rem 2rem}
+.s-title{text-align:center;margin-bottom:4rem}
+.s-title h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:500;letter-spacing:-.5px;margin-bottom:.5rem}
+.s-title p{color:var(--muted);font-size:1rem;font-weight:300}
+.about{background:var(--surface)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:2.5rem}}
+.about-img{border-radius:var(--radius);overflow:hidden}
+.about-img img{width:100%;height:420px;object-fit:cover;transition:transform .6s ease}
+.about-img:hover img{transform:scale(1.03)}
+.about-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:500;letter-spacing:-.5px;margin-bottom:1.3rem;line-height:1.15}
+.about-text p{color:var(--muted);margin-bottom:1rem;font-size:1.05rem;font-weight:300}
+.about-tags{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.8rem}
+.about-tags span{font-size:.82rem;padding:.4rem 1rem;border:1px solid var(--border);border-radius:100px;color:var(--muted)}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+.svc-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem 2rem;transition:all .4s ease}
+.svc-card:hover{background:var(--surface2);border-color:rgba(255,255,255,.1);transform:translateY(-4px)}
+.svc-num{font-family:'Playfair Display',serif;font-size:.9rem;color:var(--accent);font-weight:600;margin-bottom:1rem;letter-spacing:1px}
+.svc-card h3{font-size:1.2rem;font-weight:500;margin-bottom:.7rem}
+.svc-card p{color:var(--muted);font-size:.95rem;font-weight:300;line-height:1.6}
+.stats{background:var(--surface);padding:4.5rem 2rem}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;max-width:900px;margin:0 auto;text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,4vw,3.5rem);font-weight:500;color:var(--accent);line-height:1}
+.stat-label{color:var(--muted);font-size:.92rem;margin-top:.5rem;font-weight:300}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media(max-width:768px){.gallery-grid{grid-template-columns:repeat(2,1fr);gap:.7rem}}
+.gal-item{border-radius:var(--radius);overflow:hidden;cursor:pointer;position:relative}
+.gal-item img{width:100%;height:260px;object-fit:cover;transition:transform .5s ease}
+.gal-item:hover img{transform:scale(1.06)}
+.tst-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.tst-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;transition:all .4s ease}
+.tst-card:hover{background:var(--surface2);transform:translateY(-3px)}
+.tst-stars{color:var(--accent);font-size:.9rem;margin-bottom:1.2rem;letter-spacing:2px}
+.tst-card p{color:var(--muted);font-style:italic;margin-bottom:1.5rem;line-height:1.7;font-weight:300}
+.tst-author{display:flex;align-items:center;gap:.8rem}
+.tst-author img{width:42px;height:42px;border-radius:50%;object-fit:cover}
+.tst-author h4{font-size:.92rem;font-weight:500}
+.tst-author small{color:var(--muted);font-size:.8rem}
+.faq-container{max-width:720px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border);transition:border-color .3s}
+.faq-item[open]{border-color:var(--accent)}
+.faq-item summary{padding:1.5rem 0;cursor:pointer;font-weight:500;font-size:1.05rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';color:var(--accent);font-size:1.4rem;font-weight:300;transition:transform .3s}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item p{padding:0 0 1.5rem;color:var(--muted);line-height:1.7;font-weight:300}
+.contact{text-align:center;padding:8rem 2rem;position:relative;overflow:hidden}
+.contact h2{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4.5vw,3.8rem);font-weight:500;letter-spacing:-.8px;margin-bottom:1rem}
+.contact p{color:var(--muted);margin-bottom:2.5rem;font-size:1.1rem;font-weight:300}
+.contact-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+footer{padding:3rem 2rem;text-align:center;border-top:1px solid var(--border)}
+.social{display:flex;justify-content:center;gap:.8rem;margin-bottom:1.5rem}
+.social a{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all .3s}
+.social a:hover{background:var(--accent);border-color:var(--accent)}
+.social svg{width:16px;height:16px;fill:var(--muted);transition:fill .3s}
+.social a:hover svg{fill:#0a0a0b}
+.footer-info{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.footer-info span,.footer-info a{color:var(--muted);font-size:.85rem;font-weight:300}
+.footer-info a:hover{color:var(--accent)}
+.copyright{color:var(--muted);font-size:.8rem;padding-top:1.2rem;border-top:1px solid var(--border);font-weight:300}
+.copyright a{color:var(--accent)}
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;display:none;align-items:center;justify-content:center;cursor:pointer}
+#lightbox.show{display:flex}
+#lightbox img{max-width:90%;max-height:85%;border-radius:10px}
+#backtop{position:fixed;bottom:88px;right:22px;z-index:999;width:44px;height:44px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(10px);transition:all .3s}
+#backtop.show{opacity:1;transform:translateY(0)}
+#backtop:hover{background:var(--accent)}
+#backtop svg{width:17px;height:17px;stroke:var(--muted);transition:stroke .3s}
+#backtop:hover svg{stroke:#0a0a0b}
+.wa{position:fixed;bottom:22px;right:22px;z-index:999;width:54px;height:54px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.2);transition:transform .3s}
+.wa:hover{transform:scale(1.1)}
+.wa svg{width:28px;height:28px;fill:#fff}
+</style>
+</head>
+<body>
+<div id="loader"><div class="loader-ring"></div></div>
+<div id="progress"></div>
+<nav id="nav">
+<a href="#" class="logo">KiANIT Jewelry Warsaw</a>
+<ul class="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#contact" class="cta">Contact</a></li>
+</ul>
+</nav>
+<section class="hero">
+<div class="hero-img"><img src="https://loremflickr.com/1920/1080/jewelry?lock=1" alt="Jewelry in Warsaw"></div>
+<div class="hero-content">
+<h1>KiANIT Jewelry Warsaw</h1>
+<p>Premium Jewelry in Warsaw. Elevating your experience with expert craftsmanship and personalized service.</p>
+<div class="hero-cta">
+<a href="https://wa.me/9233390025902" target="_blank" class="btn btn-fill">Get Started</a>
+<a href="#about" class="btn btn-ghost">Learn More</a>
+</div>
+</div>
+<div class="scroll-hint">Scroll</div>
+</section>
+<section id="about" class="about">
+<div class="container">
+<div class="about-grid">
+<div class="about-img" data-reveal><img src="https://loremflickr.com/800/600/jewelry?lock=2" alt="About KiANIT Jewelry Warsaw"></div>
+<div class="about-text" data-reveal>
+<h2>Crafting Excellence in Warsaw</h2>
+<p>At KiANIT Jewelry Warsaw, we believe in delivering exceptional quality and memorable experiences. Our team of skilled professionals is dedicated to providing the highest standard of service in Jewelry.</p>
+<p>Located in the heart of Warsaw, we combine traditional expertise with modern innovation to exceed your expectations every single time.</p>
+<div class="about-tags">
+<span>Craftsmanship</span><span>Luxury</span><span>Certified</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="services">
+<div class="container">
+<div class="s-title"><h2>Our Services</h2><p>What we offer</p></div>
+<div class="svc-grid">
+<div class="svc-card" data-reveal><div class="svc-num">01</div><h3>Custom Design</h3><p>Professional service tailored to your specific needs and preferences.</p></div>
+<div class="svc-card" data-reveal><div class="svc-num">02</div><h3>Repairs</h3><p>Expert care with attention to every detail for outstanding results.</p></div>
+<div class="svc-card" data-reveal><div class="svc-num">03</div><h3>Appraisals</h3><p>Comprehensive solutions designed to meet the highest standards.</p></div>
+<div class="svc-card" data-reveal><div class="svc-num">04</div><h3>Bespoke Pieces</h3><p>Dedicated support and personalized guidance throughout.</p></div>
+</div>
+</div>
+</section>
+<section class="stats">
+<div class="stats-grid">
+<div data-reveal><div class="stat-num" data-count="500">0+</div><div class="stat-label">Happy Clients</div></div>
+<div data-reveal><div class="stat-num" data-count="10">0+</div><div class="stat-label">Years Experience</div></div>
+<div data-reveal><div class="stat-num" data-count="50">0+</div><div class="stat-label">Projects Done</div></div>
+<div data-reveal><div class="stat-num" data-count="100">0%</div><div class="stat-label">Satisfaction</div></div>
+</div>
+</section>
+<section id="gallery">
+<div class="container">
+<div class="s-title"><h2>Gallery</h2><p>A glimpse of our work</p></div>
+<div class="gallery-grid">
+<div class="gal-item" data-reveal><img src="https://loremflickr.com/600/400/jewelry?lock=3" alt="Gallery 1"></div>
+<div class="gal-item" data-reveal><img src="https://loremflickr.com/600/400/jewelry?lock=4" alt="Gallery 2"></div>
+<div class="gal-item" data-reveal><img src="https://loremflickr.com/600/400/jewelry?lock=5" alt="Gallery 3"></div>
+<div class="gal-item" data-reveal><img src="https://loremflickr.com/600/400/jewelry?lock=6" alt="Gallery 4"></div>
+<div class="gal-item" data-reveal><img src="https://loremflickr.com/600/400/jewelry?lock=7" alt="Gallery 5"></div>
+<div class="gal-item" data-reveal><img src="https://loremflickr.com/600/400/jewelry?lock=8" alt="Gallery 6"></div>
+</div>
+</div>
+</section>
+<section class="stats" style="background:var(--bg)">
+<div class="container">
+<div class="s-title"><h2>Reviews</h2><p>What our clients say</p></div>
+<div class="tst-grid">
+<div class="tst-card" data-reveal>
+<div class="tst-stars">★★★★★</div>
+<p>"Absolutely outstanding experience. The team is professional, attentive, and delivers beyond expectations. Highly recommend!"</p>
+<div class="tst-author"><img src="https://loremflickr.com/100/100/portrait?lock=10" alt="Review 1"><div><h4>Sarah M.</h4><small>Warsaw Resident</small></div></div>
+</div>
+<div class="tst-card" data-reveal>
+<div class="tst-stars">★★★★★</div>
+<p>"Best decision I made. The quality of work is exceptional and the customer service is top-notch. Will definitely return."</p>
+<div class="tst-author"><img src="https://loremflickr.com/100/100/portrait?lock=11" alt="Review 2"><div><h4>James L.</h4><small>Verified Client</small></div></div>
+</div>
+<div class="tst-card" data-reveal>
+<div class="tst-stars">★★★★★</div>
+<p>"Professional, reliable, and creative. They understood exactly what I wanted and delivered perfectly. Five stars!"</p>
+<div class="tst-author"><img src="https://loremflickr.com/100/100/portrait?lock=12" alt="Review 3"><div><h4>Elena K.</h4><small>Local Customer</small></div></div>
+</div>
+</div>
+</div>
+</section>
+<section id="faq">
+<div class="container">
+<div class="s-title"><h2>FAQ</h2><p>Frequently asked questions</p></div>
+<div class="faq-container">
+<details class="faq-item" data-reveal>
+<summary>How can I book an appointment?</summary>
+<p>Simply click the WhatsApp button or contact us directly. We'll get back to you within 24 hours to schedule your appointment.</p>
+</details>
+<details class="faq-item" data-reveal>
+<summary>What are your operating hours?</summary>
+<p>We're open Monday through Saturday. Specific hours may vary, so we recommend contacting us to confirm availability.</p>
+</details>
+<details class="faq-item" data-reveal>
+<summary>Do you offer custom services?</summary>
+<p>Absolutely! We specialize in personalized solutions. Contact us with your requirements and we'll create a tailored plan for you.</p>
+</details>
+<details class="faq-item" data-reveal>
+<summary>What areas do you serve?</summary>
+<p>We're based in Warsaw and serve the surrounding areas. Get in touch to find out if we cover your location.</p>
+</details>
+</div>
+</div>
+</section>
+<section id="contact" class="contact">
+<div class="container">
+<h2>Ready to Get Started?</h2>
+<p>Let's create something amazing together. Contact us today.</p>
+<div class="contact-btns">
+<a href="https://wa.me/9233390025902" target="_blank" class="btn btn-fill">WhatsApp Us</a>
+<a href="https://onyx-digital-sidd.vercel.app/" target="_blank" class="btn btn-ghost">View Portfolio</a>
+</div>
+</div>
+</section>
+<footer>
+<div class="social">
+<a href="https://wa.me/9233390025902" target="_blank"><svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 2.1.55 4.06 1.5 5.76L2 22l4.45-1.17c1.64.9 3.52 1.42 5.59 1.42 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.2c-.24.68-1.42 1.3-1.95 1.38-.5.07-1.13.1-1.82-.12-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.95-4.37-.14-.2-1.18-1.57-1.18-2.99 0-1.42.75-2.12 1.01-2.41.27-.3.58-.37.78-.37.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2 .89 2.15.07.14.12.3.02.5-.1.2-.15.3-.29.47-.15.16-.31.37-.44.49-.15.14-.3.3-.13.58.17.28.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.34 1.46.29.14.45.12.62-.07.17-.2.71-.83.9-1.11.19-.28.37-.23.62-.14.25.09 1.61.76 1.89.9.28.14.46.2.53.31.07.12.07.66-.17 1.34z"/></svg></a>
+</div>
+<div class="footer-info">
+<span>Warsaw</span>
+<a href="https://onyx-digital-sidd.vercel.app/" target="_blank">Portfolio</a>
+</div>
+<div class="copyright">Designed by <a href="https://onyx-digital-sidd.vercel.app/" target="_blank">OnyxDigital</a> · KiANIT Jewelry Warsaw</div>
+</footer>
+<div id="lightbox" onclick="this.classList.remove('show')"><img src="" id="lb-img"></div>
+<button id="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<a href="https://wa.me/9233390025902" target="_blank" class="wa"><svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 2.1.55 4.06 1.5 5.76L2 22l4.45-1.17c1.64.9 3.52 1.42 5.59 1.42 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.2c-.24.68-1.42 1.3-1.95 1.38-.5.07-1.13.1-1.82-.12-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.95-4.37-.14-.2-1.18-1.57-1.18-2.99 0-1.42.75-2.12 1.01-2.41.27-.3.58-.37.78-.37.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2 .89 2.15.07.14.12.3.02.5-.1.2-.15.3-.29.47-.15.16-.31.37-.44.49-.15.14-.3.3-.13.58.17.28.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.34 1.46.29.14.45.12.62-.07.17-.2.71-.83.9-1.11.19-.28.37-.23.62-.14.25.09 1.61.76 1.89.9.28.14.46.2.53.31.07.12.07.66-.17 1.34z"/></svg></a>
+<script>
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('loader').classList.add('hide'),200)});
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50);
+const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+document.getElementById('progress').style.width=p+'%';
+document.getElementById('backtop').classList.toggle('show',window.scrollY>400)});
+gsap.registerPlugin(ScrollTrigger);
+document.querySelectorAll('[data-reveal]').forEach(el=>{
+gsap.from(el,{opacity:0,y:40,duration:.8,ease:'power2.out',
+scrollTrigger:{trigger:el,start:'top 85%'}});
+});
+document.querySelectorAll('.gal-item').forEach(item=>{
+item.addEventListener('click',e=>{
+const lb=document.getElementById('lightbox');
+document.getElementById('lb-img').src=e.target.src;
+lb.classList.add('show');
+});
+});
+document.querySelectorAll('.stat-num').forEach(el=>{
+const target=parseInt(el.dataset.count);
+ScrollTrigger.create({trigger:el,start:'top 80%',once:true,onEnter:()=>{
+let c=0;const i=setInterval(()=>{c+=Math.ceil(target/30);
+if(c>=target){c=target;clearInterval(i)}el.textContent=c+'+'},30)}});
+});
+</script>
+</body>
+</html>
