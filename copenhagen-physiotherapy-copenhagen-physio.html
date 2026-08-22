@@ -6,36 +6,31 @@
 <title>Copenhagen Physio | OnyxDigital</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--accent:#5b9bd5;--bg:#0a0a0b;--surface:#111113;--surface2:#161618;--text:#f5f5f7;--muted:#86868b;--border:rgba(255,255,255,.06);--radius:14px}
+:root{--accent:#e0a458;--bg:#0a0a0b;--surface:#111113;--surface2:#161618;--text:#f5f5f7;--muted:#86868b;--border:rgba(255,255,255,.06);--radius:14px}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;font-weight:400}
-img{display:block;max-width:100%}
-a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}a{text-decoration:none;color:inherit}
 ::selection{background:var(--accent);color:#fff}
 #loader{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .5s}
 #loader.hide{opacity:0;pointer-events:none}
 .loader-ring{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-#progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:9998;transition:width .15s}
-nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.4rem 3rem;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
-nav.scrolled{padding:.9rem 3rem;background:rgba(10,10,11,.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--accent);letter-spacing:.3px}
+#progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:99998;width:0;transition:width .1s}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
+nav.scrolled{background:rgba(10,10,11,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;letter-spacing:-.5px}
 .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
-.nav-links a{font-size:.88rem;font-weight:400;color:var(--muted);transition:color .3s}
-.nav-links a:hover{color:var(--text)}
-.nav-links a.cta{color:var(--bg);background:var(--accent);padding:.5rem 1.3rem;border-radius:100px;font-weight:500}
-.nav-links a.cta:hover{opacity:.85}
-@media(max-width:768px){nav{padding:1rem 1.5rem}nav.scrolled{padding:.8rem 1.5rem}.nav-links{display:none}}
-section{padding:7rem 2rem;position:relative}
-@media(max-width:768px){section{padding:4.5rem 1.5rem}}
-.container{max-width:1080px;margin:0 auto}
-.s-title{text-align:center;margin-bottom:4rem}
-.s-title h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:500;letter-spacing:-.5px;margin-bottom:.7rem}
-.s-title p{color:var(--muted);font-size:1.05rem;font-weight:300}
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;position:relative}
-.hero-img{position:absolute;inset:0;z-index:-1}
+.nav-links a{color:var(--muted);font-size:.9rem;font-weight:400;transition:color .3s}
+.nav-links a:hover,.nav-links a.cta{color:var(--text)}
+.nav-links a.cta{border:1px solid var(--border);padding:.5rem 1.2rem;border-radius:100px}
+.nav-links a.cta:hover{border-color:var(--accent);color:var(--accent)}
+@media(max-width:768px){.nav-links{display:none}}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:2rem}
+.hero-img{position:absolute;inset:0;z-index:0}
 .hero-img img{width:100%;height:100%;object-fit:cover;opacity:.1}
 .hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,11,.3) 0%,rgba(10,10,11,.5) 40%,rgba(10,10,11,.95) 100%)}
 .hero-content{position:relative;z-index:1;padding:0 1rem}
@@ -45,10 +40,13 @@ section{padding:7rem 2rem;position:relative}
 .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:var(--muted);font-size:.8rem;letter-spacing:1px;text-transform:uppercase;opacity:.5;animation:bounce 2s infinite}
 @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
 .btn{padding:.85rem 2rem;border-radius:100px;font-weight:500;font-size:.95rem;transition:all .3s;display:inline-block;cursor:pointer;border:none}
-.btn-fill{background:var(--accent);color:#0a0a0b}
-.btn-fill:hover{opacity:.85;transform:translateY(-1px)}
-.btn-ghost{color:var(--text);border:1px solid var(--border)}
-.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-fill{background:var(--accent);color:#0a0a0b}.btn-fill:hover{opacity:.85;transform:translateY(-1px)}
+.btn-ghost{color:var(--text);border:1px solid var(--border)}.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.container{max-width:1080px;margin:0 auto;padding:0 2rem}
+section{padding:7rem 2rem}
+.s-title{text-align:center;margin-bottom:4rem}
+.s-title h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:500;letter-spacing:-.5px;margin-bottom:.5rem}
+.s-title p{color:var(--muted);font-size:1rem;font-weight:300}
 .about{background:var(--surface)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
 @media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:2.5rem}}
@@ -112,102 +110,179 @@ footer{padding:3rem 2rem;text-align:center;border-top:1px solid var(--border)}
 #backtop{position:fixed;bottom:88px;right:22px;z-index:999;width:44px;height:44px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(10px);transition:all .3s}
 #backtop.show{opacity:1;transform:translateY(0)}
 #backtop:hover{background:var(--accent)}
-.wa{position:fixed;bottom:22px;right:22px;z-index:999;width:54px;height:54px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .3s}
+#backtop svg{width:17px;height:17px;stroke:var(--muted);transition:stroke .3s}
+#backtop:hover svg{stroke:#0a0a0b}
+.wa{position:fixed;bottom:22px;right:22px;z-index:999;width:54px;height:54px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.2);transition:transform .3s}
 .wa:hover{transform:scale(1.1)}
 .wa svg{width:28px;height:28px;fill:#fff}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
-.reveal.in{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
 <div id="loader"><div class="loader-ring"></div></div>
 <div id="progress"></div>
-<nav><div class="logo">Copenhagen</div><ul class="nav-links"><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact" class="cta">Contact</a></li></ul></nav>
-<section class="hero" id="home">
-<div class="hero-img"><img src="https://loremflickr.com/1920/1080/physiotherapy?lock=1" alt=""></div>
+<nav id="nav">
+<a href="#" class="logo">Copenhagen Physio</a>
+<ul class="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#contact" class="cta">Contact</a></li>
+</ul>
+</nav>
+<section class="hero">
+<div class="hero-img"><img src="https://loremflickr.com/1920/1080/physiotherapy,physical-therapy?lock=1" alt="Physiotherapy in Copenhagen"></div>
 <div class="hero-content">
-<h1>Restore Your Movement</h1>
-<p>Expert physiotherapy in Copenhagen</p>
-<div class="hero-cta"><a href="#contact" class="btn btn-fill">Get in Touch</a><a href="#services" class="btn btn-ghost">Our Services</a></div>
+<h1>Copenhagen Physio</h1>
+<p>Premium Physiotherapy in Copenhagen. Elevating your experience with expert craftsmanship and personalized service.</p>
+<div class="hero-cta">
+<a href="https://wa.me/9233390025902" target="_blank" class="btn btn-fill">Get Started</a>
+<a href="#about" class="btn btn-ghost">Learn More</a>
+</div>
 </div>
 <div class="scroll-hint">Scroll</div>
 </section>
-<section class="about" id="about">
-<div class="container"><div class="about-grid">
-<div class="about-img reveal"><img src="https://loremflickr.com/600/420/physiotherapy?lock=3" alt="About Copenhagen Physio"></div>
-<div class="about-text reveal">
-<h2>About Copenhagen Physio</h2>
-<p>Our team brings years of expertise and a passion for excellence. We are dedicated to delivering outstanding results for every client.</p>
-<p>Located in Copenhagen, Denmark, we are committed to delivering exceptional service and building lasting relationships with every client we serve.</p>
-<div class="about-tags"><span>Certified Therapists</span><span>Personalized Plans</span><span>Modern Facilities</span></div>
+<section id="about" class="about">
+<div class="container">
+<div class="about-grid">
+<div class="about-img" data-reveal><img src="https://loremflickr.com/800/600/physiotherapy,physical-therapy?lock=2" alt="About Copenhagen Physio"></div>
+<div class="about-text" data-reveal>
+<h2>Crafting Excellence in Copenhagen</h2>
+<p>At Copenhagen Physio, we believe in delivering exceptional quality and memorable experiences. Our team of skilled professionals is dedicated to providing the highest standard of service in Physiotherapy.</p>
+<p>Located in the heart of Copenhagen, we combine traditional expertise with modern innovation to exceed your expectations every single time.</p>
+<div class="about-tags">
+<span>Certified</span><span>Holistic</span><span>Personalized</span>
 </div>
-</div></div>
+</div>
+</div>
+</div>
 </section>
 <section id="services">
 <div class="container">
-<div class="s-title reveal"><h2>Our Services</h2><p>What we offer</p></div>
-<div class="svc-grid"><div class="svc-card reveal"><div class="svc-num">01</div><h3>Manual Therapy</h3><p>Hands-on treatment techniques for pain relief and mobility.</p></div><div class="svc-card reveal"><div class="svc-num">02</div><h3>Sports Rehabilitation</h3><p>Targeted recovery programs for sports injuries.</p></div><div class="svc-card reveal"><div class="svc-num">03</div><h3>Posture Correction</h3><p>Comprehensive assessment and correction of postural issues.</p></div><div class="svc-card reveal"><div class="svc-num">04</div><h3>Chronic Pain Management</h3><p>Long-term strategies for managing chronic pain conditions.</p></div></div>
+<div class="s-title"><h2>Our Services</h2><p>What we offer</p></div>
+<div class="svc-grid">
+<div class="svc-card" data-reveal><div class="svc-num">01</div><h3>Fresh Bread</h3><p>Professional service tailored to your specific needs and preferences.</p></div>
+<div class="svc-card" data-reveal><div class="svc-num">02</div><h3>Custom Cakes</h3><p>Professional service tailored to your specific needs and preferences.</p></div>
+<div class="svc-card" data-reveal><div class="svc-num">03</div><h3>Pastry Selection</h3><p>Professional service tailored to your specific needs and preferences.</p></div>
+<div class="svc-card" data-reveal><div class="svc-num">04</div><h3>Catering</h3><p>Professional service tailored to your specific needs and preferences.</p></div>
+
+</div>
 </div>
 </section>
-<section class="stats"><div class="stats-grid"><div class="reveal"><div class="stat-num"><span class="counter" data-target="5K+">5K+</span></div><div class="stat-label">Patients Recovered</div></div><div class="reveal"><div class="stat-num"><span class="counter" data-target="10">10</span></div><div class="stat-label">Years Experience</div></div><div class="reveal"><div class="stat-num"><span class="counter" data-target="6">6</span></div><div class="stat-label">Therapists</div></div><div class="reveal"><div class="stat-num"><span class="counter" data-target="4.9">4.9</span></div><div class="stat-label">Rating</div></div></div></section>
+<section class="stats">
+<div class="stats-grid">
+<div data-reveal><div class="stat-num" data-count="500">0+</div><div class="stat-label">Happy Clients</div></div>
+<div data-reveal><div class="stat-num" data-count="10">0+</div><div class="stat-label">Years Experience</div></div>
+<div data-reveal><div class="stat-num" data-count="50">0+</div><div class="stat-label">Projects Done</div></div>
+<div data-reveal><div class="stat-num" data-count="100">0%</div><div class="stat-label">Satisfaction</div></div>
+</div>
+</section>
 <section id="gallery">
 <div class="container">
-<div class="s-title reveal"><h2>Gallery</h2><p>A glimpse of our work</p></div>
-<div class="gallery-grid"><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/physiotherapy?lock=11" alt="Gallery 1" loading="lazy"></div><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/physiotherapy?lock=12" alt="Gallery 2" loading="lazy"></div><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/physiotherapy?lock=13" alt="Gallery 3" loading="lazy"></div><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/physiotherapy?lock=14" alt="Gallery 4" loading="lazy"></div><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/physiotherapy?lock=15" alt="Gallery 5" loading="lazy"></div><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/physiotherapy?lock=16" alt="Gallery 6" loading="lazy"></div></div>
+<div class="s-title"><h2>Gallery</h2><p>A glimpse of our work</p></div>
+<div class="gallery-grid">
+<div class="gal-item" data-reveal><img src="https://loremflickr.com/600/400/physiotherapy,physical-therapy?lock=3" alt="Gallery 1"></div>
+<div class="gal-item" data-reveal><img src="https://loremflickr.com/600/400/physiotherapy,physical-therapy?lock=4" alt="Gallery 2"></div>
+<div class="gal-item" data-reveal><img src="https://loremflickr.com/600/400/physiotherapy,physical-therapy?lock=5" alt="Gallery 3"></div>
+<div class="gal-item" data-reveal><img src="https://loremflickr.com/600/400/physiotherapy,physical-therapy?lock=6" alt="Gallery 4"></div>
+<div class="gal-item" data-reveal><img src="https://loremflickr.com/600/400/physiotherapy,physical-therapy?lock=7" alt="Gallery 5"></div>
+<div class="gal-item" data-reveal><img src="https://loremflickr.com/600/400/physiotherapy,physical-therapy?lock=8" alt="Gallery 6"></div>
+
+</div>
 </div>
 </section>
-<section class="about" id="reviews">
+<section class="stats" style="background:var(--bg)">
 <div class="container">
-<div class="s-title reveal"><h2>What Our Clients Say</h2><p>Trusted by satisfied customers</p></div>
+<div class="s-title"><h2>Reviews</h2><p>What our clients say</p></div>
 <div class="tst-grid">
-<div class="tst-card reveal"><div class="tst-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Absolutely outstanding service! The team went above and beyond our expectations. Highly recommended."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/person?lock=20" alt="Client"><div><h4>Sarah Johnson</h4><small>Verified Client</small></div></div></div>
-<div class="tst-card reveal"><div class="tst-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Professional, reliable, and truly exceptional results. Copenhagen Physio transformed our experience completely."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/person?lock=21" alt="Client"><div><h4>Michael Chen</h4><small>Verified Client</small></div></div></div>
-<div class="tst-card reveal"><div class="tst-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"From start to finish, the experience was seamless. The attention to detail is second to none."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/person?lock=22" alt="Client"><div><h4>Emma Williams</h4><small>Verified Client</small></div></div></div>
+<div class="tst-card" data-reveal>
+<div class="tst-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<p>"Absolutely outstanding experience. The team is professional, attentive, and delivers beyond expectations. Highly recommend!"</p>
+<div class="tst-author"><img src="https://loremflickr.com/100/100/portrait?lock=10" alt="Review 1"><div><h4>Sarah M.</h4><small>Copenhagen Resident</small></div></div>
+</div>
+<div class="tst-card" data-reveal>
+<div class="tst-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<p>"Best decision I made. The quality of work is exceptional and the customer service is top-notch. Will definitely return."</p>
+<div class="tst-author"><img src="https://loremflickr.com/100/100/portrait?lock=11" alt="Review 2"><div><h4>James L.</h4><small>Verified Client</small></div></div>
+</div>
+<div class="tst-card" data-reveal>
+<div class="tst-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<p>"Professional, reliable, and creative. They understood exactly what I wanted and delivered perfectly. Five stars!"</p>
+<div class="tst-author"><img src="https://loremflickr.com/100/100/portrait?lock=12" alt="Review 3"><div><h4>Elena K.</h4><small>Local Customer</small></div></div>
+</div>
 </div>
 </div>
 </section>
 <section id="faq">
 <div class="container">
-<div class="s-title reveal"><h2>Frequently Asked Questions</h2><p>Got questions? We have answers</p></div>
+<div class="s-title"><h2>FAQ</h2><p>Frequently asked questions</p></div>
 <div class="faq-container">
-<details class="faq-item reveal"><summary>What services do you offer?</summary><p>We offer a comprehensive range of professional services. Contact us for a detailed consultation and personalized service plan.</p></details>
-<details class="faq-item reveal"><summary>How can I book an appointment?</summary><p>You can reach us by emailing info@copenhagenphysio.dk or using the WhatsApp button to chat with us directly.</p></details>
-<details class="faq-item reveal"><summary>What are your operating hours?</summary><p>Our standard hours are Monday to Friday, 9:00 AM to 6:00 PM. Weekend appointments are available by prior arrangement.</p></details>
-<details class="faq-item reveal"><summary>Do you offer services for businesses?</summary><p>Yes, we provide both individual and business services with customized solutions tailored to your specific needs.</p></details>
-<details class="faq-item reveal"><summary>How do I get a quote?</summary><p>Reach out via email or WhatsApp for a free, no-obligation quote tailored to your specific requirements.</p></details>
+<details class="faq-item" data-reveal>
+<summary>How can I book an appointment?</summary>
+<p>Simply click the WhatsApp button or contact us directly. We'll get back to you within 24 hours to schedule your appointment.</p>
+</details>
+<details class="faq-item" data-reveal>
+<summary>What are your operating hours?</summary>
+<p>We're open Monday through Saturday. Specific hours may vary, so we recommend contacting us to confirm availability.</p>
+</details>
+<details class="faq-item" data-reveal>
+<summary>Do you offer custom services?</summary>
+<p>Absolutely! We specialize in personalized solutions. Contact us with your requirements and we'll create a tailored plan for you.</p>
+</details>
+<details class="faq-item" data-reveal>
+<summary>What areas do you serve?</summary>
+<p>We're based in Copenhagen and serve the surrounding areas. Get in touch to find out if we cover your location.</p>
+</details>
 </div>
 </div>
 </section>
-<section class="contact" id="contact">
-<h2>Book Your Service Today</h2>
-<p>Contact Copenhagen Physio today and experience the difference</p>
-<div class="contact-btns"><a href="https://wa.me/9233390025902" target="_blank" class="btn btn-fill">WhatsApp Us</a><a href="mailto:info@copenhagenphysio.dk" class="btn btn-ghost">Email Us</a></div>
+<section id="contact" class="contact">
+<div class="container">
+<h2>Ready to Get Started?</h2>
+<p>Let's create something amazing together. Contact us today.</p>
+<div class="contact-btns">
+<a href="https://wa.me/9233390025902" target="_blank" class="btn btn-fill">WhatsApp Us</a>
+<a href="https://onyx-digital-sidd.vercel.app/" target="_blank" class="btn btn-ghost">View Portfolio</a>
+</div>
+</div>
 </section>
 <footer>
-<div class="social"><a href="https://wa.me/9233390025902" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg></a><a href="mailto:info@copenhagenphysio.dk" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a></div>
-<div class="footer-info"><span>Copenhagen, Denmark</span><a href="mailto:info@copenhagenphysio.dk">info@copenhagenphysio.dk</a></div>
-<div class="copyright">&copy; 2026 Copenhagen Physio. Premium website by <a href="https://onyx-digital-sidd.vercel.app/" target="_blank">OnyxDigital</a>.</div>
+<div class="social">
+<a href="https://wa.me/9233390025902" target="_blank"><svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 2.1.55 4.06 1.5 5.76L2 22l4.45-1.17c1.64.9 3.52 1.42 5.59 1.42 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.2c-.24.68-1.42 1.3-1.95 1.38-.5.07-1.13.1-1.82-.12-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.95-4.37-.14-.2-1.18-1.57-1.18-2.99 0-1.42.75-2.12 1.01-2.41.27-.3.58-.37.78-.37.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2 .89 2.15.07.14.12.3.02.5-.1.2-.15.3-.29.47-.15.16-.31.37-.44.49-.15.14-.3.3-.13.58.17.28.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.34 1.46.29.14.45.12.62-.07.17-.2.71-.83.9-1.11.19-.28.37-.23.62-.14.25.09 1.61.76 1.89.9.28.14.46.2.53.31.07.12.07.66-.17 1.34z"/></svg></a>
+</div>
+<div class="footer-info">
+<span>Copenhagen</span>
+<a href="https://onyx-digital-sidd.vercel.app/" target="_blank">Portfolio</a>
+</div>
+<div class="copyright">Designed by <a href="https://onyx-digital-sidd.vercel.app/" target="_blank">OnyxDigital</a> &middot; Copenhagen Physio</div>
 </footer>
-<div id="lightbox"><img id="lb-img" src="" alt=""></div>
-<div id="backtop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg></div>
-<a href="https://wa.me/9233390025902" target="_blank" class="wa"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg></a>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<div id="lightbox" onclick="this.classList.remove('show')"><img src="" id="lb-img"></div>
+<button id="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<a href="https://wa.me/9233390025902" target="_blank" class="wa"><svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 2.1.55 4.06 1.5 5.76L2 22l4.45-1.17c1.64.9 3.52 1.42 5.59 1.42 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.2c-.24.68-1.42 1.3-1.95 1.38-.5.07-1.13.1-1.82-.12-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.95-4.37-.14-.2-1.18-1.57-1.18-2.99 0-1.42.75-2.12 1.01-2.41.27-.3.58-.37.78-.37.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2 .89 2.15.07.14.12.3.02.5-.1.2-.15.3-.29.47-.15.16-.31.37-.44.49-.15.14-.3.3-.13.58.17.28.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.34 1.46.29.14.45.12.62-.07.17-.2.71-.83.9-1.11.19-.28.37-.23.62-.14.25.09 1.61.76 1.89.9.28.14.46.2.53.31.07.12.07.66-.17 1.34z"/></svg></a>
 <script>
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('loader').classList.add('hide'),200)});
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50);
+const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+document.getElementById('progress').style.width=p+'%';
+document.getElementById('backtop').classList.toggle('show',window.scrollY>400)});
 gsap.registerPlugin(ScrollTrigger);
-window.addEventListener('load',function(){var l=document.getElementById('loader');setTimeout(function(){l.classList.add('hide');setTimeout(function(){l.style.display='none'},500)},200)});
-var p=document.getElementById('progress');
-window.addEventListener('scroll',function(){var s=document.documentElement.scrollHeight-document.documentElement.clientHeight;p.style.width=(document.documentElement.scrollTop/s*100)+'%'});
-var n=document.querySelector('nav');
-window.addEventListener('scroll',function(){if(window.scrollY>50){n.classList.add('scrolled')}else{n.classList.remove('scrolled')}});
-var observer=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');observer.unobserve(e.target)}})},{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el)});
-document.querySelectorAll('.gal-item').forEach(function(item){item.addEventListener('click',function(){var lb=document.getElementById('lightbox');var img=document.getElementById('lb-img');img.src=this.querySelector('img').src;lb.classList.add('show')})});
-document.getElementById('lightbox').addEventListener('click',function(){this.classList.remove('show')});
-var bt=document.getElementById('backtop');
-window.addEventListener('scroll',function(){if(window.scrollY>400){bt.classList.add('show')}else{bt.classList.remove('show')}});
-bt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
-document.querySelectorAll('.counter').forEach(function(el){var target=el.getAttribute('data-target');ScrollTrigger.create({trigger:el,start:'top 80%',once:true,onEnter:function(){if(target.indexOf('K')>-1){gsap.to(el,{duration:1.5,textContent:parseInt(target)*1000,snap:{textContent:1},formatValue:function(v){return(v/1000).toFixed(0)+'K'}})}else if(target.indexOf('.')>-1){gsap.to(el,{duration:1.5,textContent:parseFloat(target),snap:{textContent:0.1}})}else{gsap.to(el,{duration:1.5,textContent:parseInt(target),snap:{textContent:1}})}}})});
+document.querySelectorAll('[data-reveal]').forEach(el=>{
+gsap.from(el,{opacity:0,y:40,duration:.8,ease:'power2.out',
+scrollTrigger:{trigger:el,start:'top 85%'}});
+});
+document.querySelectorAll('.gal-item').forEach(item=>{
+item.addEventListener('click',e=>{
+const lb=document.getElementById('lightbox');
+document.getElementById('lb-img').src=e.target.src;
+lb.classList.add('show');
+});
+});
+document.querySelectorAll('.stat-num').forEach(el=>{
+const target=parseInt(el.dataset.count);
+ScrollTrigger.create({trigger:el,start:'top 80%',once:true,onEnter:()=>{
+let c=0;const i=setInterval(()=>{c+=Math.ceil(target/30);
+if(c>=target){c=target;clearInterval(i)}el.textContent=c+'+'},30)});
+});
 </script>
 </body>
 </html>
