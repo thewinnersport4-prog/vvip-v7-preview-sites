@@ -3,121 +3,303 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Veterina Nusle | OnyxDigital</title>
+<title>Veterina Nusle | Premium Veterinary in Prague | OnyxDigital Preview</title>
+<meta name="description" content="A premium veterinary website preview for Veterina Nusle in Prague, Czech Republic. Crafted by OnyxDigital.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--accent:#f77f00;--bg:#0a0a0b;--surface:#111113;--surface2:#161618;--text:#f5f5f7;--muted:#86868b;--border:rgba(255,255,255,.06);--radius:14px}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;font-weight:400}
-img{display:block;max-width:100%}a{text-decoration:none;color:inherit}::selection{background:var(--accent);color:#fff}
-#loader{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .5s}
-#loader.hide{opacity:0;pointer-events:none}
-.loader-ring{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-#progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:9998;transition:width .15s}
-nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.4rem 3rem;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
-nav.scrolled{padding:.9rem 3rem;background:rgba(10,10,11,.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--accent);letter-spacing:.3px}
-.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
-.nav-links a{font-size:.88rem;font-weight:400;color:var(--muted);transition:color .3s}.nav-links a:hover{color:var(--text)}
-.nav-links a.cta{color:var(--bg);background:var(--accent);padding:.5rem 1.3rem;border-radius:100px;font-weight:500}.nav-links a.cta:hover{opacity:.85}
-@media(max-width:768px){nav{padding:1rem 1.5rem}nav.scrolled{padding:.8rem 1.5rem}.nav-links{display:none}}
-section{padding:7rem 2rem;position:relative}@media(max-width:768px){section{padding:4.5rem 1.5rem}}
-.container{max-width:1080px;margin:0 auto}
-.s-title{text-align:center;margin-bottom:4rem}.s-title h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:500;letter-spacing:-.5px;margin-bottom:.7rem}.s-title p{color:var(--muted);font-size:1.05rem;font-weight:300}
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;position:relative}
-.hero-img{position:absolute;inset:0;z-index:-1}.hero-img img{width:100%;height:100%;object-fit:cover;opacity:.1}
-.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,11,.3) 0%,rgba(10,10,11,.5) 40%,rgba(10,10,11,.95) 100%)}
-.hero-content{position:relative;z-index:1;padding:0 1rem}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:500;letter-spacing:-1.5px;line-height:1.05;margin-bottom:1.5rem;max-width:900px;margin-left:auto;margin-right:auto}
-.hero p{color:var(--muted);font-size:clamp(1.05rem,2vw,1.3rem);font-weight:300;margin-bottom:2.5rem;max-width:580px;margin-left:auto;margin-right:auto}
-.hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:var(--muted);font-size:.8rem;letter-spacing:1px;text-transform:uppercase;opacity:.5;animation:bounce 2s infinite}
-@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
-.btn{padding:.85rem 2rem;border-radius:100px;font-weight:500;font-size:.95rem;transition:all .3s;display:inline-block;cursor:pointer;border:none}
-.btn-fill{background:var(--accent);color:#0a0a0b}.btn-fill:hover{opacity:.85;transform:translateY(-1px)}
-.btn-ghost{color:var(--text);border:1px solid var(--border)}.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
-.about{background:var(--surface)}.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}@media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:2.5rem}}
-.about-img{border-radius:var(--radius);overflow:hidden}.about-img img{width:100%;height:420px;object-fit:cover;transition:transform .6s ease}.about-img:hover img{transform:scale(1.03)}
-.about-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:500;letter-spacing:-.5px;margin-bottom:1.3rem;line-height:1.15}
-.about-text p{color:var(--muted);margin-bottom:1rem;font-size:1.05rem;font-weight:300}
-.about-tags{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.8rem}.about-tags span{font-size:.82rem;padding:.4rem 1rem;border:1px solid var(--border);border-radius:100px;color:var(--muted)}
-.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
-.svc-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem 2rem;transition:all .4s ease}.svc-card:hover{background:var(--surface2);border-color:rgba(255,255,255,.1);transform:translateY(-4px)}
-.svc-num{font-family:'Playfair Display',serif;font-size:.9rem;color:var(--accent);font-weight:600;margin-bottom:1rem;letter-spacing:1px}
-.svc-card h3{font-size:1.2rem;font-weight:500;margin-bottom:.7rem}.svc-card p{color:var(--muted);font-size:.95rem;font-weight:300;line-height:1.6}
-.stats{background:var(--surface);padding:4.5rem 2rem}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;max-width:900px;margin:0 auto;text-align:center}
-.stat-num{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,4vw,3.5rem);font-weight:500;color:var(--accent);line-height:1}.stat-label{color:var(--muted);font-size:.92rem;margin-top:.5rem;font-weight:300}
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}@media(max-width:768px){.gallery-grid{grid-template-columns:repeat(2,1fr);gap:.7rem}}
-.gal-item{border-radius:var(--radius);overflow:hidden;cursor:pointer;position:relative}.gal-item img{width:100%;height:260px;object-fit:cover;transition:transform .5s ease}.gal-item:hover img{transform:scale(1.06)}
-.tst-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}.tst-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;transition:all .4s ease}.tst-card:hover{background:var(--surface2);border-color:rgba(255,255,255,.1)}
-.tst-stars{color:var(--accent);font-size:1.1rem;margin-bottom:1rem;letter-spacing:2px}.tst-card p{color:var(--muted);font-size:1rem;font-weight:300;line-height:1.7;margin-bottom:1.5rem}
-.tst-author{display:flex;align-items:center;gap:1rem}.tst-author img{width:48px;height:48px;border-radius:50%;object-fit:cover}.tst-author h4{font-size:.95rem;font-weight:500}.tst-author small{color:var(--muted);font-size:.82rem}
-.faq-container{max-width:760px;margin:0 auto}.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:1rem;padding:1.5rem;transition:all .3s}.faq-item:hover{border-color:rgba(255,255,255,.1)}
-.faq-item summary{font-size:1.05rem;font-weight:500;cursor:pointer;list-style:none;position:relative;padding-right:2rem}.faq-item summary::after{content:"+";position:absolute;right:0;color:var(--accent);font-size:1.3rem}.faq-item[open] summary::after{content:"−"}
-.faq-item p{color:var(--muted);margin-top:1rem;font-size:.95rem;font-weight:300;line-height:1.6}
-.contact{text-align:center;padding:6rem 2rem;background:var(--surface)}.contact h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:500;margin-bottom:1rem}.contact p{color:var(--muted);margin-bottom:2.2rem;font-size:1.1rem;font-weight:300}.contact-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-footer{padding:3rem 2rem;text-align:center;border-top:1px solid var(--border)}.social{display:flex;justify-content:center;gap:.8rem;margin-bottom:1.5rem}.social a{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all .3s}.social a:hover{background:var(--accent);border-color:var(--accent)}.social svg{width:16px;height:16px;fill:var(--muted);transition:fill .3s}.social a:hover svg{fill:#0a0a0b}
-.footer-info{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;margin-bottom:1.2rem}.footer-info span,.footer-info a{color:var(--muted);font-size:.85rem;font-weight:300}.footer-info a:hover{color:var(--accent)}
-.copyright{color:var(--muted);font-size:.8rem;padding-top:1.2rem;border-top:1px solid var(--border);font-weight:300}.copyright a{color:var(--accent)}
-#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;display:none;align-items:center;justify-content:center;cursor:pointer}#lightbox.show{display:flex}#lightbox img{max-width:90%;max-height:85%;border-radius:10px}
-#backtop{position:fixed;bottom:88px;right:22px;z-index:999;width:44px;height:44px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(10px);transition:all .3s}#backtop.show{opacity:1;transform:translateY(0)}#backtop:hover{background:var(--accent)}#backtop svg{width:17px;height:17px;stroke:var(--muted);transition:stroke .3s}#backtop:hover svg{stroke:#0a0a0b}
-.wa{position:fixed;bottom:22px;right:22px;z-index:999;width:54px;height:54px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.2);transition:transform .3s}.wa:hover{transform:scale(1.08)}.wa svg{width:28px;height:28px;fill:#fff}
-.reveal{opacity:0;transform:translateY(30px)}
+:root{
+  --primary:#0a0a0a;--accent:#d4af37;--accent2:#f4d03f;
+  --bg:#0f0f0f;--card:#1a1a1a;--text:#e0e0e0;--muted:#888;
+  --radius:12px;--transition:all .4s cubic-bezier(.25,.46,.45,.94);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);
+  overflow-x:hidden;cursor:none;
+}
+/* Custom Cursor */
+.cursor{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transition:transform .1s;mix-blend-mode:difference}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9998;transition:transform .3s ease,width .3s,height .3s}
+/* Preloader */
+.preloader{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:10000;flex-direction:column}
+.preloader-text{font-size:2rem;font-weight:800;letter-spacing:-2px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:pulse 1.5s ease infinite}
+.preloader-bar{width:200px;height:2px;background:var(--card);margin-top:20px;border-radius:2px;overflow:hidden}
+.preloader-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));animation:loadBar 1.5s ease forwards}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes loadBar{0%{width:0}100%{width:100%}}
+/* Scroll Progress */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:9997;width:0;transition:width .1s}
+/* Hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://loremflickr.com/1200/800/veterinary?lock=1') center/cover;opacity:.15;filter:grayscale(50%)}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,15,15,.3) 0%,rgba(15,15,15,.9) 100%)}
+.hero-content{position:relative;z-index:2;text-align:center;padding:2rem;max-width:900px}
+.hero-badge{display:inline-block;padding:6px 20px;border:1px solid var(--accent);border-radius:30px;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:24px}
+.hero h1{font-size:clamp(2rem,6vw,4.5rem);font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:16px}
+.hero h1 .accent{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:clamp(1rem,2vw,1.25rem);color:var(--muted);max-width:600px;margin:0 auto 32px;line-height:1.6}
+.hero-cta{display:inline-flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:var(--radius);font-weight:600;font-size:.9rem;text-decoration:none;transition:var(--transition);border:none;cursor:none}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--primary)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(212,175,55,.3)}
+.btn-outline{border:1px solid var(--card);color:var(--text);background:transparent}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+/* OnyxDigital Brand */
+.onyx-brand{position:fixed;top:20px;left:20px;z-index:100;display:flex;align-items:center;gap:8px;font-weight:800;font-size:1.1rem;letter-spacing:-1px}
+.onyx-brand .dot{width:8px;height:8px;background:var(--accent);border-radius:50%}
+.onyx-brand span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+/* Sections */
+.section{padding:80px 20px;max-width:1200px;margin:0 auto}
+.section-title{font-size:clamp(1.5rem,4vw,2.5rem);font-weight:800;text-align:center;margin-bottom:16px;letter-spacing:-1px}
+.section-subtitle{text-align:center;color:var(--muted);margin-bottom:48px;font-size:1rem}
+/* About */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.about-img{border-radius:var(--radius);overflow:hidden;position:relative}
+.about-img img{width:100%;height:400px;object-fit:cover;transition:var(--transition)}
+.about-text h3{font-size:1.5rem;font-weight:700;margin-bottom:16px}
+.about-text p{color:var(--muted);line-height:1.8;margin-bottom:16px}
+/* Swiper Gallery */
+.gallery-section{background:var(--card);padding:80px 0}
+.gallery-swiper{max-width:1200px;padding:0 20px;margin:0 auto}
+.swiper-slide{border-radius:var(--radius);overflow:hidden;height:350px}
+.swiper-slide img{width:100%;height:100%;object-fit:cover;transition:var(--transition)}
+.swiper-slide:hover img{transform:scale(1.05)}
+.swiper-pagination-bullet{background:var(--accent);opacity:.5}
+.swiper-pagination-bullet-active{opacity:1}
+/* Services with 3D Tilt */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.service-card{
+  background:var(--card);border-radius:var(--radius);padding:32px;
+  transition:var(--transition);border:1px solid transparent;
+  transform-style:preserve-3d;perspective:1000px;
+}
+.service-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.service-number{font-size:3rem;font-weight:900;color:var(--accent);opacity:.3;line-height:1}
+.service-card h4{font-size:1.25rem;font-weight:700;margin:12px 0}
+.service-card p{color:var(--muted);font-size:.9rem;line-height:1.6}
+/* Portfolio Banner */
+.portfolio-banner{
+  background:linear-gradient(135deg,var(--card),var(--primary));
+  border-radius:var(--radius);padding:48px;text-align:center;margin:60px auto;max-width:900px;
+  border:1px solid var(--card);
+}
+.portfolio-banner h3{font-size:1.5rem;font-weight:700;margin-bottom:12px}
+.portfolio-banner p{color:var(--muted);margin-bottom:24px}
+/* WhatsApp CTA */
+.whatsapp-cta{
+  position:fixed;bottom:24px;right:24px;z-index:100;
+  background:#25d366;color:#fff;border-radius:50%;width:56px;height:56px;
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+  text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);
+  transition:var(--transition);animation:waPulse 2s ease infinite;
+}
+.whatsapp-cta:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,.6)}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 30px rgba(37,211,102,.7)}}
+/* Footer */
+.footer{text-align:center;padding:40px 20px;border-top:1px solid var(--card);color:var(--muted);font-size:.85rem}
+.footer a{color:var(--accent);text-decoration:none}
+/* Reveal animations */
+.reveal{opacity:0;transform:translateY(40px)}
+.reveal.visible{opacity:1;transform:translateY(0);transition:var(--transition)}
+/* Responsive */
+@media(max-width:768px){
+  .about{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  body{cursor:auto}
+  .cursor,.cursor-ring{display:none}
+}
 </style>
 </head>
 <body>
-<div id="loader"><div class="loader-ring"></div></div>
-<div id="progress"></div>
-<nav><div class="logo">Veterina</div><ul class="nav-links"><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact" class="cta">Contact</a></li></ul></nav>
-<section class="hero" id="home">
-<div class="hero-img"><img src="https://loremflickr.com/1920/1080/veterinary-clinic?lock=1" alt=""></div>
-<div class="hero-content"><h1>General Excellence</h1><p>Your trusted veterinary in Prague</p><div class="hero-cta"><a href="#contact" class="btn btn-fill">Get in Touch</a><a href="#services" class="btn btn-ghost">Our Services</a></div></div>
-<div class="scroll-hint">Scroll</div>
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Preloader -->
+<div class="preloader" id="preloader">
+  <div class="preloader-text">OnyxDigital</div>
+  <div class="preloader-bar"><div class="preloader-bar-fill"></div></div>
+</div>
+
+<!-- OnyxDigital Brand -->
+<div class="onyx-brand"><div class="dot"></div><span>OnyxDigital</span></div>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/9233390025902" class="whatsapp-cta" target="_blank" rel="noopener" title="Chat with OnyxDigital on WhatsApp">💬</a>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <div class="hero-badge">OnyxDigital · Premium Web Design</div>
+    <h1 class="reveal">Veterina Nusle<br><span class="accent">Veterinary in Prague</span></h1>
+    <p class="reveal">This is a preview of what your new website could look like. OnyxDigital crafts stunning, high-performance websites tailored for veterinary businesses in Prague, Czech Republic.</p>
+    <div class="hero-cta reveal">
+      <a href="https://wa.me/9233390025902" target="_blank" rel="noopener" class="btn btn-primary">💬 Get Your Website</a>
+      <a href="#gallery" class="btn btn-outline">View Preview</a>
+    </div>
+  </div>
 </section>
-<section class="about" id="about"><div class="container"><div class="about-grid">
-<div class="about-img reveal"><img src="https://loremflickr.com/600/420/veterinary-clinic?lock=3" alt="About Veterina Nusle"></div>
-<div class="about-text reveal"><h2>About Veterina Nusle</h2><p>Our compassionate veterinarians deliver exceptional care for your beloved pets. From routine wellness to complex treatments, your furry family is in good hands.</p><p>Located in Prague, Czech Republic, we are committed to delivering exceptional service and building lasting relationships with every client we serve.</p><div class="about-tags"><span>Compassionate Care</span><span>Modern Facility</span><span>Experienced Team</span></div></div>
-</div></div></section>
-<section id="services"><div class="container"><div class="s-title reveal"><h2>Our Services</h2><p>What we offer</p></div><div class="svc-grid"><div class="svc-card reveal"><div class="svc-num">01</div><h3>General Checkups</h3><p>Professional general checkups delivered with expertise and dedication to excellence.</p></div><div class="svc-card reveal"><div class="svc-num">02</div><h3>Surgery & Procedures</h3><p>Professional surgery & procedures delivered with expertise and dedication to excellence.</p></div><div class="svc-card reveal"><div class="svc-num">03</div><h3>Emergency Care</h3><p>Professional emergency care delivered with expertise and dedication to excellence.</p></div><div class="svc-card reveal"><div class="svc-num">04</div><h3>Vaccinations</h3><p>Professional vaccinations delivered with expertise and dedication to excellence.</p></div></div></div></section>
-<section class="stats"><div class="stats-grid"><div class="reveal"><div class="stat-num"><span class="counter" data-target="15K+">15K+</span></div><div class="stat-label">Pets Treated</div></div><div class="reveal"><div class="stat-num"><span class="counter" data-target="15">15</span></div><div class="stat-label">Years Experience</div></div><div class="reveal"><div class="stat-num"><span class="counter" data-target="6">6</span></div><div class="stat-label">Veterinarians</div></div><div class="reveal"><div class="stat-num"><span class="counter" data-target="4.9">4.9</span></div><div class="stat-label">Pet Owner Rating</div></div></div></section>
-<section id="gallery"><div class="container"><div class="s-title reveal"><h2>Gallery</h2><p>A glimpse of our work</p></div><div class="gallery-grid"><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/animal-care?lock=11" alt="Gallery 1" loading="lazy"></div><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/animal-care?lock=12" alt="Gallery 2" loading="lazy"></div><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/animal-care?lock=13" alt="Gallery 3" loading="lazy"></div><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/animal-care?lock=14" alt="Gallery 4" loading="lazy"></div><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/animal-care?lock=15" alt="Gallery 5" loading="lazy"></div><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/animal-care?lock=16" alt="Gallery 6" loading="lazy"></div></div></div></section>
-<section class="about" id="reviews"><div class="container"><div class="s-title reveal"><h2>What Our Clients Say</h2><p>Trusted by satisfied customers</p></div><div class="tst-grid">
-<div class="tst-card reveal"><div class="tst-stars">★★★★★</div><p>"Absolutely outstanding service! The team went above and beyond our expectations. Highly recommended."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/person?lock=20" alt="Client"><div><h4>Sarah Johnson</h4><small>Verified Client</small></div></div></div>
-<div class="tst-card reveal"><div class="tst-stars">★★★★★</div><p>"Professional, reliable, and truly exceptional results. Veterina Nusle transformed our experience completely."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/person?lock=21" alt="Client"><div><h4>Michael Chen</h4><small>Verified Client</small></div></div></div>
-<div class="tst-card reveal"><div class="tst-stars">★★★★★</div><p>"From start to finish, the experience was seamless. The attention to detail is second to none."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/person?lock=22" alt="Client"><div><h4>Emma Williams</h4><small>Verified Client</small></div></div></div>
-</div></div></section>
-<section id="faq"><div class="container"><div class="s-title reveal"><h2>Frequently Asked Questions</h2><p>Got questions? We have answers</p></div><div class="faq-container"><details class="faq-item reveal"><summary>What services do you offer?</summary><p>We offer a comprehensive range of professional veterinary services. Contact us for a detailed consultation and personalized service plan.</p></details>
-<details class="faq-item reveal"><summary>How can I book an appointment?</summary><p>You can book by calling +420 241 401 000, emailing info@veterinanusle.cz, or using the WhatsApp button to chat with us directly.</p></details>
-<details class="faq-item reveal"><summary>What are your operating hours?</summary><p>Our standard hours are Monday to Friday, 9:00 AM to 6:00 PM. Weekend appointments are available by prior arrangement.</p></details>
-<details class="faq-item reveal"><summary>Do you offer services for businesses?</summary><p>Yes, we provide both individual and business services with customized solutions tailored to your specific needs.</p></details>
-<details class="faq-item reveal"><summary>How do I get a quote?</summary><p>Reach out via phone, email, or WhatsApp for a free, no-obligation quote tailored to your specific requirements.</p></details></div></div></section>
-<section class="contact" id="contact"><h2>Book Your Service Today</h2><p>Contact Veterina Nusle today and experience the difference</p><div class="contact-btns"><a href="https://wa.me/9233390025902" target="_blank" class="btn btn-fill">WhatsApp Us</a>
-<a href="tel:+420241401000" class="btn btn-ghost">Call Now</a>
-<a href="mailto:info@veterinanusle.cz" class="btn btn-ghost">Email Us</a></div></section>
-<footer>
-<div class="social"><a href="https://wa.me/9233390025902" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.5 0-3-.4-4.3-1.1l-.3-.2-3.1.8.8-3-.2-.3C4.4 14.9 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8z"/></svg></a><a href="mailto:info@veterinanusle.cz" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a><a href="https://veterinanusle.cz" target="_blank" aria-label="Website"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></a></div>
-<div class="footer-info"><span>Prague, Czech Republic</span><span>+420 241 401 000</span><a href="mailto:info@veterinanusle.cz">info@veterinanusle.cz</a></div>
-<div class="copyright">Powered by <a href="https://onyx-digital-sidd.vercel.app/" target="_blank">OnyxDigital</a></div>
+
+<!-- About -->
+<section class="section" id="about">
+  <div class="about">
+    <div class="about-img reveal"><img src="https://loremflickr.com/600/400/veterinary?lock=2" alt="Veterina Nusle in Prague" loading="lazy"></div>
+    <div class="about-text reveal">
+      <h3>About Veterina Nusle</h3>
+      <p>Located in Prague, Czech Republic, Veterina Nusle is a premier veterinary destination. This preview demonstrates how OnyxDigital can transform your online presence with a modern, engaging website that captures your brand's essence.</p>
+      <p>From elegant animations to seamless user experience, every detail is crafted to convert visitors into customers.</p>
+      <a href="https://wa.me/9233390025902" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:16px">💬 Contact OnyxDigital</a>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery (Swiper) -->
+<section class="gallery-section" id="gallery">
+  <h2 class="section-title reveal">Gallery Preview</h2>
+  <p class="section-subtitle reveal">A glimpse of your veterinary showcase</p>
+  <div class="gallery-swiper reveal">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="https://loremflickr.com/600/400/veterinary?lock=3" alt="Gallery 1" loading="lazy"></div>
+      <div class="swiper-slide"><img src="https://loremflickr.com/600/400/veterinary?lock=4" alt="Gallery 2" loading="lazy"></div>
+      <div class="swiper-slide"><img src="https://loremflickr.com/600/400/veterinary?lock=5" alt="Gallery 3" loading="lazy"></div>
+      <div class="swiper-slide"><img src="https://loremflickr.com/600/400/veterinary?lock=6" alt="Gallery 4" loading="lazy"></div>
+      <div class="swiper-slide"><img src="https://loremflickr.com/600/400/veterinary?lock=2" alt="Gallery 5" loading="lazy"></div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<!-- Services (3D Tilt Cards) -->
+<section class="section" id="services">
+  <h2 class="section-title reveal">Our Services</h2>
+  <p class="section-subtitle reveal">What Veterina Nusle offers</p>
+  <div class="services-grid">
+        <div class="service-card reveal">
+      <div class="service-number">01</div>
+      <h4>General Checkups</h4>
+      <p>Professional general checkups delivered with expertise and attention to detail.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-number">02</div>
+      <h4>Surgery</h4>
+      <p>Professional surgery delivered with expertise and attention to detail.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-number">03</div>
+      <h4>Emergency Care</h4>
+      <p>Professional emergency care delivered with expertise and attention to detail.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-number">04</div>
+      <h4>Vaccinations</h4>
+      <p>Professional vaccinations delivered with expertise and attention to detail.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-number">05</div>
+      <h4>Dental Care</h4>
+      <p>Professional dental care delivered with expertise and attention to detail.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio Banner -->
+<section class="section">
+  <div class="portfolio-banner reveal">
+    <h3>See Our Full Portfolio</h3>
+    <p>Explore the complete range of websites OnyxDigital has designed for businesses like yours.</p>
+    <a href="https://onyx-digital-sidd.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary">🚀 View Portfolio</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>Website preview crafted by <a href="https://onyx-digital-sidd.vercel.app/" target="_blank" rel="noopener">OnyxDigital</a></p>
+  <p style="margin-top:8px">Contact: <a href="https://wa.me/9233390025902" target="_blank" rel="noopener">WhatsApp +92 333 9002590</a></p>
+  <p style="margin-top:8px;opacity:.5">© 2026 OnyxDigital · Preview for Veterina Nusle, Prague</p>
 </footer>
-<div id="lightbox"><img id="lb-img" src="" alt=""></div>
-<div id="backtop"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg></div>
-<a href="https://wa.me/9233390025902" target="_blank" class="wa"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg></a>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
 <script>
+// Preloader
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const pl = document.getElementById('preloader');
+    pl.style.opacity = '0';
+    pl.style.transition = 'opacity .5s';
+    setTimeout(() => pl.style.display = 'none', 500);
+  }, 1500);
+});
+
+// Custom Cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.transform = `translate(${mx - 4}px, ${my - 4}px)`;
+});
+function animRing() {
+  rx += (mx - rx) * 0.15;
+  ry += (my - ry) * 0.15;
+  ring.style.transform = `translate(${rx - 16}px, ${ry - 16}px)`;
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('a, .service-card, .swiper-slide').forEach(el => {
+  el.addEventListener('mouseenter', () => { ring.style.width = '48px'; ring.style.height = '48px'; });
+  el.addEventListener('mouseleave', () => { ring.style.width = '32px'; ring.style.height = '32px'; });
+});
+
+// Scroll Progress
+const sp = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  sp.style.width = (window.scrollY / h * 100) + '%';
+});
+
+// Swiper
+new Swiper('.gallery-swiper', {
+  slidesPerView: 1, spaceBetween: 20,
+  pagination: { el: '.swiper-pagination', clickable: true },
+  breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+  autoplay: { delay: 3000 }, loop: true
+});
+
+// GSAP Scroll Animations
 gsap.registerPlugin(ScrollTrigger);
-window.addEventListener('load',function(){var l=document.getElementById('loader');setTimeout(function(){l.classList.add('hide');setTimeout(function(){l.style.display='none'},500)},200)});
-var p=document.getElementById('progress');window.addEventListener('scroll',function(){var s=document.documentElement.scrollHeight-document.documentElement.clientHeight;p.style.width=(document.documentElement.scrollTop/s*100)+'%'});
-var n=document.querySelector('nav');window.addEventListener('scroll',function(){if(window.scrollY>50){n.classList.add('scrolled')}else{n.classList.remove('scrolled')}});
-gsap.utils.toArray('.reveal').forEach(function(el){gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 90%'}})});
-gsap.from('.hero h1',{opacity:0,y:50,duration:1.1,delay:.3,ease:'power3.out'});gsap.from('.hero p',{opacity:0,y:30,duration:.9,delay:.6,ease:'power3.out'});gsap.from('.hero-cta',{opacity:0,y:20,duration:.7,delay:.9,ease:'power3.out'});gsap.from('.scroll-hint',{opacity:0,duration:.8,delay:1.3});
-ScrollTrigger.create({trigger:'.stats',start:'top 82%',once:true,onEnter:function(){document.querySelectorAll('.counter').forEach(function(c){var t=c.dataset.target,num=parseInt(t.replace(/[^0-9]/g,'')),suf=t.replace(/[0-9]/g,''),cur=0,step=Math.max(1,Math.ceil(num/30));var timer=setInterval(function(){cur+=step;if(cur>=num){cur=num;clearInterval(timer)}c.textContent=cur+suf},28)})}});
-var lb=document.getElementById('lightbox'),lbI=document.getElementById('lb-img');document.querySelectorAll('.gal-item img').forEach(function(img){img.addEventListener('click',function(){lbI.src=this.src.replace('800/600','1200/900');lb.classList.add('show')})});
-lb.addEventListener('click',function(){lb.classList.remove('show')});
-var bt=document.getElementById('backtop');window.addEventListener('scroll',function(){if(window.scrollY>500){bt.classList.add('show')}else{bt.classList.remove('show')}});bt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+gsap.utils.toArray('.reveal').forEach(el => {
+  ScrollTrigger.create({
+    trigger: el, start: 'top 85%',
+    onEnter: () => el.classList.add('visible'),
+    onLeaveBack: () => el.classList.remove('visible')
+  });
+});
+
+// 3D Tilt Cards
+document.querySelectorAll('.service-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left;
+    const y = e.clientY - r.top;
+    const rx = ((y - r.height/2) / r.height) * -10;
+    const ry = ((x - r.width/2) / r.width) * 10;
+    card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+  });
+});
 </script>
 </body>
 </html>
