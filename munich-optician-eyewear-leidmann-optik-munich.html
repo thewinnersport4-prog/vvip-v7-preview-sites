@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leidmann Optik Munich | OnyxDigital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#ff6b35;--bg:#0a0a0b;--surface:#111113;--surface2:#161618;--text:#f5f5f7;--muted:#86868b;--border:rgba(255,255,255,.06);--radius:14px}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;font-weight:400}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+::selection{background:var(--accent);color:#fff}
+#loader{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .5s}
+#loader.hide{opacity:0;pointer-events:none}
+.loader-ring{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:9998;transition:width .15s}
+nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.4rem 3rem;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
+nav.scrolled{padding:.9rem 3rem;background:rgba(10,10,11,.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--accent);letter-spacing:.3px}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{font-size:.88rem;font-weight:400;color:var(--muted);transition:color .3s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.cta{color:var(--bg);background:var(--accent);padding:.5rem 1.3rem;border-radius:100px;font-weight:500}
+.nav-links a.cta:hover{opacity:.85}
+@media(max-width:768px){nav{padding:1rem 1.5rem}nav.scrolled{padding:.8rem 1.5rem}.nav-links{display:none}}
+section{padding:7rem 2rem;position:relative}
+@media(max-width:768px){section{padding:4.5rem 1.5rem}}
+.container{max-width:1080px;margin:0 auto}
+.s-title{text-align:center;margin-bottom:4rem}
+.s-title h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:500;letter-spacing:-.5px;margin-bottom:.7rem}
+.s-title p{color:var(--muted);font-size:1.05rem;font-weight:300}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;position:relative}
+.hero-img{position:absolute;inset:0;z-index:-1}
+.hero-img img{width:100%;height:100%;object-fit:cover;opacity:.1}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,11,.3) 0%,rgba(10,10,11,.5) 40%,rgba(10,10,11,.95) 100%)}
+.hero-content{position:relative;z-index:1;padding:0 1rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:500;letter-spacing:-1.5px;line-height:1.05;margin-bottom:1.5rem;max-width:900px;margin-left:auto;margin-right:auto}
+.hero p{color:var(--muted);font-size:clamp(1.05rem,2vw,1.3rem);font-weight:300;margin-bottom:2.5rem;max-width:580px;margin-left:auto;margin-right:auto}
+.hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:var(--muted);font-size:.8rem;letter-spacing:1px;text-transform:uppercase;opacity:.5;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+.btn{padding:.85rem 2rem;border-radius:100px;font-weight:500;font-size:.95rem;transition:all .3s;display:inline-block;cursor:pointer;border:none}
+.btn-fill{background:var(--accent);color:#0a0a0b}
+.btn-fill:hover{opacity:.85;transform:translateY(-1px)}
+.btn-ghost{color:var(--text);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.about{background:var(--surface)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:2.5rem}}
+.about-img{border-radius:var(--radius);overflow:hidden}
+.about-img img{width:100%;height:420px;object-fit:cover;transition:transform .6s ease}
+.about-img:hover img{transform:scale(1.03)}
+.about-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:500;letter-spacing:-.5px;margin-bottom:1.3rem;line-height:1.15}
+.about-text p{color:var(--muted);margin-bottom:1rem;font-size:1.05rem;font-weight:300}
+.about-tags{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.8rem}
+.about-tags span{font-size:.82rem;padding:.4rem 1rem;border:1px solid var(--border);border-radius:100px;color:var(--muted)}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+.svc-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem 2rem;transition:all .4s ease}
+.svc-card:hover{background:var(--surface2);border-color:rgba(255,255,255,.1);transform:translateY(-4px)}
+.svc-num{font-family:'Playfair Display',serif;font-size:.9rem;color:var(--accent);font-weight:600;margin-bottom:1rem;letter-spacing:1px}
+.svc-card h3{font-size:1.2rem;font-weight:500;margin-bottom:.7rem}
+.svc-card p{color:var(--muted);font-size:.95rem;font-weight:300;line-height:1.6}
+.stats{background:var(--surface);padding:4.5rem 2rem}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;max-width:900px;margin:0 auto;text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,4vw,3.5rem);font-weight:500;color:var(--accent);line-height:1}
+.stat-label{color:var(--muted);font-size:.92rem;margin-top:.5rem;font-weight:300}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media(max-width:768px){.gallery-grid{grid-template-columns:repeat(2,1fr);gap:.7rem}}
+.gal-item{border-radius:var(--radius);overflow:hidden;cursor:pointer;position:relative}
+.gal-item img{width:100%;height:260px;object-fit:cover;transition:transform .5s ease}
+.gal-item:hover img{transform:scale(1.06)}
+.tst-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.tst-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;transition:all .4s ease}
+.tst-card:hover{background:var(--surface2);transform:translateY(-3px)}
+.tst-stars{color:var(--accent);font-size:.9rem;margin-bottom:1.2rem;letter-spacing:2px}
+.tst-card p{color:var(--muted);font-style:italic;margin-bottom:1.5rem;line-height:1.7;font-weight:300}
+.tst-author{display:flex;align-items:center;gap:.8rem}
+.tst-author img{width:42px;height:42px;border-radius:50%;object-fit:cover}
+.tst-author h4{font-size:.92rem;font-weight:500}
+.tst-author small{color:var(--muted);font-size:.8rem}
+.faq-container{max-width:720px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border);transition:border-color .3s}
+.faq-item[open]{border-color:var(--accent)}
+.faq-item summary{padding:1.5rem 0;cursor:pointer;font-weight:500;font-size:1.05rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';color:var(--accent);font-size:1.4rem;font-weight:300;transition:transform .3s}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item p{padding:0 0 1.5rem;color:var(--muted);line-height:1.7;font-weight:300}
+.contact{text-align:center;padding:8rem 2rem;position:relative;overflow:hidden}
+.contact h2{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4.5vw,3.8rem);font-weight:500;letter-spacing:-.8px;margin-bottom:1rem}
+.contact p{color:var(--muted);margin-bottom:2.5rem;font-size:1.1rem;font-weight:300}
+.contact-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+footer{padding:3rem 2rem;text-align:center;border-top:1px solid var(--border)}
+.social{display:flex;justify-content:center;gap:.8rem;margin-bottom:1.5rem}
+.social a{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all .3s}
+.social a:hover{border-color:var(--accent);color:var(--accent)}
+.social svg{width:18px;height:18px;fill:var(--muted)}
+.footer-text{color:var(--muted);font-size:.85rem;font-weight:300}
+.footer-text a{color:var(--accent)}
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;display:none;align-items:center;justify-content:center;cursor:pointer}
+#lightbox.show{display:flex}
+#lightbox img{max-width:90%;max-height:85%;border-radius:10px}
+#backtop{position:fixed;bottom:88px;right:22px;z-index:999;width:44px;height:44px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(10px);transition:all .3s}
+#backtop.show{opacity:1;transform:translateY(0)}
+#backtop:hover{background:var(--accent)}
+#backtop svg{width:20px;height:20px;stroke:var(--text)}
+.wa{position:fixed;bottom:22px;right:22px;z-index:999;width:54px;height:54px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.2);transition:transform .3s}
+.wa:hover{transform:scale(1.08)}
+.wa svg{width:28px;height:28px;fill:#fff}
+.reveal{opacity:0;transform:translateY(30px)}
+</style>
+</head>
+<body>
+<div id="loader"><div class="loader-ring"></div></div>
+<div id="progress"></div>
+<nav>
+<a href="#home" class="logo">OnyxDigital</a>
+<ul class="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#reviews">Reviews</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="https://wa.me/9233390025902" target="_blank" class="cta">Contact</a></li>
+</ul>
+</nav>
+<section class="hero" id="home">
+<div class="hero-img"><img src="https://loremflickr.com/1920/1080/eyewear-optician?lock=1" alt="Leidmann Optik Munich"></div>
+<div class="hero-content">
+<h1>See the World in Style</h1>
+<p>Premium eyewear and expert eye care</p>
+<div class="hero-cta">
+<a href="https://wa.me/9233390025902" target="_blank" class="btn btn-fill">WhatsApp Us</a>
+<a href="#contact" class="btn btn-ghost">Learn More</a>
+</div>
+</div>
+<div class="scroll-hint">Scroll</div>
+</section>
+<section class="about" id="about">
+<div class="container">
+<div class="about-grid">
+<div class="about-img reveal"><img src="https://loremflickr.com/600/420/eyewear-optician?lock=3" alt="About Leidmann Optik Munich"></div>
+<div class="about-text reveal">
+<h2>About Leidmann Optik Munich</h2>
+<p>We combine cutting-edge eye care with a curated selection of designer frames. Our opticians provide comprehensive eye exams and personalized recommendations to find the perfect eyewear for your lifestyle.</p>
+<p>Located in Munich, we are committed to delivering exceptional service and building lasting relationships with every client we serve.</p>
+<div class="about-tags"><span>Designer Frames</span><span>Eye Exams</span><span>Expert Fitting</span></div>
+</div>
+</div>
+</div>
+</section>
+<section id="services">
+<div class="container">
+<div class="s-title reveal"><h2>Our Services</h2><p>What we offer</p></div>
+<div class="svc-grid"><div class="svc-card reveal"><div class="svc-num">01</div><h3>Eye Examinations</h3><p>Comprehensive vision tests using advanced technology</p></div><div class="svc-card reveal"><div class="svc-num">02</div><h3>Designer Eyewear</h3><p>Curated collections from leading global brands</p></div><div class="svc-card reveal"><div class="svc-num">03</div><h3>Contact Lenses</h3><p>Fitting and supply of all major contact lens brands</p></div><div class="svc-card reveal"><div class="svc-num">04</div><h3>Repairs and Adjustments</h3><p>Professional maintenance for your existing eyewear</p></div></div>
+</div>
+</section>
+<section class="stats">
+<div class="stats-grid"><div class="stat-item reveal"><div class="stat-num counter" data-target="20+">0</div><div class="stat-label">Years of Care</div></div><div class="stat-item reveal"><div class="stat-num counter" data-target="10K+">0</div><div class="stat-label">Clients Served</div></div><div class="stat-item reveal"><div class="stat-num counter" data-target="100+">0</div><div class="stat-label">Frame Styles</div></div><div class="stat-item reveal"><div class="stat-num counter" data-target="4.9">0</div><div class="stat-label">Client Rating</div></div></div>
+</section>
+<section id="gallery">
+<div class="container">
+<div class="s-title reveal"><h2>Gallery</h2><p>A glimpse of our work</p></div>
+<div class="gallery-grid"><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/eyeglasses?lock=11" alt="Optician/Eyewear gallery" loading="lazy"></div><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/eyeglasses?lock=12" alt="Optician/Eyewear gallery" loading="lazy"></div><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/eyeglasses?lock=13" alt="Optician/Eyewear gallery" loading="lazy"></div><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/eyeglasses?lock=14" alt="Optician/Eyewear gallery" loading="lazy"></div><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/eyeglasses?lock=15" alt="Optician/Eyewear gallery" loading="lazy"></div><div class="gal-item reveal"><img src="https://loremflickr.com/800/600/eyeglasses?lock=16" alt="Optician/Eyewear gallery" loading="lazy"></div></div>
+</div>
+</section>
+<section class="about" id="reviews">
+<div class="container">
+<div class="s-title reveal"><h2>What Our Clients Say</h2><p>Trusted by satisfied customers</p></div>
+<div class="tst-grid"><div class="tst-card reveal"><div class="tst-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Absolutely outstanding service! The team went above and beyond our expectations."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/portrait?lock=20" alt="Sarah Johnson"><div><h4>Sarah Johnson</h4><small>Verified Client</small></div></div></div><div class="tst-card reveal"><div class="tst-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Professional, reliable, and truly exceptional results. Highly recommended."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/portrait?lock=21" alt="Michael Chen"><div><h4>Michael Chen</h4><small>Verified Client</small></div></div></div><div class="tst-card reveal"><div class="tst-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"From start to finish, the experience was seamless. The attention to detail is second to none."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/portrait?lock=22" alt="Emma Williams"><div><h4>Emma Williams</h4><small>Verified Client</small></div></div></div></div>
+</div>
+</section>
+<section id="faq">
+<div class="container">
+<div class="s-title reveal"><h2>Frequently Asked Questions</h2><p>Got questions? We have answers</p></div>
+<div class="faq-container"><details class="faq-item"><summary>Do you accept prescriptions from other opticians?</summary><p>Yes, we accept valid prescriptions from any licensed optician.</p></details><details class="faq-item"><summary>How often should I get an eye exam?</summary><p>We recommend annual check-ups for optimal eye health.</p></details><details class="faq-item"><summary>Do you offer same-day service?</summary><p>Many prescriptions can be fulfilled same-day in-store.</p></details></div>
+</div>
+</section>
+<section class="contact" id="contact">
+<h2>Ready to See Clearly?</h2>
+<p>Contact Leidmann Optik Munich today and let us help you</p>
+<div class="contact-btns">
+<a href="https://wa.me/9233390025902" target="_blank" class="btn btn-fill">WhatsApp Us</a>
+<a href="https://onyx-digital-sidd.vercel.app/" target="_blank" class="btn btn-ghost">View Portfolio</a>
+</div>
+</section>
+<footer>
+<div class="social">
+<a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.12 1.38C1.36 2.68.95 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.12.66.66 1.33 1.07 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.12-1.38.66-.66 1.07-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.12-.66-.66-1.33-1.07-2.12-1.38-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84M12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4M18.41 4.15a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg></a>
+<a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a>
+</div>
+<p class="footer-text">Crafted by <a href="https://onyx-digital-sidd.vercel.app/" target="_blank">OnyxDigital</a> | WhatsApp: <a href="https://wa.me/9233390025902" target="_blank">+92 333 9002590</a></p>
+</footer>
+<div id="lightbox"><img id="lb-img" src="" alt=""></div>
+<div id="backtop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg></div>
+<a href="https://wa.me/9233390025902" target="_blank" class="wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12 2.04c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 4.99L2 22l5.13-1.34a9.94 9.94 0 0 0 4.87 1.27c5.5 0 9.96-4.46 9.96-9.96S17.5 2.04 12 2.04z"/></svg></a>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+window.addEventListener('load',function(){var l=document.getElementById('loader');setTimeout(function(){l.classList.add('hide');setTimeout(function(){l.style.display='none'},500)},200)});
+var p=document.getElementById('progress');
+window.addEventListener('scroll',function(){var s=document.documentElement.scrollHeight-document.documentElement.clientHeight;p.style.width=(document.documentElement.scrollTop/s*100)+'%'});
+var n=document.querySelector('nav');
+window.addEventListener('scroll',function(){if(window.scrollY>50){n.classList.add('scrolled')}else{n.classList.remove('scrolled')}});
+gsap.utils.toArray('.reveal').forEach(function(el){gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 90%'}})});
+gsap.from('.hero h1',{opacity:0,y:50,duration:1.1,delay:.3,ease:'power3.out'});
+gsap.from('.hero p',{opacity:0,y:30,duration:.9,delay:.6,ease:'power3.out'});
+gsap.from('.hero-cta',{opacity:0,y:20,duration:.7,delay:.9,ease:'power3.out'});
+gsap.from('.scroll-hint',{opacity:0,duration:.8,delay:1.3});
+ScrollTrigger.create({trigger:'.stats',start:'top 82%',once:true,onEnter:function(){document.querySelectorAll('.counter').forEach(function(c){var t=c.dataset.target,num=parseInt(t.replace(/[^0-9]/g,'')),suf=t.replace(/[0-9]/g,''),cur=0,step=Math.max(1,Math.ceil(num/30));var timer=setInterval(function(){cur+=step;if(cur>=num){cur=num;clearInterval(timer)}c.textContent=cur+suf},28)})}});
+var lb=document.getElementById('lightbox'),lbI=document.getElementById('lb-img');
+document.querySelectorAll('.gal-item img').forEach(function(img){img.addEventListener('click',function(){lbI.src=this.src.replace('800/600','1200/900');lb.classList.add('show')})});
+lb.addEventListener('click',function(){lb.classList.remove('show')});
+var bt=document.getElementById('backtop');
+window.addEventListener('scroll',function(){if(window.scrollY>500){bt.classList.add('show')}else{bt.classList.remove('show')}});
+bt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+</script>
+</body>
+</html>
