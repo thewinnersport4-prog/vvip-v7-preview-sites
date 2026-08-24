@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expats Reality Prague | Premium Real Estate in Prague | OnyxDigital Preview</title>
+  <meta name="description" content="Expats Reality Prague - Leading Real Estate in Prague, Czech Republic. Premium services with a modern digital presence by OnyxDigital.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--accent:#0a0a0a;--gold:#c9a96e;--bg:#0f0f0f;--light:#f5f5f5;--card:#1a1a1a}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--light);overflow-x:hidden;cursor:none}
+    a{color:inherit;text-decoration:none}
+    .custom-cursor{position:fixed;width:20px;height:20px;border:2px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.15s ease,width 0.3s,height 0.3s;mix-blend-mode:difference}
+    .custom-cursor.hover{width:50px;height:50px;background:rgba(201,169,110,0.2)}
+    #scroll-progress{position:fixed;top:0;left:0;height:3px;background:var(--gold);z-index:9998;transition:width 0.1s;width:0}
+    .preloader{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:99999;transition:opacity 0.5s}
+    .preloader.hidden{opacity:0;pointer-events:none}
+    .preloader h1{font-size:2rem;font-weight:800;letter-spacing:-2px;color:var(--gold)}
+    .preloader .dot{display:inline-block;width:8px;height:8px;background:var(--gold);border-radius:50%;margin:0 3px;animation:bounce 0.6s infinite alternate}
+    .preloader .dot:nth-child(2){animation-delay:0.1s}.preloader .dot:nth-child(3){animation-delay:0.2s}
+    @keyframes bounce{to{transform:translateY(-15px);opacity:0.3}}
+    nav{position:fixed;top:0;width:100%;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;z-index:1000;transition:all 0.4s}
+    nav.scrolled{background:rgba(15,15,15,0.95);backdrop-filter:blur(20px);padding:1rem 3rem}
+    .nav-logo{font-weight:800;font-size:1.4rem;letter-spacing:-1px}.nav-logo span{color:var(--gold)}
+    .nav-links{display:flex;gap:2rem;list-style:none}.nav-links a{font-size:0.9rem;font-weight:500;opacity:0.7;transition:opacity 0.3s}.nav-links a:hover{opacity:1;color:var(--gold)}
+    .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:url('https://loremflickr.com/1200/800/modern+house?lock=8917') center/cover;filter:brightness(0.4) saturate(1.2);transform:scale(1.1)}
+    .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,rgba(15,15,15,0.9) 100%)}
+    .hero-content{position:relative;z-index:2;text-align:center;max-width:800px;padding:0 2rem}
+    .hero-badge{display:inline-block;padding:0.4rem 1.2rem;border:1px solid var(--gold);border-radius:100px;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:1.5rem}
+    .hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;letter-spacing:-2px;line-height:1;margin-bottom:1rem}
+    .hero h1 span{color:var(--gold)}.hero p{font-size:1.1rem;opacity:0.7;max-width:500px;margin:0 auto 2rem}
+    .hero-cta{display:inline-flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+    .btn{padding:0.9rem 2rem;border-radius:8px;font-weight:600;font-size:0.9rem;transition:all 0.3s;border:none;cursor:none}
+    .btn-gold{background:var(--gold);color:var(--bg)}.btn-gold:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,169,110,0.4)}
+    .btn-outline{border:1px solid rgba(255,255,255,0.2);color:var(--light);background:transparent}.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+    .section{padding:6rem 3rem;max-width:1200px;margin:0 auto}
+    .section-label{font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:var(--gold);margin-bottom:0.5rem}
+    .section-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-1px;margin-bottom:1rem}
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+    .about-text p{opacity:0.7;line-height:1.8;margin-bottom:1rem}
+    .about-img img{width:100%;border-radius:12px;filter:saturate(1.1)}
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:3rem}
+    .service-card{background:var(--card);padding:2rem;border-radius:12px;border:1px solid rgba(255,255,255,0.05);transition:all 0.4s;transform-style:preserve-3d}
+    .service-card:hover{border-color:var(--gold);box-shadow:0 20px 40px rgba(0,0,0,0.4)}
+    .service-number{font-size:0.8rem;font-weight:700;color:var(--gold);display:block;margin-bottom:0.5rem}
+    .service-card h3{font-size:1.2rem;margin-bottom:0.5rem}
+    .service-card p{font-size:0.9rem;opacity:0.6}
+    .swiper{margin-top:3rem;overflow:hidden;border-radius:12px}
+    .swiper-slide img{width:100%;height:400px;object-fit:cover;border-radius:12px}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:3rem}
+    .gallery-item{overflow:hidden;border-radius:8px;cursor:none;transition:transform 0.3s}
+    .gallery-item img{width:100%;height:250px;object-fit:cover;transition:transform 0.5s}
+    .gallery-item:hover img{transform:scale(1.1)}
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:9999;padding:2rem}
+    .lightbox.active{display:flex}.lightbox img{max-width:90%;max-height:80vh;border-radius:8px}
+    .whatsapp-float{position:fixed;bottom:2rem;right:2rem;width:60px;height:60px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:999;box-shadow:0 10px 30px rgba(37,211,102,0.4);transition:transform 0.3s;cursor:none}
+    .whatsapp-float:hover{transform:scale(1.1)}
+    .whatsapp-float svg{width:30px;height:30px;fill:#fff}
+    .contact{background:var(--card);padding:4rem 3rem;text-align:center}
+    .contact-info{display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:2rem}
+    .contact-item{text-align:left}.contact-item label{font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--gold);display:block;margin-bottom:0.3rem}
+    .contact-item p{font-size:0.95rem;opacity:0.8}
+    footer{padding:2rem 3rem;text-align:center;border-top:1px solid rgba(255,255,255,0.05);font-size:0.8rem;opacity:0.5}
+    footer a{color:var(--gold)}
+    .reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:768px){.about{grid-template-columns:1fr}.nav-links{display:none}.section{padding:4rem 1.5rem}body{cursor:auto}.custom-cursor{display:none}}
+  </style>
+</head>
+<body>
+  <div class="preloader" id="preloader">
+    <h1>Onyx<span>Digital</span><span class="dot"></span><span class="dot"></span><span class="dot"></span></h1>
+  </div>
+  <div class="custom-cursor" id="cursor"></div>
+  <div id="scroll-progress"></div>
+
+  <nav id="nav">
+    <div class="nav-logo">Onyx<span>Digital</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Premium Real Estate • Prague</div>
+      <h1>Expats Reality Prague</h1>
+      <p>Elevating real estate in Prague with a stunning digital presence crafted by OnyxDigital.</p>
+      <div class="hero-cta">
+        <a href="https://wa.me/9233390025902" class="btn btn-gold" target="_blank">Get Your Website</a>
+        <a href="https://onyx-digital-sidd.vercel.app/" class="btn btn-outline" target="_blank">View Portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="about">
+      <div class="about-text reveal">
+        <div class="section-label">About</div>
+        <h2 class="section-title">Excellence in Real Estate</h2>
+        <p>Expats Reality Prague is a premier real estate located in Prague, Czech Republic. With a commitment to quality and customer satisfaction, we deliver exceptional service that stands out in the industry.</p>
+        <p>Our team combines expertise with a modern approach, ensuring every client receives personalized attention and outstanding results. This preview website showcases how a premium digital presence can transform your business.</p>
+        <p>📍 Vinohradská 123, Prague 2, Czech Republic</p>
+      </div>
+      <div class="about-img reveal">
+        <img src="https://loremflickr.com/800/600/real+estate?lock=8506" alt="Expats Reality Prague Real Estate Prague">
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="reveal">
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Our Services</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" data-tilt>
+        <span class="service-number">01</span>
+        <h3>Premium Property Listings</h3>
+        <p>Premium real estate services delivered with expertise and care in Prague.</p>
+      </div>
+<div class="service-card" data-tilt>
+        <span class="service-number">02</span>
+        <h3>Market Valuation</h3>
+        <p>Premium real estate services delivered with expertise and care in Prague.</p>
+      </div>
+<div class="service-card" data-tilt>
+        <span class="service-number">03</span>
+        <h3>Investment Consulting</h3>
+        <p>Premium real estate services delivered with expertise and care in Prague.</p>
+      </div>
+<div class="service-card" data-tilt>
+        <span class="service-number">04</span>
+        <h3>Virtual Tours</h3>
+        <p>Premium real estate services delivered with expertise and care in Prague.</p>
+      </div>
+<div class="service-card" data-tilt>
+        <span class="service-number">05</span>
+        <h3>Property Management</h3>
+        <p>Premium real estate services delivered with expertise and care in Prague.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="reveal">
+      <div class="section-label">Showcase</div>
+      <h2 class="section-title">Featured Work</h2>
+    </div>
+    <div class="swiper" id="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="https://loremflickr.com/800/600/luxury+home?lock=2842" alt="Expats Reality Prague showcase 1"></div>
+        <div class="swiper-slide"><img src="https://loremflickr.com/800/600/property?lock=4537" alt="Expats Reality Prague showcase 2"></div>
+        <div class="swiper-slide"><img src="https://loremflickr.com/800/600/interior?lock=803" alt="Expats Reality Prague showcase 3"></div>
+        <div class="swiper-slide"><img src="https://loremflickr.com/800/600/real+estate?lock=8506" alt="Expats Reality Prague showcase 4"></div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <div class="reveal">
+      <div class="section-label">Gallery</div>
+      <h2 class="section-title">Our Portfolio</h2>
+    </div>
+    <div class="gallery" id="gallery-grid">
+      <div class="gallery-item" data-tilt>
+        <img src="https://loremflickr.com/800/600/real+estate?lock=8506" alt="Expats Reality Prague Real Estate Prague gallery 1" loading="lazy">
+      </div>
+<div class="gallery-item" data-tilt>
+        <img src="https://loremflickr.com/800/600/luxury+home?lock=2842" alt="Expats Reality Prague Real Estate Prague gallery 2" loading="lazy">
+      </div>
+<div class="gallery-item" data-tilt>
+        <img src="https://loremflickr.com/800/600/property?lock=4537" alt="Expats Reality Prague Real Estate Prague gallery 3" loading="lazy">
+      </div>
+<div class="gallery-item" data-tilt>
+        <img src="https://loremflickr.com/800/600/interior?lock=803" alt="Expats Reality Prague Real Estate Prague gallery 4" loading="lazy">
+      </div>
+<div class="gallery-item" data-tilt>
+        <img src="https://loremflickr.com/600/400/modern+house?lock=9192" alt="Expats Reality Prague Real Estate Prague gallery 5" loading="lazy">
+      </div>
+<div class="gallery-item" data-tilt>
+        <img src="https://loremflickr.com/800/600/real+estate?lock=8506" alt="Expats Reality Prague Real Estate Prague gallery 6" loading="lazy">
+      </div>
+
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <img src="" id="lightbox-img" alt="">
+  </div>
+
+  <section class="contact" id="contact">
+    <div class="reveal">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Ready to Transform Your Business?</h2>
+      <p style="opacity:0.7;max-width:500px;margin:1rem auto 2rem">This is a preview website created by OnyxDigital. Get your own premium website today.</p>
+      <div class="hero-cta">
+        <a href="https://wa.me/9233390025902" class="btn btn-gold" target="_blank">WhatsApp Siddique</a>
+        <a href="https://onyx-digital-sidd.vercel.app/" class="btn btn-outline" target="_blank">View Portfolio</a>
+      </div>
+      <div class="contact-info">
+        <div class="contact-item"><label>Business</label><p>Expats Reality Prague</p></div>
+        <div class="contact-item"><label>Location</label><p>Prague, Czech Republic</p></div>
+        <div class="contact-item"><label>Niche</label><p>Real Estate</p></div>
+        <div class="contact-item"><label>WhatsApp</label><p>+92 333 9002590</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Preview by <a href="https://onyx-digital-sidd.vercel.app/">OnyxDigital</a> • Expats Reality Prague • Prague, Czech Republic</p>
+  </footer>
+
+  <a href="https://wa.me/9233390025902" class="whatsapp-float" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <script>
+    window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('preloader').classList.add('hidden'),800)});
+    const cursor=document.getElementById('cursor');
+    document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
+    document.querySelectorAll('a,button,.gallery-item,.service-card').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('hover'));el.addEventListener('mouseleave',()=>cursor.classList.remove('hover'))});
+    window.addEventListener('scroll',()=>{const h=document.documentElement;const p=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;document.getElementById('scroll-progress').style.width=p+'%';const nav=document.getElementById('nav');if(window.scrollY>50)nav.classList.add('scrolled');else nav.classList.remove('scrolled')});
+    gsap.registerPlugin(ScrollTrigger);
+    document.querySelectorAll('.reveal').forEach(el=>{ScrollTrigger.create({trigger:el,start:'top 85%',onEnter:()=>el.classList.add('visible')})});
+    new Swiper('#swiper',{loop:true,autoplay:{delay:3000},pagination:{el:'.swiper-pagination'},navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'}});
+    if(window.VanillaTilt)VanillaTilt.init(document.querySelectorAll('[data-tilt]'),{max:15,speed:400,glare:true,'max-glare':0.3});
+    const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lightbox-img');
+    document.querySelectorAll('.gallery-item img').forEach(img=>img.addEventListener('click',()=>{lbImg.src=img.src;lb.classList.add('active')}));
+    lb.addEventListener('click',()=>lb.classList.remove('active'));
+  </script>
+</body>
+</html>
