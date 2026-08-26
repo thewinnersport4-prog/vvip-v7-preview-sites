@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wiener Brot Vienna | Bakery in Vienna | OnyxDigital</title>
+<meta name="description" content="Premium bakery services in Vienna, Austria. Experience excellence with Wiener Brot Vienna.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#c5a558;--dark:#0a0a0a;--light:#f5f5f0;--accent:#e8c87a}
+body{font-family:'Inter',sans-serif;background:var(--dark);color:var(--light);overflow-x:hidden;cursor:none}
+::-webkit-scrollbar{width:0}
+.preloader{position:fixed;inset:0;background:var(--dark);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .8s}
+.preloader.hidden{opacity:0;pointer-events:none}
+.preloader-text{font-size:2rem;font-weight:700;color:var(--gold);letter-spacing:8px;text-transform:uppercase}
+.scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--accent));z-index:9998;width:0;transition:width .1s}
+.custom-cursor{position:fixed;width:20px;height:20px;border:2px solid var(--gold);border-radius:50%;pointer-events:none;z-index:10000;transition:transform .1s ease;mix-blend-mode:difference}
+.custom-cursor.expand{transform:scale(2);background:var(--gold)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;transition:all .4s;background:rgba(10,10,10,.85);backdrop-filter:blur(20px)}
+nav.scrolled{padding:12px 40px;background:rgba(10,10,10,.95)}
+.logo{font-size:1.5rem;font-weight:800;color:var(--gold);letter-spacing:2px;text-decoration:none}
+.logo span{color:var(--light)}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{color:var(--light);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--gold)}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://loremflickr.com/1200/800/bakery/lock?lock=1') center/cover;z-index:-1;filter:brightness(.4)}
+.hero-content{text-align:center;padding:0 20px;z-index:2}
+.hero-badge{display:inline-block;padding:8px 24px;border:1px solid var(--gold);border-radius:50px;color:var(--gold);font-size:.8rem;letter-spacing:2px;margin-bottom:24px;text-transform:uppercase}
+.hero h1{font-size:4.5rem;font-weight:900;line-height:1.1;margin-bottom:20px;background:linear-gradient(135deg,var(--light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.3rem;color:rgba(245,245,240,.7);max-width:600px;margin:0 auto 40px}
+.btn{display:inline-block;padding:16px 48px;background:linear-gradient(135deg,var(--gold),var(--accent));color:var(--dark);text-decoration:none;font-weight:700;border-radius:50px;letter-spacing:1px;transition:all .3s;text-transform:uppercase;font-size:.9rem}
+.btn:hover{transform:translateY(-3px);box-shadow:0 20px 40px rgba(197,165,88,.3)}
+.btn-outline{background:transparent;border:2px solid var(--gold);color:var(--gold)}
+.btn-outline:hover{background:var(--gold);color:var(--dark)}
+.section{padding:120px 40px;max-width:1400px;margin:0 auto}
+.section-title{font-size:.8rem;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:16px;text-align:center}
+.section h2{font-size:3rem;font-weight:800;text-align:center;margin-bottom:60px;background:linear-gradient(135deg,var(--light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}
+.service-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:40px;transition:all .4s;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(197,165,88,.05),transparent);opacity:0;transition:opacity .4s}
+.service-card:hover::before{opacity:1}
+.service-card:hover{transform:translateY(-10px);border-color:rgba(197,165,88,.3)}
+.service-number{font-size:3rem;font-weight:900;color:var(--gold);opacity:.2;position:absolute;top:20px;right:30px}
+.service-card h3{font-size:1.5rem;font-weight:700;margin-bottom:12px;color:var(--light)}
+.service-card p{color:rgba(245,245,240,.6);font-size:.95rem;line-height:1.6}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.gallery-item{border-radius:15px;overflow:hidden;cursor:pointer;position:relative;aspect-ratio:4/3}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gallery-item:hover img{transform:scale(1.1)}
+.gallery-item::after{content:'';position:absolute;inset:0;background:rgba(10,10,10,.4);opacity:0;transition:opacity .3s}
+.gallery-item:hover::after{opacity:1}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);display:none;align-items:center;justify-content:center;z-index:10001;padding:40px}
+.lightbox.active{display:flex}
+.lightbox img{max-width:90%;max-height:90%;border-radius:10px}
+.swiper{width:100%;max-width:1200px;margin:0 auto}
+.swiper-slide{border-radius:20px;overflow:hidden;aspect-ratio:16/10}
+.swiper-slide img{width:100%;height:100%;object-fit:cover}
+.tilt-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:40px;transition:transform .1s;transform-style:preserve-3d}
+.tilt-card h3{color:var(--gold);font-size:1.3rem;margin-bottom:16px}
+.tilt-card p{color:rgba(245,245,240,.6);line-height:1.7}
+.contact{background:linear-gradient(135deg,rgba(197,165,88,.08),rgba(10,10,10,.9));padding:120px 40px;text-align:center}
+.contact h2{font-size:3rem;font-weight:800;margin-bottom:30px;background:linear-gradient(135deg,var(--light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.contact p{color:rgba(245,245,240,.6);font-size:1.1rem;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto}
+.whatsapp-btn{display:inline-flex;align-items:center;gap:12px;padding:18px 48px;background:#25D366;color:#fff;text-decoration:none;font-weight:700;border-radius:50px;letter-spacing:1px;transition:all .3s;font-size:1.1rem}
+.whatsapp-btn:hover{transform:translateY(-3px);box-shadow:0 20px 40px rgba(37,211,102,.3)}
+.portfolio-link{display:inline-block;margin-top:20px;color:var(--gold);text-decoration:none;font-size:1rem;transition:opacity .3s}
+.portfolio-link:hover{opacity:.7}
+footer{padding:40px;text-align:center;color:rgba(245,245,240,.3);font-size:.85rem}
+footer a{color:var(--gold);text-decoration:none}
+.reveal{opacity:0;transform:translateY(60px);transition:opacity .8s,transform .8s}
+.reveal.active{opacity:1;transform:translateY(0)}
+@media(max-width:768px){.hero h1{font-size:2.5rem}.section h2{font-size:2rem}.gallery{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<div class="custom-cursor" id="cursor"></div>
+<div class="scroll-progress" id="progress"></div>
+<div class="preloader" id="preloader"><div class="preloader-text">OnyxDigital</div></div>
+<nav id="nav"><a href="#" class="logo">Onyx<span>Digital</span></a><ul class="nav-links"><li><a href="#services">Services</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+<section class="hero"><div class="hero-bg"></div><div class="hero-content"><div class="hero-badge">Premium Bakery | Vienna</div><h1>Wiener Brot Vienna</h1><p>Experience the pinnacle of bakery excellence in Vienna, Austria. Where craftsmanship meets innovation.</p><div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap"><a href="https://wa.me/9233390025902" class="btn" target="_blank">Get Your Free Demo</a><a href="https://onyx-digital-sidd.vercel.app/" class="btn btn-outline" target="_blank">View Portfolio</a></div></div></section>
+<section class="section" id="services"><div class="section-title reveal">What We Offer</div><h2 class="reveal">Premium Services</h2><div class="services-grid"><div class="service-card reveal"><div class="service-number">01</div><h3>Expert Consultation</h3><p>Personalized bakery consultation tailored to your specific needs and preferences in Vienna.</p></div><div class="service-card reveal"><div class="service-number">02</div><h3>Professional Service</h3><p>Top-tier bakery services delivered with precision, care, and attention to every detail.</p></div><div class="service-card reveal"><div class="service-number">03</div><h3>Premium Experience</h3><p>An elevated bakery experience that exceeds expectations and sets new standards in Vienna.</p></div></div></section>
+<section class="section" id="gallery"><div class="section-title reveal">Our Work</div><h2 class="reveal">Gallery</h2><div class="gallery"><div class="gallery-item reveal" onclick="openLightbox('https://loremflickr.com/800/600/bakery/lock?lock=9961')"><img src="https://loremflickr.com/800/600/bakery/lock?lock=9961" alt="Bakery in Vienna"></div>
+<div class="gallery-item reveal" onclick="openLightbox('https://loremflickr.com/800/600/bakery/lock?lock=9962')"><img src="https://loremflickr.com/800/600/bakery/lock?lock=9962" alt="Bakery in Vienna"></div>
+<div class="gallery-item reveal" onclick="openLightbox('https://loremflickr.com/800/600/bakery/lock?lock=9963')"><img src="https://loremflickr.com/800/600/bakery/lock?lock=9963" alt="Bakery in Vienna"></div>
+<div class="gallery-item reveal" onclick="openLightbox('https://loremflickr.com/800/600/bakery/lock?lock=9964')"><img src="https://loremflickr.com/800/600/bakery/lock?lock=9964" alt="Bakery in Vienna"></div>
+<div class="gallery-item reveal" onclick="openLightbox('https://loremflickr.com/800/600/bakery/lock?lock=9965')"><img src="https://loremflickr.com/800/600/bakery/lock?lock=9965" alt="Bakery in Vienna"></div>
+<div class="gallery-item reveal" onclick="openLightbox('https://loremflickr.com/800/600/bakery/lock?lock=9966')"><img src="https://loremflickr.com/800/600/bakery/lock?lock=9966" alt="Bakery in Vienna"></div></div></section>
+<section class="section" id="about"><div class="section-title reveal">Who We Are</div><h2 class="reveal">Why Choose Us</h2><div class="services-grid"><div class="tilt-card reveal" data-tilt><h3>Excellence</h3><p>Our commitment to excellence sets us apart. We deliver bakery services that are second to none in Vienna.</p></div><div class="tilt-card reveal" data-tilt><h3>Innovation</h3><p>We combine traditional values with modern innovation to provide outstanding results for every client in Vienna.</p></div><div class="tilt-card reveal" data-tilt><h3>Trust</h3><p>Building lasting relationships through transparency, quality, and genuine care for our clients in Vienna.</p></div></div></section>
+<div class="swiper reveal"><div class="swiper-wrapper"><div class="swiper-slide"><img src="https://loremflickr.com/1200/750/bakery/lock?lock=9967" alt="Bakery Vienna"></div><div class="swiper-slide"><img src="https://loremflickr.com/1200/750/bakery/lock?lock=9968" alt="Bakery Vienna"></div><div class="swiper-slide"><img src="https://loremflickr.com/1200/750/bakery/lock?lock=9969" alt="Bakery Vienna"></div></div><div class="swiper-pagination"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div>
+<section class="contact" id="contact"><h2>Ready to Elevate Your Business?</h2><p>Discover how a premium website can transform your bakery in Vienna. Contact us today for a free consultation.</p><a href="https://wa.me/9233390025902" class="whatsapp-btn" target="_blank">💬 Chat on WhatsApp</a><br><a href="https://onyx-digital-sidd.vercel.app/" class="portfolio-link" target="_blank">View Our Portfolio →</a></section>
+<footer>Powered by <a href="https://onyx-digital-sidd.vercel.app/" target="_blank">OnyxDigital</a> | Wiener Brot Vienna | Vienna, Austria</footer>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src="" alt=""></div>
+<script>
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('preloader').classList.add('hidden'),800)});
+const cursor=document.getElementById('cursor');document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX-10+'px';cursor.style.top=e.clientY-10+'px'});document.querySelectorAll('a,button,.gallery-item,.service-card,.tilt-card').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('expand'));el.addEventListener('mouseleave',()=>cursor.classList.remove('expand'))});
+window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;const s=(window.scrollY/h)*100;document.getElementById('progress').style.width=s+'%';const nav=document.getElementById('nav');if(window.scrollY>50)nav.classList.add('scrolled');else nav.classList.remove('scrolled')});
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('active')})},{threshold:.15});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active')}function closeLightbox(){document.getElementById('lightbox').classList.remove('active')}
+document.querySelectorAll('[data-tilt]').forEach(card=>{card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();const x=e.clientX-r.left-r.width/2;const y=e.clientY-r.top-r.height/2;card.style.transform='perspective(1000px) rotateY('+x/10+'deg) rotateX('+(-y/10)+'deg)'});card.addEventListener('mouseleave',()=>card.style.transform='perspective(1000px) rotateY(0) rotateX(0)')});
+gsap.registerPlugin(ScrollTrigger);gsap.from('.hero h1',{y:80,opacity:0,duration:1.2,ease:'power3.out',delay:.3});gsap.from('.hero p',{y:40,opacity:0,duration:1,ease:'power3.out',delay:.6});gsap.from('.hero .btn',{y:30,opacity:0,duration:.8,ease:'power3.out',delay:.9,stagger:.15});
+new Swiper('.swiper',{loop:true,autoplay:{delay:3000},pagination:{el:'.swiper-pagination',clickable:true},navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'}});
+</script>
+</body>
+</html>
