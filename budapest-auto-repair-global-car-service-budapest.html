@@ -1,97 +1,249 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Global Car Service Budapest | OnyxDigital Preview</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<style>
-:root{--primary:#e63946;--accent:#f77f00;--bg:#0d0d0d;--bg2:#1a1a1a;--light:#e0e0e0;--text-muted:#888;--card:rgba(255,255,255,.03);--border:rgba(255,255,255,.08);--glow:rgba(255,255,255,.1)}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--light);overflow-x:hidden;cursor:none}
-#preloader{position:fixed;inset:0;background:var(--bg);z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column}
-.preloader-circle{width:60px;height:60px;border:3px solid rgba(255,255,255,.1);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite}
-.preloader-text{margin-top:1rem;font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--primary);letter-spacing:2px}
-@keyframes spin{to{transform:rotate(360deg)}}
-#progress-bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--primary),var(--accent));z-index:9999;transition:width .1s}
-.cursor-dot{width:8px;height:8px;background:var(--primary);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;mix-blend-mode:difference}
-.cursor-outline{width:40px;height:40px;border:2px solid var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9997}
-section{padding:5rem 3rem;position:relative}
-.section-title{text-align:center;margin-bottom:3rem}
-.section-title h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:.5rem;background:linear-gradient(135deg,var(--light),var(--primary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.section-title .line{width:60px;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent));margin:0 auto 1rem;border-radius:2px}
-.section-title p{color:var(--text-muted);font-size:1.1rem}
-.navbar{position:fixed;top:0;width:100%;backdrop-filter:blur(20px);z-index:1000;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
-.navbar.scrolled{padding:.8rem 3rem;background:rgba(0,0,0,.5)}
-.navbar .logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--primary)}
-.brand-tag{font-size:.7rem;color:var(--accent);letter-spacing:2px;text-transform:uppercase}
-.nav-links{list-style:none;display:flex;gap:2rem}
-.nav-links a{color:var(--light);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .3s}
-.nav-links a:hover{color:var(--primary)}
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,var(--bg),var(--bg2));position:relative;overflow:hidden;padding-top:80px}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,5rem);margin-bottom:1rem;background:linear-gradient(135deg,var(--light) 0%,var(--primary) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.subtitle{color:var(--accent);font-size:clamp(1rem,2vw,1.3rem);margin-bottom:2rem;min-height:1.5rem}
-.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.btn{padding:.8rem 2rem;border-radius:50px;font-weight:600;font-size:1rem;text-decoration:none;transition:all .3s;display:inline-block}
-.btn-primary{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;box-shadow:0 4px 20px var(--glow)}
-.btn-outline{border:2px solid var(--primary);color:var(--light)}
-.about{background:var(--bg2)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto;align-items:center}
-.about-img{border-radius:20px;overflow:hidden}.about-img img{width:100%;height:400px;object-fit:cover}
-.about-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:1rem}
-.about-text p{color:var(--text-muted);line-height:1.8;margin-bottom:1.5rem}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;max-width:1200px;margin:0 auto}
-.service-card{background:var(--card);border-radius:20px;padding:2.5rem 2rem;border:1px solid var(--border);transition:all .4s}
-.service-number{font-family:'Playfair Display',serif;font-size:1rem;color:var(--accent);margin-bottom:.5rem}
-.service-card h3{font-size:1.3rem;margin-bottom:.8rem}.service-card p{color:var(--text-muted)}
-.stats-section{background:linear-gradient(135deg,var(--bg),var(--bg2));padding:4rem 3rem}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;max-width:1200px;margin:0 auto}
-.stat-card{text-align:center;padding:2rem;border-radius:20px;background:var(--card)}
-.stat-number{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--primary);font-weight:700;display:block}
-.stat-label{color:var(--text-muted);margin-top:.5rem}
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;max-width:1200px;margin:0 auto}
-.gallery-slide{border-radius:15px;overflow:hidden;cursor:pointer}.gallery-slide img{width:100%;height:250px;object-fit:cover;transition:transform .5s}.gallery-slide img:hover{transform:scale(1.1)}
-.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;max-width:1200px;margin:0 auto}
-.pricing-card{background:var(--card);border-radius:20px;padding:2.5rem;text-align:center;border:1px solid var(--border)}
-.pricing-card h3{font-size:1.5rem;margin-bottom:.5rem;color:var(--primary)}
-.pricing-card .price{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--accent);margin:1rem 0}
-.cta{text-align:center;padding:5rem 3rem;background:linear-gradient(135deg,var(--bg),var(--bg2))}
-.cta h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:1rem}
-.whatsapp-float{position:fixed;bottom:30px;right:30px;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:999;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .3s}
-.whatsapp-float:hover{transform:scale(1.1)}
-.whatsapp-float svg{width:30px;height:30px;fill:#fff}
-#back-top{position:fixed;bottom:100px;right:30px;width:45px;height:45px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:998;opacity:0;transition:opacity .3s}
-#back-top.visible{opacity:1}#back-top::after{content:'\2191';color:#fff;font-size:1.2rem}
-.reveal{opacity:0;transform:translateY(40px)}
-footer{padding:3rem;text-align:center;background:var(--bg);border-top:1px solid var(--border)}footer a{color:var(--accent);text-decoration:none}
-@media(max-width:768px){.about-grid{grid-template-columns:1fr}.nav-links{display:none}section{padding:3rem 1.5rem}}
-#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:99995;display:none;align-items:center;justify-content:center}
-#lightbox.active{display:flex}#lightbox img{max-width:90%;max-height:90%}
-</style></head><body>
-<div id="preloader"><div class="preloader-circle"></div><div class="preloader-text">OnyxDigital</div></div>
-<div id="progress-bar"></div><div class="cursor-dot"></div><div class="cursor-outline"></div><div id="lightbox"><img id="lightbox-img" src="" alt=""></div>
-<nav class="navbar"><div><span class="logo">Global Car Service B</span><br><span class="brand-tag">OnyxDigital Preview</span></div><ul class="nav-links"><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#pricing">Pricing</a></li><li><a href="https://wa.me/9233390025902" style="color:var(--accent)">WhatsApp</a></li></ul></nav>
-<section class="hero"><h1>Expert Auto Care</h1><div class="subtitle" data-text="Your trusted garage for all vehicles"></div><div class="hero-btns"><a href="#pricing" class="btn btn-primary">Explore</a><a href="https://wa.me/9233390025902" class="btn btn-outline">Contact Siddique</a></div></section>
-<section class="about" id="about"><div class="about-grid"><div class="about-img"><img src="https://loremflickr.com/800/600/car-service/all?lock=2195" alt="Global Car Service Budapest"></div><div class="about-text reveal"><h2>Global Car Service Budapest</h2><p>Our certified mechanics deliver honest, reliable service for all vehicle makes and models. We keep you on the road with confidence.</p><p style="color:var(--accent)">Located in Budapest, Hungary.</p><a href="https://onyx-digital-sidd.vercel.app/" class="btn btn-primary" style="margin-top:1rem">View Our Portfolio</a></div></div></section>
-<section id="services"><div class="section-title"><div class="line"></div><h2>Our Services</h2><p>Premium auto repair services</p></div><div class="services-grid"><div class="service-card reveal"><div class="service-number">01</div><h3>General Repairs</h3><p>Your trusted garage for all vehicles</p></div><div class="service-card reveal"><div class="service-number">02</div><h3>Diagnostics & Inspection</h3><p>Your trusted garage for all vehicles</p></div><div class="service-card reveal"><div class="service-number">03</div><h3>Tire Services</h3><p>Your trusted garage for all vehicles</p></div><div class="service-card reveal"><div class="service-number">04</div><h3>Oil & Maintenance</h3><p>Your trusted garage for all vehicles</p></div></div></section>
-<div class="stats-section"><div class="stats-grid"><div class="stat-card"><span class="stat-number">8000+</span><span class="stat-label">Cars Repaired</span></div><div class="stat-card"><span class="stat-number">12+</span><span class="stat-label">Years Experience</span></div><div class="stat-card"><span class="stat-number">15+</span><span class="stat-label">Certified Mechanics</span></div><div class="stat-card"><span class="stat-number">4.8</span><span class="stat-label">Customer Rating</span></div></div></div>
-<section class="gallery-section" id="gallery"><div class="section-title"><div class="line"></div><h2>Gallery</h2><p>A glimpse of our work</p></div><div class="gallery-grid"><div class="gallery-slide"><img src="https://loremflickr.com/800/600/automotive/all?lock=6212" alt="Global Car Service Budapest" loading="lazy"></div><div class="gallery-slide"><img src="https://loremflickr.com/800/600/automotive/all?lock=4190" alt="Global Car Service Budapest" loading="lazy"></div><div class="gallery-slide"><img src="https://loremflickr.com/800/600/automotive/all?lock=327" alt="Global Car Service Budapest" loading="lazy"></div><div class="gallery-slide"><img src="https://loremflickr.com/800/600/automotive/all?lock=5451" alt="Global Car Service Budapest" loading="lazy"></div><div class="gallery-slide"><img src="https://loremflickr.com/800/600/automotive/all?lock=3885" alt="Global Car Service Budapest" loading="lazy"></div><div class="gallery-slide"><img src="https://loremflickr.com/800/600/automotive/all?lock=1676" alt="Global Car Service Budapest" loading="lazy"></div></div></section>
-<section id="pricing"><div class="section-title"><div class="line"></div><h2>Pricing</h2><p>Transparent and fair</p></div><div class="pricing-grid"><div class="pricing-card reveal"><h3>Basic</h3><p>Oil change+check</p><div class="price">49</div><a href="https://wa.me/9233390025902" class="btn btn-outline">Get Started</a></div><div class="pricing-card reveal"><h3>Standard</h3><p>Full service</p><div class="price">129</div><a href="https://wa.me/9233390025902" class="btn btn-outline">Get Started</a></div><div class="pricing-card reveal"><h3>Complete</h3><p>Major overhaul</p><div class="price">499</div><a href="https://wa.me/9233390025902" class="btn btn-outline">Get Started</a></div></div></section>
-<section class="cta"><h2>Book Your Service Today</h2><p style="color:var(--text-muted);margin:1rem 0 2rem">Contact us via WhatsApp for a free consultation</p><a href="https://wa.me/9233390025902" class="btn btn-primary" style="font-size:1.2rem;padding:1rem 3rem">Chat with Siddique on WhatsApp</a><br><br><a href="https://onyx-digital-sidd.vercel.app/" style="color:var(--accent);text-decoration:none;font-size:1.1rem">Visit OnyxDigital Portfolio</a></section>
-<footer><p><strong>OnyxDigital</strong> &mdash; Premium Website Design</p><p style="margin-top:.5rem"><a href="https://onyx-digital-sidd.vercel.app/">https://onyx-digital-sidd.vercel.app/</a></p><p style="margin-top:.5rem">WhatsApp: <a href="https://wa.me/9233390025902">+92 333 90025902</a> (Siddique)</p></footer>
-<a href="https://wa.me/9233390025902" class="whatsapp-float" title="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg></a>
-<div id="back-top"></div>
-<script>
-window.addEventListener('load',function(){setTimeout(function(){var p=document.getElementById('preloader');p.style.opacity='0';setTimeout(function(){p.style.display='none'},500)},800)});
-window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('progress-bar').style.width=(window.scrollY/h)*100+'%'});
-window.addEventListener('scroll',function(){var n=document.querySelector('.navbar');if(window.scrollY>50){n.classList.add('scrolled')}else{n.classList.remove('scrolled')}});
-var dot=document.querySelector('.cursor-dot'),outline=document.querySelector('.cursor-outline');
-document.addEventListener('mousemove',function(e){dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px';outline.style.left=e.clientX+'px';outline.style.top=e.clientY+'px'});
-if(typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){gsap.registerPlugin(ScrollTrigger);document.querySelectorAll('.reveal').forEach(function(el){gsap.to(el,{opacity:1,y:0,duration:.8,scrollTrigger:{trigger:el,start:'top 80%'}})});var sub=document.querySelector('.subtitle');if(sub){var txt=sub.getAttribute('data-text');sub.textContent='';var i=0;setTimeout(function(){var t=setInterval(function(){if(i<txt.length){sub.textContent+=txt.charAt(i);i++}else{clearInterval(t)}},35)},1500)}}
-var lb=document.getElementById('lightbox'),lbI=document.getElementById('lightbox-img');
-document.querySelectorAll('.gallery-slide img').forEach(function(img){img.addEventListener('click',function(){lbI.src=img.src;lb.classList.add('active')})});
-lb.addEventListener('click',function(){lb.classList.remove('active')});
-var bt=document.getElementById('back-top');
-window.addEventListener('scroll',function(){if(window.scrollY>400){bt.classList.add('visible')}else{bt.classList.remove('visible')}});
-bt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
-</script></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Car Service Budapest | Premium Auto Repair in Budapest | OnyxDigital Preview</title>
+  <meta name="description" content="Global Car Service Budapest - Leading Auto Repair in Budapest, Hungary. Premium services with a modern digital presence by OnyxDigital.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--accent:#0a0a0a;--gold:#c9a96e;--bg:#0f0f0f;--light:#f5f5f5;--card:#1a1a1a}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--light);overflow-x:hidden;cursor:none}
+    a{color:inherit;text-decoration:none}
+    .custom-cursor{position:fixed;width:20px;height:20px;border:2px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.15s ease,width 0.3s,height 0.3s;mix-blend-mode:difference}
+    .custom-cursor.hover{width:50px;height:50px;background:rgba(201,169,110,0.2)}
+    #scroll-progress{position:fixed;top:0;left:0;height:3px;background:var(--gold);z-index:9998;transition:width 0.1s;width:0}
+    .preloader{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:99999;transition:opacity 0.5s}
+    .preloader.hidden{opacity:0;pointer-events:none}
+    .preloader h1{font-size:2rem;font-weight:800;letter-spacing:-2px;color:var(--gold)}
+    .preloader .dot{display:inline-block;width:8px;height:8px;background:var(--gold);border-radius:50%;margin:0 3px;animation:bounce 0.6s infinite alternate}
+    .preloader .dot:nth-child(2){animation-delay:0.1s}.preloader .dot:nth-child(3){animation-delay:0.2s}
+    @keyframes bounce{to{transform:translateY(-15px);opacity:0.3}}
+    nav{position:fixed;top:0;width:100%;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;z-index:1000;transition:all 0.4s}
+    nav.scrolled{background:rgba(15,15,15,0.95);backdrop-filter:blur(20px);padding:1rem 3rem}
+    .nav-logo{font-weight:800;font-size:1.4rem;letter-spacing:-1px}.nav-logo span{color:var(--gold)}
+    .nav-links{display:flex;gap:2rem;list-style:none}.nav-links a{font-size:0.9rem;font-weight:500;opacity:0.7;transition:opacity 0.3s}.nav-links a:hover{opacity:1;color:var(--gold)}
+    .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:url('https://loremflickr.com/1200/800/auto+repair?lock=7147') center/cover;filter:brightness(0.4) saturate(1.2);transform:scale(1.1)}
+    .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,rgba(15,15,15,0.9) 100%)}
+    .hero-content{position:relative;z-index:2;text-align:center;max-width:800px;padding:0 2rem}
+    .hero-badge{display:inline-block;padding:0.4rem 1.2rem;border:1px solid var(--gold);border-radius:100px;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:1.5rem}
+    .hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;letter-spacing:-2px;line-height:1;margin-bottom:1rem}
+    .hero h1 span{color:var(--gold)}.hero p{font-size:1.1rem;opacity:0.7;max-width:500px;margin:0 auto 2rem}
+    .hero-cta{display:inline-flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+    .btn{padding:0.9rem 2rem;border-radius:8px;font-weight:600;font-size:0.9rem;transition:all 0.3s;border:none;cursor:none}
+    .btn-gold{background:var(--gold);color:var(--bg)}.btn-gold:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,169,110,0.4)}
+    .btn-outline{border:1px solid rgba(255,255,255,0.2);color:var(--light);background:transparent}.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+    .section{padding:6rem 3rem;max-width:1200px;margin:0 auto}
+    .section-label{font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:var(--gold);margin-bottom:0.5rem}
+    .section-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-1px;margin-bottom:1rem}
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+    .about-text p{opacity:0.7;line-height:1.8;margin-bottom:1rem}
+    .about-img img{width:100%;border-radius:12px;filter:saturate(1.1)}
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:3rem}
+    .service-card{background:var(--card);padding:2rem;border-radius:12px;border:1px solid rgba(255,255,255,0.05);transition:all 0.4s;transform-style:preserve-3d}
+    .service-card:hover{border-color:var(--gold);box-shadow:0 20px 40px rgba(0,0,0,0.4)}
+    .service-number{font-size:0.8rem;font-weight:700;color:var(--gold);display:block;margin-bottom:0.5rem}
+    .service-card h3{font-size:1.2rem;margin-bottom:0.5rem}
+    .service-card p{font-size:0.9rem;opacity:0.6}
+    .swiper{margin-top:3rem;overflow:hidden;border-radius:12px}
+    .swiper-slide img{width:100%;height:400px;object-fit:cover;border-radius:12px}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:3rem}
+    .gallery-item{overflow:hidden;border-radius:8px;cursor:none;transition:transform 0.3s}
+    .gallery-item img{width:100%;height:250px;object-fit:cover;transition:transform 0.5s}
+    .gallery-item:hover img{transform:scale(1.1)}
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:9999;padding:2rem}
+    .lightbox.active{display:flex}.lightbox img{max-width:90%;max-height:80vh;border-radius:8px}
+    .whatsapp-float{position:fixed;bottom:2rem;right:2rem;width:60px;height:60px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:999;box-shadow:0 10px 30px rgba(37,211,102,0.4);transition:transform 0.3s;cursor:none}
+    .whatsapp-float:hover{transform:scale(1.1)}
+    .whatsapp-float svg{width:30px;height:30px;fill:#fff}
+    .contact{background:var(--card);padding:4rem 3rem;text-align:center}
+    .contact-info{display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:2rem}
+    .contact-item{text-align:left}.contact-item label{font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--gold);display:block;margin-bottom:0.3rem}
+    .contact-item p{font-size:0.95rem;opacity:0.8}
+    footer{padding:2rem 3rem;text-align:center;border-top:1px solid rgba(255,255,255,0.05);font-size:0.8rem;opacity:0.5}
+    footer a{color:var(--gold)}
+    .reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:768px){.about{grid-template-columns:1fr}.nav-links{display:none}.section{padding:4rem 1.5rem}body{cursor:auto}.custom-cursor{display:none}}
+  </style>
+</head>
+<body>
+  <div class="preloader" id="preloader">
+    <h1>Onyx<span>Digital</span><span class="dot"></span><span class="dot"></span><span class="dot"></span></h1>
+  </div>
+  <div class="custom-cursor" id="cursor"></div>
+  <div id="scroll-progress"></div>
+
+  <nav id="nav">
+    <div class="nav-logo">Onyx<span>Digital</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Premium Auto Repair • Budapest</div>
+      <h1>Global Car Service Budapest</h1>
+      <p>Elevating auto repair in Budapest with a stunning digital presence crafted by OnyxDigital.</p>
+      <div class="hero-cta">
+        <a href="https://wa.me/9233390025902" class="btn btn-gold" target="_blank">Get Your Website</a>
+        <a href="https://onyx-digital-sidd.vercel.app/" class="btn btn-outline" target="_blank">View Portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="about">
+      <div class="about-text reveal">
+        <div class="section-label">About</div>
+        <h2 class="section-title">Excellence in Auto Repair</h2>
+        <p>Global Car Service Budapest is a premier auto repair located in Budapest, Hungary. With a commitment to quality and customer satisfaction, we deliver exceptional service that stands out in the industry.</p>
+        <p>Our team combines expertise with a modern approach, ensuring every client receives personalized attention and outstanding results. This preview website showcases how a premium digital presence can transform your business.</p>
+        <p>📍 1188 Budapest, Nagykőrösi út 52, Hungary</p>
+      </div>
+      <div class="about-img reveal">
+        <img src="https://loremflickr.com/800/600/car+mechanic?lock=2342" alt="Global Car Service Budapest Auto Repair Budapest">
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="reveal">
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Our Services</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" data-tilt>
+        <span class="service-number">01</span>
+        <h3>Diagnostics</h3>
+        <p>Premium auto repair services delivered with expertise and care in Budapest.</p>
+      </div>
+<div class="service-card" data-tilt>
+        <span class="service-number">02</span>
+        <h3>Engine Service</h3>
+        <p>Premium auto repair services delivered with expertise and care in Budapest.</p>
+      </div>
+<div class="service-card" data-tilt>
+        <span class="service-number">03</span>
+        <h3>Brake Repair</h3>
+        <p>Premium auto repair services delivered with expertise and care in Budapest.</p>
+      </div>
+<div class="service-card" data-tilt>
+        <span class="service-number">04</span>
+        <h3>Tire Service</h3>
+        <p>Premium auto repair services delivered with expertise and care in Budapest.</p>
+      </div>
+<div class="service-card" data-tilt>
+        <span class="service-number">05</span>
+        <h3>Body Work</h3>
+        <p>Premium auto repair services delivered with expertise and care in Budapest.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="reveal">
+      <div class="section-label">Showcase</div>
+      <h2 class="section-title">Featured Work</h2>
+    </div>
+    <div class="swiper" id="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="https://loremflickr.com/800/600/garage?lock=7240" alt="Global Car Service Budapest showcase 1"></div>
+        <div class="swiper-slide"><img src="https://loremflickr.com/800/600/automotive?lock=9357" alt="Global Car Service Budapest showcase 2"></div>
+        <div class="swiper-slide"><img src="https://loremflickr.com/800/600/workshop?lock=3731" alt="Global Car Service Budapest showcase 3"></div>
+        <div class="swiper-slide"><img src="https://loremflickr.com/800/600/car+mechanic?lock=2342" alt="Global Car Service Budapest showcase 4"></div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <div class="reveal">
+      <div class="section-label">Gallery</div>
+      <h2 class="section-title">Our Portfolio</h2>
+    </div>
+    <div class="gallery" id="gallery-grid">
+      <div class="gallery-item" data-tilt>
+        <img src="https://loremflickr.com/800/600/car+mechanic?lock=2342" alt="Global Car Service Budapest Auto Repair Budapest gallery 1" loading="lazy">
+      </div>
+<div class="gallery-item" data-tilt>
+        <img src="https://loremflickr.com/800/600/garage?lock=7240" alt="Global Car Service Budapest Auto Repair Budapest gallery 2" loading="lazy">
+      </div>
+<div class="gallery-item" data-tilt>
+        <img src="https://loremflickr.com/800/600/automotive?lock=9357" alt="Global Car Service Budapest Auto Repair Budapest gallery 3" loading="lazy">
+      </div>
+<div class="gallery-item" data-tilt>
+        <img src="https://loremflickr.com/800/600/workshop?lock=3731" alt="Global Car Service Budapest Auto Repair Budapest gallery 4" loading="lazy">
+      </div>
+<div class="gallery-item" data-tilt>
+        <img src="https://loremflickr.com/600/400/auto+repair?lock=3791" alt="Global Car Service Budapest Auto Repair Budapest gallery 5" loading="lazy">
+      </div>
+<div class="gallery-item" data-tilt>
+        <img src="https://loremflickr.com/800/600/car+mechanic?lock=2342" alt="Global Car Service Budapest Auto Repair Budapest gallery 6" loading="lazy">
+      </div>
+
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <img src="" id="lightbox-img" alt="">
+  </div>
+
+  <section class="contact" id="contact">
+    <div class="reveal">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Ready to Transform Your Business?</h2>
+      <p style="opacity:0.7;max-width:500px;margin:1rem auto 2rem">This is a preview website created by OnyxDigital. Get your own premium website today.</p>
+      <div class="hero-cta">
+        <a href="https://wa.me/9233390025902" class="btn btn-gold" target="_blank">WhatsApp Siddique</a>
+        <a href="https://onyx-digital-sidd.vercel.app/" class="btn btn-outline" target="_blank">View Portfolio</a>
+      </div>
+      <div class="contact-info">
+        <div class="contact-item"><label>Business</label><p>Global Car Service Budapest</p></div>
+        <div class="contact-item"><label>Location</label><p>Budapest, Hungary</p></div>
+        <div class="contact-item"><label>Niche</label><p>Auto Repair</p></div>
+        <div class="contact-item"><label>WhatsApp</label><p>+92 333 9002590</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Preview by <a href="https://onyx-digital-sidd.vercel.app/">OnyxDigital</a> • Global Car Service Budapest • Budapest, Hungary</p>
+  </footer>
+
+  <a href="https://wa.me/9233390025902" class="whatsapp-float" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <script>
+    window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('preloader').classList.add('hidden'),800)});
+    const cursor=document.getElementById('cursor');
+    document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
+    document.querySelectorAll('a,button,.gallery-item,.service-card').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('hover'));el.addEventListener('mouseleave',()=>cursor.classList.remove('hover'))});
+    window.addEventListener('scroll',()=>{const h=document.documentElement;const p=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;document.getElementById('scroll-progress').style.width=p+'%';const nav=document.getElementById('nav');if(window.scrollY>50)nav.classList.add('scrolled');else nav.classList.remove('scrolled')});
+    gsap.registerPlugin(ScrollTrigger);
+    document.querySelectorAll('.reveal').forEach(el=>{ScrollTrigger.create({trigger:el,start:'top 85%',onEnter:()=>el.classList.add('visible')})});
+    new Swiper('#swiper',{loop:true,autoplay:{delay:3000},pagination:{el:'.swiper-pagination'},navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'}});
+    if(window.VanillaTilt)VanillaTilt.init(document.querySelectorAll('[data-tilt]'),{max:15,speed:400,glare:true,'max-glare':0.3});
+    const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lightbox-img');
+    document.querySelectorAll('.gallery-item img').forEach(img=>img.addEventListener('click',()=>{lbImg.src=img.src;lb.classList.add('active')}));
+    lb.addEventListener('click',()=>lb.classList.remove('active'));
+  </script>
+</body>
+</html>

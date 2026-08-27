@@ -3,23 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MAAK Advocaten Amsterdam | OnyxDigital</title>
-<meta name="description" content="MAAK Advocaten Amsterdam in Amsterdam - Premium Legal/Law Firm services. Website preview by OnyxDigital.">
+<title>Blue Dog Grooming Studio Copenhagen | OnyxDigital</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--accent:#e0a458;--bg:#0a0a0b;--surface:#111113;--surface2:#161618;--text:#f5f5f7;--muted:#86868b;--border:rgba(255,255,255,.06);--radius:14px}
+:root{--accent:#ff7043;--bg:#0a0a0b;--surface:#111113;--surface2:#161618;--text:#f5f5f7;--muted:#86868b;--border:rgba(255,255,255,.06);--radius:14px}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;font-weight:400}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;font-weight:400;cursor:none}
 img{display:block;max-width:100%}
-a{text-decoration:none;color:inherit}
+a{text-decoration:none;color:inherit;cursor:none}
 ::selection{background:var(--accent);color:#fff}
 #loader{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .5s}
 #loader.hide{opacity:0;pointer-events:none}
 .loader-ring{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 #progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:9998;transition:width .15s}
+#cursor{position:fixed;width:20px;height:20px;border:1.5px solid var(--accent);border-radius:50%;pointer-events:none;z-index:99997;transition:transform .15s ease, width .3s, height .3s;mix-blend-mode:difference}
+#cursor.hover{width:40px;height:40px;background:rgba(255,255,255,.05)}
 nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.4rem 3rem;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
 nav.scrolled{padding:.9rem 3rem;background:rgba(10,10,11,.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
 .logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--accent);letter-spacing:.3px}
@@ -28,7 +30,7 @@ nav.scrolled{padding:.9rem 3rem;background:rgba(10,10,11,.8);backdrop-filter:blu
 .nav-links a:hover{color:var(--text)}
 .nav-links a.cta{color:var(--bg);background:var(--accent);padding:.5rem 1.3rem;border-radius:100px;font-weight:500}
 .nav-links a.cta:hover{opacity:.85}
-@media(max-width:768px){nav{padding:1rem 1.5rem}nav.scrolled{padding:.8rem 1.5rem}.nav-links{display:none}}
+@media(max-width:768px){nav{padding:1rem 1.5rem}nav.scrolled{padding:.8rem 1.5rem}.nav-links{display:none}body{cursor:auto}a{cursor:pointer}#cursor{display:none}}
 section{padding:7rem 2rem;position:relative}
 @media(max-width:768px){section{padding:4.5rem 1.5rem}}
 .container{max-width:1080px;margin:0 auto}
@@ -99,113 +101,76 @@ section{padding:7rem 2rem;position:relative}
 footer{padding:3rem 2rem;text-align:center;border-top:1px solid var(--border)}
 .social{display:flex;justify-content:center;gap:.8rem;margin-bottom:1.5rem}
 .social a{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all .3s}
-.social a:hover{border-color:var(--accent);color:var(--accent)}
-.social svg{width:18px;height:18px;fill:var(--muted)}
-.social a:hover svg{fill:var(--accent)}
-.footer-info{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;font-size:.88rem;color:var(--muted);margin-bottom:1rem}
-.footer-info a{color:var(--muted)}
-.copyright{font-size:.82rem;color:var(--muted)}
+.social a:hover{background:var(--accent);border-color:var(--accent)}
+.social svg{width:16px;height:16px;fill:var(--muted);transition:fill .3s}
+.social a:hover svg{fill:#0a0a0b}
+.footer-info{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.footer-info span,.footer-info a{color:var(--muted);font-size:.85rem;font-weight:300}
+.footer-info a:hover{color:var(--accent)}
+.copyright{color:var(--muted);font-size:.8rem;padding-top:1.2rem;border-top:1px solid var(--border);font-weight:300}
 .copyright a{color:var(--accent)}
-#lightbox{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
-#lightbox.show{opacity:1;pointer-events:auto}
-#lightbox img{max-width:90vw;max-height:85vh;border-radius:8px}
-#backtop{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;background:var(--accent);color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:all .3s;z-index:999}
-#backtop.show{opacity:1;pointer-events:auto}
-#backtop svg{width:20px;height:20px;fill:currentColor}
-.wa{position:fixed;bottom:2rem;left:2rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:999;box-shadow:0 4px 12px rgba(37,211,102,.4);transition:transform .3s}
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;display:none;align-items:center;justify-content:center;cursor:pointer}
+#lightbox.show{display:flex}
+#lightbox img{max-width:90%;max-height:85%;border-radius:10px}
+#backtop{position:fixed;bottom:88px;right:22px;z-index:999;width:44px;height:44px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(10px);transition:all .3s}
+#backtop.show{opacity:1;transform:translateY(0)}
+#backtop:hover{background:var(--accent)}
+.wa{position:fixed;bottom:22px;right:22px;z-index:999;width:54px;height:54px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .3s}
 .wa:hover{transform:scale(1.1)}
 .wa svg{width:28px;height:28px;fill:#fff}
-.reveal{opacity:0;transform:translateY(30px)}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+.tilt-card{perspective:1000px;transition:transform .3s ease}
+.swiper{width:100%;padding:2rem 0}
+.swiper-slide img{width:100%;height:300px;object-fit:cover;border-radius:var(--radius)}
+.swiper-pagination-bullet-active{background:var(--accent)}
 </style>
 </head>
 <body>
 <div id="loader"><div class="loader-ring"></div></div>
 <div id="progress"></div>
-<nav>
-<a href="#" class="logo">OnyxDigital</a>
-<ul class="nav-links">
-<li><a href="#about">About</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#gallery">Gallery</a></li>
-<li><a href="#reviews">Reviews</a></li>
-<li><a href="#contact" class="cta">Contact</a></li>
-</ul>
-</nav>
-<section class="hero">
-<div class="hero-img"><img src="https://loremflickr.com/1920/1080/law-firm-legal-justice-lawyer?lock=99" alt="MAAK Advocaten Amsterdam"></div>
+<div id="cursor"></div>
+<nav><div class="logo">Blue</div><ul class="nav-links"><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact" class="cta">Contact</a></li></ul></nav>
+<section class="hero" id="home">
+<div class="hero-img"><img src="https://loremflickr.com/1920/1080/pet-grooming?lock=1" alt=""></div>
 <div class="hero-content">
-<h1>MAAK Advocaten Amsterdam</h1>
-<p>Legal/Law Firm in Amsterdam, Netherlands</p>
-<div class="hero-cta">
-<a href="https://wa.me/9233390025902" target="_blank" class="btn btn-fill">Get In Touch</a>
-<a href="#services" class="btn btn-ghost">Our Services</a>
+<h1>Pamper Your Best Friend</h1>
+<p>Premium pet grooming in Copenhagen</p>
+<div class="hero-cta"><a href="#contact" class="btn btn-fill">Get in Touch</a><a href="#services" class="btn btn-ghost">Our Services</a></div>
 </div>
-</div>
-<div class="scroll-hint">Scroll Down</div>
+<div class="scroll-hint">Scroll</div>
 </section>
 <section class="about" id="about">
-<div class="container">
-<div class="about-grid">
-<div class="about-img reveal"><img src="https://loremflickr.com/600/420/law-firm-legal-justice-lawyer?lock=50" alt="About MAAK Advocaten Amsterdam"></div>
+<div class="container"><div class="about-grid">
+<div class="about-img reveal"><img src="https://loremflickr.com/600/420/pet-grooming?lock=3" alt="About Blue Dog Grooming Studio Copenhagen"></div>
 <div class="about-text reveal">
-<h2>Expert Legal Counsel You Can Trust</h2>
-<p>MAAK Advocaten Amsterdam is a premier legal/law firm business located in Amsterdam, Netherlands. With years of experience and a commitment to excellence, we deliver outstanding results for every client.</p>
-<p>Our team of professionals combines expertise with personalized service to ensure your needs are met with the highest standards of quality and care.</p>
-<div class="about-tags">
-<span>Amsterdam</span>
-<span>Netherlands</span>
-<span>Legal/Law Firm</span>
-<span>Premium Service</span>
+<h2>About Blue Dog Grooming Studio Copenhagen</h2>
+<p>Our team brings years of expertise and a passion for excellence. We are dedicated to delivering outstanding results for every client.</p>
+<p>Located in Copenhagen, Denmark, we are committed to delivering exceptional service and building lasting relationships with every client we serve.</p>
+<div class="about-tags"><span>Gentle Care</span><span>Certified Groomers</span><span>Pet Friendly</span></div>
 </div>
-</div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="services">
 <div class="container">
-<div class="s-title reveal"><h2>Our Services</h2><p>What we offer at MAAK Advocaten Amsterdam</p></div>
-<div class="svc-grid">
-<div class="svc-card reveal"><div class="svc-num">01</div><h3>Corporate Law</h3><p>Professional corporate law services delivered with expertise and dedication. We ensure exceptional results for every client.</p></div>
-<div class="svc-card reveal"><div class="svc-num">02</div><h3>Civil Litigation</h3><p>Professional civil litigation services delivered with expertise and dedication. We ensure exceptional results for every client.</p></div>
-<div class="svc-card reveal"><div class="svc-num">03</div><h3>Family Law</h3><p>Professional family law services delivered with expertise and dedication. We ensure exceptional results for every client.</p></div>
-<div class="svc-card reveal"><div class="svc-num">04</div><h3>Property Law</h3><p>Professional property law services delivered with expertise and dedication. We ensure exceptional results for every client.</p></div>
-<div class="svc-card reveal"><div class="svc-num">05</div><h3>Contract Review</h3><p>Professional contract review services delivered with expertise and dedication. We ensure exceptional results for every client.</p></div>
-<div class="svc-card reveal"><div class="svc-num">06</div><h3>Legal Consultation</h3><p>Professional legal consultation services delivered with expertise and dedication. We ensure exceptional results for every client.</p></div>
-
-</div>
+<div class="s-title reveal"><h2>Our Services</h2><p>What we offer</p></div>
+<div class="svc-grid"><div class="svc-card reveal"><div class="svc-num">01</div><h3>Full Grooming</h3><p>Complete grooming package including bath, trim, and styling.</p></div><div class="svc-card reveal"><div class="svc-num">02</div><h3>Bath & Brush</h3><p>Refreshing bath and thorough brushing for a clean coat.</p></div><div class="svc-card reveal"><div class="svc-num">03</div><h3>Nail Trimming</h3><p>Professional nail care to keep your pet comfortable.</p></div><div class="svc-card reveal"><div class="svc-num">04</div><h3>Specialty Cuts</h3><p>Breed-specific styling and creative grooming options.</p></div></div>
 </div>
 </section>
-<section class="stats">
-<div class="stats-grid">
-<div class="reveal"><div class="stat-num"><span class="counter" data-target="5000">5000</span></div><div class="stat-label">Cases Won</div></div>
-<div class="reveal"><div class="stat-num"><span class="counter" data-target="20">20</span></div><div class="stat-label">Years Practice</div></div>
-<div class="reveal"><div class="stat-num"><span class="counter" data-target="15">15</span></div><div class="stat-label">Practice Areas</div></div>
-<div class="reveal"><div class="stat-num"><span class="counter" data-target="4.9">4.9</span></div><div class="stat-label">Client Rating</div></div>
-
-</div>
-</section>
+<section class="stats"><div class="stats-grid"><div><div class="stat-num"><span class="counter" data-target="8K">8K+</span></div><div class="stat-label">Pets Groomed</div></div><div><div class="stat-num"><span class="counter" data-target="8">8</span></div><div class="stat-label">Years Experience</div></div><div><div class="stat-num"><span class="counter" data-target="6">6</span></div><div class="stat-label">Groomers</div></div><div><div class="stat-num"><span class="counter" data-target="4.9">4.9</span></div><div class="stat-label">Rating</div></div></div></section>
 <section id="gallery">
 <div class="container">
 <div class="s-title reveal"><h2>Gallery</h2><p>A glimpse of our work</p></div>
-<div class="gallery-grid">
-<div class="gal-item reveal"><img src="https://loremflickr.com/800/600/law-firm-legal-justice-lawyer?lock=110" alt="Gallery 1" loading="lazy"></div>
-<div class="gal-item reveal"><img src="https://loremflickr.com/800/600/law-firm-legal-justice-lawyer?lock=120" alt="Gallery 2" loading="lazy"></div>
-<div class="gal-item reveal"><img src="https://loremflickr.com/800/600/law-firm-legal-justice-lawyer?lock=130" alt="Gallery 3" loading="lazy"></div>
-<div class="gal-item reveal"><img src="https://loremflickr.com/800/600/law-firm-legal-justice-lawyer?lock=140" alt="Gallery 4" loading="lazy"></div>
-<div class="gal-item reveal"><img src="https://loremflickr.com/800/600/law-firm-legal-justice-lawyer?lock=150" alt="Gallery 5" loading="lazy"></div>
-<div class="gal-item reveal"><img src="https://loremflickr.com/800/600/law-firm-legal-justice-lawyer?lock=160" alt="Gallery 6" loading="lazy"></div>
-
-</div>
+<div class="gallery-grid"><div class="gal-item"><img src="https://loremflickr.com/400/300/pet-grooming?lock=15" alt="Gallery 1"></div><div class="gal-item"><img src="https://loremflickr.com/400/300/pet-grooming?lock=20" alt="Gallery 2"></div><div class="gal-item"><img src="https://loremflickr.com/400/300/pet-grooming?lock=25" alt="Gallery 3"></div><div class="gal-item"><img src="https://loremflickr.com/400/300/pet-grooming?lock=30" alt="Gallery 4"></div><div class="gal-item"><img src="https://loremflickr.com/400/300/pet-grooming?lock=35" alt="Gallery 5"></div><div class="gal-item"><img src="https://loremflickr.com/400/300/pet-grooming?lock=40" alt="Gallery 6"></div></div>
 </div>
 </section>
 <section class="about" id="reviews">
 <div class="container">
 <div class="s-title reveal"><h2>What Our Clients Say</h2><p>Trusted by satisfied customers</p></div>
 <div class="tst-grid">
-<div class="tst-card reveal"><div class="tst-stars">★★★★★</div><p>"Absolutely outstanding service! The team went above and beyond our expectations. Highly recommended."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/person?lock=30" alt="Client"><div><h4>Sarah Johnson</h4><small>Verified Client</small></div></div></div>
-<div class="tst-card reveal"><div class="tst-stars">★★★★★</div><p>"Absolutely outstanding service! The team went above and beyond our expectations. Highly recommended."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/person?lock=31" alt="Client"><div><h4>Michael Chen</h4><small>Verified Client</small></div></div></div>
-<div class="tst-card reveal"><div class="tst-stars">★★★★★</div><p>"Absolutely outstanding service! The team went above and beyond our expectations. Highly recommended."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/person?lock=32" alt="Client"><div><h4>Emma Williams</h4><small>Verified Client</small></div></div></div>
-
+<div class="tst-card reveal"><div class="tst-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Absolutely outstanding service! The team went above and beyond our expectations. Highly recommended."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/person?lock=20" alt="Client"><div><h4>Sarah Johnson</h4><small>Verified Client</small></div></div></div>
+<div class="tst-card reveal"><div class="tst-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Professional, reliable, and truly exceptional results. Blue Dog Grooming Studio Copenhagen transformed our experience completely."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/person?lock=21" alt="Client"><div><h4>Michael Chen</h4><small>Verified Client</small></div></div></div>
+<div class="tst-card reveal"><div class="tst-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"From start to finish, the experience was seamless. The attention to detail is second to none."</p><div class="tst-author"><img src="https://loremflickr.com/100/100/person?lock=22" alt="Client"><div><h4>Emma Williams</h4><small>Verified Client</small></div></div></div>
 </div>
 </div>
 </section>
@@ -213,8 +178,8 @@ footer{padding:3rem 2rem;text-align:center;border-top:1px solid var(--border)}
 <div class="container">
 <div class="s-title reveal"><h2>Frequently Asked Questions</h2><p>Got questions? We have answers</p></div>
 <div class="faq-container">
-<details class="faq-item reveal"><summary>What services do you offer?</summary><p>We offer a comprehensive range of professional legal/law firm services. Contact us for a detailed consultation and personalized service plan.</p></details>
-<details class="faq-item reveal"><summary>How can I book an appointment?</summary><p>You can book by emailing mail@maakadvocaten.nl or using the WhatsApp button to chat with us directly.</p></details>
+<details class="faq-item reveal"><summary>What services do you offer?</summary><p>We offer a comprehensive range of professional services. Contact us for a detailed consultation and personalized service plan.</p></details>
+<details class="faq-item reveal"><summary>How can I book an appointment?</summary><p>You can reach us by emailing info@bluedog.dk or using the WhatsApp button to chat with us directly.</p></details>
 <details class="faq-item reveal"><summary>What are your operating hours?</summary><p>Our standard hours are Monday to Friday, 9:00 AM to 6:00 PM. Weekend appointments are available by prior arrangement.</p></details>
 <details class="faq-item reveal"><summary>Do you offer services for businesses?</summary><p>Yes, we provide both individual and business services with customized solutions tailored to your specific needs.</p></details>
 <details class="faq-item reveal"><summary>How do I get a quote?</summary><p>Reach out via email or WhatsApp for a free, no-obligation quote tailored to your specific requirements.</p></details>
@@ -222,24 +187,21 @@ footer{padding:3rem 2rem;text-align:center;border-top:1px solid var(--border)}
 </div>
 </section>
 <section class="contact" id="contact">
-<h2>Schedule a Consultation</h2>
-<p>Contact MAAK Advocaten Amsterdam today and experience the difference</p>
-<div class="contact-btns">
-<a href="https://wa.me/9233390025902" target="_blank" class="btn btn-fill">WhatsApp Us</a><a href="mailto:mail@maakadvocaten.nl" class="btn btn-ghost">Email Us</a>
-</div>
+<h2>Book Your Service Today</h2>
+<p>Contact Blue Dog Grooming Studio Copenhagen today and experience the difference</p>
+<div class="contact-btns"><a href="https://wa.me/9233390025902" target="_blank" class="btn btn-fill">WhatsApp Us</a><a href="mailto:info@bluedog.dk" class="btn btn-ghost">Email Us</a></div>
 </section>
 <footer>
-<div class="social">
-<a href="https://wa.me/9233390025902" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.5 0-3-.4-4.3-1.1l-.3-.2-3.1.8.8-3-.2-.3C4.4 14.9 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8z"/></svg></a><a href="mailto:mail@maakadvocaten.nl" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
-</div>
-<div class="footer-info"><span>Amsterdam</span><a href="mailto:mail@maakadvocaten.nl">mail@maakadvocaten.nl</a></div>
-<div class="copyright">&copy; 2026 MAAK Advocaten Amsterdam. Premium website by <a href="https://onyx-digital-sidd.vercel.app/" target="_blank">OnyxDigital</a>.</div>
+<div class="social"><a href="https://wa.me/9233390025902" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg></a><a href="mailto:info@bluedog.dk" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a></div>
+<div class="footer-info"><span>Copenhagen, Denmark</span><a href="mailto:info@bluedog.dk">info@bluedog.dk</a></div>
+<div class="copyright">&copy; 2026 Blue Dog Grooming Studio Copenhagen. Premium website by <a href="https://onyx-digital-sidd.vercel.app/" target="_blank">OnyxDigital</a>.</div>
 </footer>
 <div id="lightbox"><img id="lb-img" src="" alt=""></div>
 <div id="backtop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg></div>
 <a href="https://wa.me/9233390025902" target="_blank" class="wa"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg></a>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 gsap.registerPlugin(ScrollTrigger);
 window.addEventListener('load',function(){var l=document.getElementById('loader');setTimeout(function(){l.classList.add('hide');setTimeout(function(){l.style.display='none'},500)},200)});
@@ -247,18 +209,18 @@ var p=document.getElementById('progress');
 window.addEventListener('scroll',function(){var s=document.documentElement.scrollHeight-document.documentElement.clientHeight;p.style.width=(document.documentElement.scrollTop/s*100)+'%'});
 var n=document.querySelector('nav');
 window.addEventListener('scroll',function(){if(window.scrollY>50){n.classList.add('scrolled')}else{n.classList.remove('scrolled')}});
-gsap.utils.toArray('.reveal').forEach(function(el){gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 90%'}})});
-gsap.from('.hero h1',{opacity:0,y:50,duration:1.1,delay:.3,ease:'power3.out'});
-gsap.from('.hero p',{opacity:0,y:30,duration:.9,delay:.6,ease:'power3.out'});
-gsap.from('.hero-cta',{opacity:0,y:20,duration:.7,delay:.9,ease:'power3.out'});
-gsap.from('.scroll-hint',{opacity:0,duration:.8,delay:1.3});
-ScrollTrigger.create({trigger:'.stats',start:'top 82%',once:true,onEnter:function(){document.querySelectorAll('.counter').forEach(function(c){var t=c.dataset.target,num=parseInt(t.replace(/[^0-9]/g,'')),suf=t.replace(/[0-9]/g,''),cur=0,step=Math.max(1,Math.ceil(num/30));var timer=setInterval(function(){cur+=step;if(cur>=num){cur=num;clearInterval(timer)}c.textContent=cur+suf},28)})}});
-var lb=document.getElementById('lightbox'),lbI=document.getElementById('lb-img');
-document.querySelectorAll('.gal-item img').forEach(function(img){img.addEventListener('click',function(){lbI.src=this.src.replace('800/600','1200/900');lb.classList.add('show')})});
-lb.addEventListener('click',function(){lb.classList.remove('show')});
+var cursor=document.getElementById('cursor');
+document.addEventListener('mousemove',function(e){cursor.style.left=e.clientX-10+'px';cursor.style.top=e.clientY-10+'px'});
+document.querySelectorAll('a,button,.gal-item,.svc-card,.tst-card').forEach(function(el){el.addEventListener('mouseenter',function(){cursor.classList.add('hover')});el.addEventListener('mouseleave',function(){cursor.classList.remove('hover')})});
+var observer=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');observer.unobserve(e.target)}})},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el)});
+document.querySelectorAll('.gal-item').forEach(function(item){item.addEventListener('click',function(){var lb=document.getElementById('lightbox');var img=document.getElementById('lb-img');img.src=this.querySelector('img').src;lb.classList.add('show')})});
+document.getElementById('lightbox').addEventListener('click',function(){this.classList.remove('show')});
 var bt=document.getElementById('backtop');
-window.addEventListener('scroll',function(){if(window.scrollY>500){bt.classList.add('show')}else{bt.classList.remove('show')}});
+window.addEventListener('scroll',function(){if(window.scrollY>400){bt.classList.add('show')}else{bt.classList.remove('show')}});
 bt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+document.querySelectorAll('.counter').forEach(function(el){var target=el.getAttribute('data-target');ScrollTrigger.create({trigger:el,start:'top 80%',once:true,onEnter:function(){if(target.indexOf('K')>-1){gsap.to(el,{duration:1.5,textContent:parseInt(target)*1000,snap:{textContent:1},formatValue:function(v){return(v/1000).toFixed(0)+'K'}})}else if(target.indexOf('.')>-1){gsap.to(el,{duration:1.5,textContent:parseFloat(target),snap:{textContent:0.1}})}else{gsap.to(el,{duration:1.5,textContent:parseInt(target),snap:{textContent:1}})}}})});
+document.querySelectorAll('.svc-card,.tst-card').forEach(function(card){card.addEventListener('mousemove',function(e){var r=card.getBoundingClientRect();var x=e.clientX-r.left;var y=e.clientY-r.top;var cx=r.width/2;var cy=r.height/2;var rx=((y-cy)/cy)*-5;var ry=((x-cx)/cx)*5;card.style.transform='perspective(1000px) rotateX('+rx+'deg) rotateY('+ry+'deg) translateY(-4px)'});card.addEventListener('mouseleave',function(){card.style.transform=''})});
 </script>
 </body>
 </html>
