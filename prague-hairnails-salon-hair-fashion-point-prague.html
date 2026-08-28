@@ -1,63 +1,129 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Hair Fashion Point Prague | OnyxDigital Premium Web Design</title>
-<meta name="description" content="Hair Fashion Point Prague in Prague - Premium web design preview by OnyxDigital.">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hair Fashion Point Prague | Premium Hair/Nails Salon in Prague | OnyxDigital Preview</title>
+<meta name="description" content="A premium hair/nails salon website preview for Hair Fashion Point Prague in Prague, Czech Republic. Crafted by OnyxDigital.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <style>
-:root{--o:#0a0908;--o2:#131211;--o3:#1a1918;--g:#c5a572;--gl:#e0c590;--gd:#9c8454;--c:#f5f0e8;--t:#e8e4df;--tm:#9c9c9c;--b:rgba(88,88,88,.15)}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:var(--o);color:var(--t);font-family:'Inter',sans-serif;overflow-x:hidden;cursor:none}
-.sp{position:fixed;top:0;left:0;width:0;height:3px;background:linear-gradient(90deg,var(--g),var(--gl),var(--g));z-index:10000;transition:width .1s}
-.cd{position:fixed;width:8px;height:8px;background:var(--g);border-radius:50%;z-index:10001;pointer-events:none;transform:translate(-50%,-50%)}
-.cr{position:fixed;width:40px;height:40px;border:2px solid var(--g);border-radius:50%;z-index:10000;pointer-events:none;transform:translate(-50%,-50%);opacity:.6;transition:transform .3s}
-.pl{position:fixed;inset:0;background:var(--o);display:flex;align-items:center;justify-content:center;z-index:99999;flex-direction:column;gap:20px}.pl-l{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--g);letter-spacing:3px;font-weight:600}.pl-b{width:200px;height:2px;background:rgba(255,255,255,.1);overflow:hidden;border-radius:2px}.pl-bf{width:0;height:100%;background:var(--g);border-radius:2px;animation:pl 1.5s ease forwards}@keyframes pl{to{width:100%}}
-.n{position:fixed;top:0;left:0;right:0;z-index:5000;padding:24px 48px;display:flex;justify-content:space-between;align-items:center;transition:all .4s}.n.sc{background:rgba(10,9,8,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--b);padding:16px 48px}.nl{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--g);letter-spacing:2px;font-weight:600;text-decoration:none}.na{display:flex;gap:36px}.na a{color:var(--tm);text-decoration:none;font-size:.85rem;letter-spacing:1.5px;text-transform:uppercase;transition:color .3s}.na a:hover{color:var(--g)}
-.h{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}.hb{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,9,8,.8),rgba(10,9,8,.5) 50%,rgba(10,9,8,.9)),url('https://loremflickr.com/1200/800/hairsalon?lock=1') center/cover;transform:scale(1.1)}
-.hc2{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;background:var(--g);color:var(--o);text-decoration:none;font-size:.85rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border-radius:2px;transition:all .3s}.hc2:hover{background:var(--gl);transform:translateY(-2px);box-shadow:0 10px 30px rgba(197,165,114,.3)}
-.si{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);color:var(--g);font-size:.7rem;letter-spacing:2px;text-transform:uppercase;opacity:.7;animation:bn 2s infinite}@keyframes bn{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
-.s{padding:120px 48px;max-width:1400px;margin:0 auto}.sl{font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:12px;font-weight:500}.st{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:500;color:var(--c);margin-bottom:24px;line-height:1.2}
-.ag{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}.ai{width:100%;height:500px;background:url('https://loremflickr.com/1200/800/barbershop?lock=2') center/cover;border-radius:4px}.at p{color:var(--tm);font-size:1rem;line-height:1.8;margin-bottom:20px}
-.ss{padding:80px 0}.sw{width:100%;height:450px}.ss2{position:relative;overflow:hidden;border-radius:4px}.ss2 img{width:100%;height:100%;object-fit:cover;transition:transform .6s}.ss2:hover img{transform:scale(1.05)}.so{position:absolute;bottom:0;left:0;right:0;padding:32px;background:linear-gradient(transparent,rgba(10,9,8,.9))}.so h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--c)}
-.swiper-pagination-bullet{background:var(--g);opacity:.5}.swiper-pagination-bullet-active{opacity:1}
-.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}.sc2{padding:48px 32px;background:var(--o2);border:1px solid var(--b);border-radius:4px;transition:all .4s;position:relative;overflow:hidden}.sc2::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:var(--g);transition:width .4s}.sc2:hover::before{width:100%}.sc2:hover{transform:translateY(-8px);border-color:var(--gd);background:var(--o3)}.sn{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--g);opacity:.3;margin-bottom:16px;font-weight:600}.sc2 h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--c);margin-bottom:12px;font-weight:500}.sc2 p{color:var(--tm);font-size:.9rem;line-height:1.7}
-.tc{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px}.t2{position:relative;height:350px;border-radius:8px;overflow:hidden;transform-style:preserve-3d;transition:transform .3s;border:1px solid var(--b)}.t2 img{width:100%;height:100%;object-fit:cover}.to{position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,rgba(10,9,8,.85) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:32px}.to h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--c);margin-bottom:8px}.to p{color:var(--g);font-size:.8rem;letter-spacing:1px;text-transform:uppercase}
-.gg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.gi{position:relative;overflow:hidden;border-radius:4px;cursor:pointer;height:300px}.gi img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.gi:hover img{transform:scale(1.1)}.gi::after{content:'+';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--g);opacity:0;transition:opacity .3s;background:rgba(10,9,8,.5)}.gi:hover::after{opacity:1}
-.lb{position:fixed;inset:0;background:rgba(10,9,8,.95);z-index:100000;display:none;align-items:center;justify-content:center;cursor:zoom-out}.lb.ac{display:flex}.lb img{max-width:85%;max-height:85%;border-radius:4px}
-.ct{padding:120px 48px;text-align:center;background:var(--o2);border-top:1px solid var(--b);border-bottom:1px solid var(--b)}.ct h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,4rem);color:var(--c);margin-bottom:24px;font-weight:500}.ct p{color:var(--tm);font-size:1rem;max-width:600px;margin:0 auto 48px;line-height:1.8}
-.cb{display:inline-flex;align-items:center;gap:14px;padding:20px 48px;background:#25D366;color:#fff;text-decoration:none;font-size:.9rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border-radius:4px;transition:all .3s}.cb:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(37,211,102,.3);background:#2bed77}.cb svg{width:24px;height:24px;fill:#fff}
-.pb{display:inline-flex;align-items:center;gap:10px;margin-top:24px;padding:14px 32px;border:1px solid var(--g);color:var(--g);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;border-radius:2px;transition:all .3s}.pb:hover{background:var(--g);color:var(--o)}
-.ft{padding:64px 48px 40px;text-align:center;background:var(--o2);border-top:1px solid var(--b)}.fl{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--g);letter-spacing:2px;margin-bottom:16px;font-weight:600}.ft p{color:var(--tm);font-size:.85rem;margin-bottom:8px}.fd{width:60px;height:1px;background:var(--g);margin:24px auto;opacity:.5}.fbb{color:#6c6c6c;font-size:.75rem;letter-spacing:1px}.fbb a{color:var(--gd);text-decoration:none}
-.rv{opacity:0;transform:translateY(50px);transition:opacity .8s,transform .8s}.rv.vs{opacity:1;transform:translateY(0)}
-@media(max-width:768px){.n{padding:16px 20px}.na{display:none}.s{padding:60px 20px}.ag{grid-template-columns:1fr;gap:32px}.sg{grid-template-columns:1fr}.tc{grid-template-columns:1fr}.gg{grid-template-columns:repeat(2,1fr)}.ct{padding:60px 20px}body{cursor:auto}.cd,.cr{display:none}}
-</style></head><body>
-<div class="sp" id="sp"></div><div class="cd" id="cd"></div><div class="cr" id="cr"></div>
-<div class="pl" id="pl"><div class="pl-l">OnyxDigital</div><div class="pl-b"><div class="pl-bf"></div></div></div>
-<nav class="n" id="n"><a href="#" class="nl">OnyxDigital</a><div class="na"><a href="#about">About</a><a href="#services">Services</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a></div></nav>
-<section class="h" id="hero"><div class="hb"></div><div style="position:relative;z-index:2;text-align:center;max-width:800px;padding:0 24px"><div style="font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:24px;font-weight:500">OnyxDigital VVIP Elite - Prague, Czech Republic</div><h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:500;line-height:1.1;color:var(--c);margin-bottom:16px">Hair Fashion Point Prague</h1><p style="font-size:1rem;color:var(--tm);letter-spacing:1px;margin-bottom:40px">Hair/Nails Salon - Premium Digital Experience</p><a href="#contact" class="hc2">Get in Touch</a></div><div class="si">Scroll</div></section>
-<section class="s" id="about"><div class="ag"><div class="ai rv"></div><div class="at rv"><div class="sl">About</div><h2 class="st">Elevating Hair/Nails Salon in Prague</h2><p>Hair Fashion Point Prague stands at the pinnacle of Hair/Nails Salon excellence in Prague. With a commitment to quality, craftsmanship, and client satisfaction, we deliver an experience that's refined, tailored, and unforgettable.</p><p>Our passion drives us to go beyond expectations - combining professional expertise with a modern digital presence that truly reflects the quality of our work. OnyxDigital partners with leading businesses to create stunning web experiences.</p><p>Located in the heart of Prague, we serve clients across Czech Republic with dedication and precision.</p></div></div></section>
-<section class="ss s rv"><div style="padding:40px 48px 20px;max-width:1400px;margin:0 auto"><div class="sl">Showcase</div><h2 class="st">A Glimpse of Excellence</h2></div><div class="sw" style="max-width:1400px;margin:0 auto"><div class="swiper-wrapper"><div class="ss2"><img src="https://loremflickr.com/1200/800/beauty?lock=20" alt="Showcase 1"><div class="so"><h3>Excellence in Haircuts & Styling</h3></div></div><div class="ss2"><img src="https://loremflickr.com/1200/800/styling?lock=21" alt="Showcase 2"><div class="so"><h3>Crafted with Color & Highlights</h3></div></div><div class="ss2"><img src="https://loremflickr.com/1200/800/hairsalon?lock=22" alt="Showcase 3"><div class="so"><h3>Professional Manicure & Pedicure</h3></div></div></div><div class="swiper-pagination"></div></div></section>
-<section class="s" id="services"><div class="sl rv">What We Offer</div><h2 class="st rv">Our Services</h2><div class="sg"><div class="sc2 rv"><div class="sn">01</div><h3>Haircuts & Styling</h3><p>Expert delivery of Haircuts & Styling tailored to your needs, backed by years of professional experience in Prague.</p></div><div class="sc2 rv"><div class="sn">02</div><h3>Color & Highlights</h3><p>Professional Color & Highlights that meets the highest standards. We combine quality with attention to detail.</p></div><div class="sc2 rv"><div class="sn">03</div><h3>Manicure & Pedicure</h3><p>Comprehensive Manicure & Pedicure designed to deliver outstanding results for every client we serve.</p></div><div class="sc2 rv"><div class="sn">04</div><h3>Treatments</h3><p>Specialized Treatments with a personal touch, ensuring your specific requirements are met.</p></div><div class="sc2 rv"><div class="sn">05</div><h3>Bridal Packages</h3><p>Premium Bridal Packages available to clients across Prague and beyond, delivering quality you can trust.</p></div><div class="sc2 rv"><div class="sn">06</div><h3>Expert Consultation</h3><p>Personalized guidance and expert advice to help you make informed decisions.</p></div></div></section>
-<section class="s"><div class="sl rv">Why Choose OnyxDigital</div><h2 class="st rv">Premium Features</h2><div class="tc"><div class="t2 rv" data-tilt><img src="https://loremflickr.com/1200/800/hairsalon?lock=10" alt="Feature 1"><div class="to"><h3>Stunning Design</h3><p>Visual Excellence</p></div></div><div class="t2 rv" data-tilt><img src="https://loremflickr.com/1200/800/barbershop?lock=11" alt="Feature 2"><div class="to"><h3>Mobile Optimized</h3><p>Responsive Layout</p></div></div><div class="t2 rv" data-tilt><img src="https://loremflickr.com/1200/800/beauty?lock=12" alt="Feature 3"><div class="to"><h3>Fast Performance</h3><p>Lightning Speed</p></div></div></div></section>
-<section class="s" id="gallery"><div class="sl rv">Portfolio</div><h2 class="st rv">Our Gallery</h2><div class="gg"><div class="gi rv" data-src="https://loremflickr.com/1200/800/hairsalon?lock=10"><img src="https://loremflickr.com/1200/800/hairsalon?lock=10" alt="Gallery 1"></div><div class="gi rv" data-src="https://loremflickr.com/1200/800/barbershop?lock=11"><img src="https://loremflickr.com/1200/800/barbershop?lock=11" alt="Gallery 2"></div><div class="gi rv" data-src="https://loremflickr.com/1200/800/beauty?lock=12"><img src="https://loremflickr.com/1200/800/beauty?lock=12" alt="Gallery 3"></div><div class="gi rv" data-src="https://loremflickr.com/1200/800/styling?lock=13"><img src="https://loremflickr.com/1200/800/styling?lock=13" alt="Gallery 4"></div><div class="gi rv" data-src="https://loremflickr.com/1200/800/hairsalon?lock=14"><img src="https://loremflickr.com/1200/800/hairsalon?lock=14" alt="Gallery 5"></div><div class="gi rv" data-src="https://loremflickr.com/1200/800/barbershop?lock=15"><img src="https://loremflickr.com/1200/800/barbershop?lock=15" alt="Gallery 6"></div></div></section>
-<div class="lb" id="lightbox"><img src="" id="lightboxImg" alt="Full view"></div>
-<section class="ct" id="contact"><h2>Ready to Elevate Your Brand?</h2><p>This is a preview of what's possible. Let Hair Fashion Point Prague and OnyxDigital transform your digital presence. Contact us today to get started with a premium website.</p><a href="https://wa.me/9233390025902" class="cb"><svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 2.1.55 4.15 1.6 5.96L2 22l4.25-1.11c1.74.95 3.71 1.45 5.79 1.45 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.13c-.24.68-1.42 1.31-1.95 1.35-.5.05-1.14.23-3.5-.73-2.94-1.16-4.8-4.16-4.94-4.35-.14-.19-1.17-1.56-1.17-2.97s.74-2.11 1-2.4c.26-.29.57-.37.76-.37l.55.01c.18.01.41-.07.65.49.24.57.82 1.97.89 2.11.07.14.12.31.02.5-.1.19-.14.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.3-.14.57.14.27.62 1.03 1.34 1.67.92.82 1.69 1.07 1.96 1.21.27.14.43.12.58-.07.15-.19.62-.72.79-.97.17-.24.34-.2.57-.12.23.08 1.46.69 1.72.82.26.12.43.19.5.29.07.1.07.57-.17 1.25z"/></svg>WhatsApp Now</a><br><a href="https://onyx-digital-sidd.vercel.app/" class="pb">View Portfolio</a></section>
-<footer class="ft"><div class="fl">OnyxDigital</div><p>Premium Web Design - Prague, Czech Republic</p><a href="https://onyx-digital-sidd.vercel.app/" style="color:var(--gd);text-decoration:none;font-size:.85rem">onyx-digital-sidd.vercel.app</a><div class="fd"></div><p class="fbb">Preview for Hair Fashion Point Prague - Hair/Nails Salon - Prague &middot; Designed by <a href="https://onyx-digital-sidd.vercel.app/">OnyxDigital</a></p></footer>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#0a0a0a;--accent:#d4af37;--accent2:#f4d03f;--bg:#0f0f0f;--card:#1a1a1a;--text:#e0e0e0;--muted:#888;--radius:12px;--transition:all .4s cubic-bezier(.25,.46,.45,.94)}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none}
+.cursor{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transition:transform .1s;mix-blend-mode:difference}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9998;transition:transform .3s ease,width .3s,height .3s}
+.preloader{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:10000;flex-direction:column}
+.preloader-text{font-size:2rem;font-weight:800;letter-spacing:-2px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:pulse 1.5s ease infinite}
+.preloader-bar{width:200px;height:2px;background:var(--card);margin-top:20px;border-radius:2px;overflow:hidden}
+.preloader-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));animation:loadBar 1.5s ease forwards}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes loadBar{0%{width:0}100%{width:100%}}
+.scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:9997;width:0;transition:width .1s}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://loremflickr.com/1200/800/hairsalon?lock=1') center/cover;opacity:.15;filter:grayscale(50%)}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,15,15,.3) 0%,rgba(15,15,15,.9) 100%)}
+.hero-content{position:relative;z-index:2;text-align:center;padding:2rem;max-width:900px}
+.hero-badge{display:inline-block;padding:6px 20px;border:1px solid var(--accent);border-radius:30px;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:24px}
+.hero h1{font-size:clamp(2rem,6vw,4.5rem);font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:16px}
+.hero h1 .accent{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:clamp(1rem,2vw,1.25rem);color:var(--muted);max-width:600px;margin:0 auto 32px;line-height:1.6}
+.hero-cta{display:inline-flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:var(--radius);font-weight:600;font-size:.9rem;text-decoration:none;transition:var(--transition);border:none;cursor:none}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--primary)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(212,175,55,.3)}
+.btn-outline{border:1px solid var(--card);color:var(--text);background:transparent}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.onyx-brand{position:fixed;top:20px;left:20px;z-index:100;display:flex;align-items:center;gap:8px;font-weight:800;font-size:1.1rem;letter-spacing:-1px}
+.onyx-brand .dot{width:8px;height:8px;background:var(--accent);border-radius:50%}
+.onyx-brand span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.section{padding:80px 20px;max-width:1200px;margin:0 auto}
+.section-title{font-size:clamp(1.5rem,4vw,2.5rem);font-weight:800;text-align:center;margin-bottom:16px;letter-spacing:-1px}
+.section-subtitle{text-align:center;color:var(--muted);margin-bottom:48px;font-size:1rem}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.about-img{border-radius:var(--radius);overflow:hidden;position:relative}
+.about-img img{width:100%;height:400px;object-fit:cover;transition:var(--transition)}
+.about-text h3{font-size:1.5rem;font-weight:700;margin-bottom:16px}
+.about-text p{color:var(--muted);line-height:1.8;margin-bottom:16px}
+.gallery-section{background:var(--card);padding:80px 0}
+.gallery-swiper{max-width:1200px;padding:0 20px;margin:0 auto}
+.swiper-slide{border-radius:var(--radius);overflow:hidden;height:350px}
+.swiper-slide img{width:100%;height:100%;object-fit:cover;transition:var(--transition)}
+.swiper-slide:hover img{transform:scale(1.05)}
+.swiper-pagination-bullet{background:var(--accent);opacity:.5}
+.swiper-pagination-bullet-active{opacity:1}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.service-card{background:var(--card);border-radius:var(--radius);padding:32px;transition:var(--transition);border:1px solid transparent;transform-style:preserve-3d;perspective:1000px}
+.service-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.service-number{font-size:3rem;font-weight:900;color:var(--accent);opacity:.3;line-height:1}
+.service-card h4{font-size:1.25rem;font-weight:700;margin:12px 0}
+.service-card p{color:var(--muted);font-size:.9rem;line-height:1.6}
+.portfolio-banner{background:linear-gradient(135deg,var(--card),var(--primary));border-radius:var(--radius);padding:48px;text-align:center;margin:60px auto;max-width:900px;border:1px solid var(--card)}
+.portfolio-banner h3{font-size:1.5rem;font-weight:700;margin-bottom:12px}
+.portfolio-banner p{color:var(--muted);margin-bottom:24px}
+.whatsapp-cta{position:fixed;bottom:24px;right:24px;z-index:100;background:#25d366;color:#fff;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:var(--transition);animation:waPulse 2s ease infinite}
+.whatsapp-cta:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,.6)}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 30px rgba(37,211,102,.7)}}
+.footer{text-align:center;padding:40px 20px;border-top:1px solid var(--card);color:var(--muted);font-size:.85rem}
+.footer a{color:var(--accent);text-decoration:none}
+.reveal{opacity:0;transform:translateY(40px)}
+.reveal.visible{opacity:1;transform:translateY(0);transition:var(--transition)}
+@media(max-width:768px){.about{grid-template-columns:1fr}.services-grid{grid-template-columns:1fr}body{cursor:auto}.cursor,.cursor-ring{display:none}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="preloader" id="preloader"><div class="preloader-text">OnyxDigital</div><div class="preloader-bar"><div class="preloader-bar-fill"></div></div></div>
+<div class="onyx-brand"><div class="dot"></div><span>OnyxDigital</span></div>
+<a href="https://wa.me/9233390025902" class="whatsapp-cta" target="_blank" rel="noopener" title="Chat with OnyxDigital on WhatsApp">💬</a>
+<section class="hero"><div class="hero-bg"></div><div class="hero-gradient"></div><div class="hero-content"><div class="hero-badge">OnyxDigital · Premium Web Design</div><h1 class="reveal">Hair Fashion Point Prague<br><span class="accent">Hair/Nails Salon in Prague</span></h1><p class="reveal">This is a preview of what your new website could look like. OnyxDigital crafts stunning, high-performance websites tailored for hair/nails salon businesses in Prague, Czech Republic.</p><div class="hero-cta reveal"><a href="https://wa.me/9233390025902" target="_blank" rel="noopener" class="btn btn-primary">💬 Get Your Website</a><a href="#gallery" class="btn btn-outline">View Preview</a></div></div></section>
+<section class="section" id="about"><div class="about"><div class="about-img reveal"><img src="https://loremflickr.com/600/400/hairsalon?lock=2" alt="Hair Fashion Point Prague in Prague" loading="lazy"></div><div class="about-text reveal"><h3>About Hair Fashion Point Prague</h3><p>Located in Prague, Czech Republic, Hair Fashion Point Prague is a premier hair/nails salon destination. This preview demonstrates how OnyxDigital can transform your online presence with a modern, engaging website that captures your brand's essence.</p><p>From elegant animations to seamless user experience, every detail is crafted to convert visitors into customers.</p><a href="https://wa.me/9233390025902" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:16px">💬 Contact OnyxDigital</a></div></div></section>
+<section class="gallery-section" id="gallery"><h2 class="section-title reveal">Gallery Preview</h2><p class="section-subtitle reveal">A glimpse of your hair/nails salon showcase</p><div class="gallery-swiper reveal"><div class="swiper-wrapper"><div class="swiper-slide"><img src="https://loremflickr.com/600/400/hairsalon?lock=3" alt="Gallery 1" loading="lazy"></div><div class="swiper-slide"><img src="https://loremflickr.com/600/400/hairsalon?lock=4" alt="Gallery 2" loading="lazy"></div><div class="swiper-slide"><img src="https://loremflickr.com/600/400/hairsalon?lock=5" alt="Gallery 3" loading="lazy"></div><div class="swiper-slide"><img src="https://loremflickr.com/600/400/hairsalon?lock=6" alt="Gallery 4" loading="lazy"></div><div class="swiper-slide"><img src="https://loremflickr.com/600/400/hairsalon?lock=2" alt="Gallery 5" loading="lazy"></div></div><div class="swiper-pagination"></div></div></section>
+<section class="section" id="services"><h2 class="section-title reveal">Our Services</h2><p class="section-subtitle reveal">What Hair Fashion Point Prague offers</p><div class="services-grid">    <div class="service-card reveal">
+      <div class="service-number">01</div>
+      <h4>Hair Styling</h4>
+      <p>Professional hair styling delivered with expertise and attention to detail.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-number">02</div>
+      <h4>Coloring Services</h4>
+      <p>Professional coloring services delivered with expertise and attention to detail.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-number">03</div>
+      <h4>Manicure & Pedicure</h4>
+      <p>Professional manicure & pedicure delivered with expertise and attention to detail.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-number">04</div>
+      <h4>Treatments</h4>
+      <p>Professional treatments delivered with expertise and attention to detail.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-number">05</div>
+      <h4>Bridal Packages</h4>
+      <p>Professional bridal packages delivered with expertise and attention to detail.</p>
+    </div></div></section>
+<section class="section"><div class="portfolio-banner reveal"><h3>See Our Full Portfolio</h3><p>Explore the complete range of websites OnyxDigital has designed for businesses like yours.</p><a href="https://onyx-digital-sidd.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary">🚀 View Portfolio</a></div></section>
+<footer class="footer"><p>Website preview crafted by <a href="https://onyx-digital-sidd.vercel.app/" target="_blank" rel="noopener">OnyxDigital</a></p><p style="margin-top:8px">Contact: <a href="https://wa.me/9233390025902" target="_blank" rel="noopener">WhatsApp +92 333 9002590</a></p><p style="margin-top:8px;opacity:.5">© 2026 OnyxDigital · Preview for Hair Fashion Point Prague, Prague</p></footer>
 <script>
-window.addEventListener('load',function(){setTimeout(function(){var p=document.getElementById('pl');p.style.opacity='0';setTimeout(function(){p.style.display='none'},300)},1500)});
-gsap.registerPlugin(ScrollTrigger);
-document.addEventListener('mousemove',function(e){var d=document.getElementById('cd'),r=document.getElementById('cr');if(d){d.style.left=e.clientX+'px';d.style.top=e.clientY+'px'}if(r){r.style.left=e.clientX+'px';r.style.top=e.clientY+'px'}});
-window.addEventListener('scroll',function(){var sp=document.getElementById('sp'),n=document.getElementById('n');if(sp)sp.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';if(n){if(window.scrollY>80)n.classList.add('sc');else n.classList.remove('sc')}});
-var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.classList.add('vs')})},{threshold:.15});
-document.querySelectorAll('.rv').forEach(function(el){obs.observe(el)});
-new Swiper('.sw',{loop:true,autoplay:{delay:4000},pagination:{el:'.swiper-pagination',clickable:true}});
-document.querySelectorAll('[data-tilt]').forEach(function(card){card.style.transition='transform .2s';card.addEventListener('mousemove',function(e){var r=card.getBoundingClientRect();var x=e.clientX-r.left-r.width/2;var y=e.clientY-r.top-r.height/2;card.style.transform='perspective(800px) rotateX('+(-y/8)+'deg) rotateY('+(x/8)+'deg)'});card.addEventListener('mouseleave',function(){card.style.transform='perspective(800px) rotateX(0) rotateY(0)'})});
-document.querySelectorAll('.gi').forEach(function(item){item.addEventListener('click',function(){var lb=document.getElementById('lightbox'),li=document.getElementById('lightboxImg');li.src=item.dataset.src;lb.classList.add('ac')})});
-document.getElementById('lightbox').addEventListener('click',function(){this.classList.remove('ac')});
-gsap.from('.h h1',{duration:1,y:60,opacity:0,delay:.2});
-gsap.from('.hb',{duration:1,scale:1,opacity:0,delay:0});
+window.addEventListener('load',function(){setTimeout(function(){var pl=document.getElementById('preloader');pl.style.opacity='0';pl.style.transition='opacity .5s';setTimeout(function(){pl.style.display='none'},500)},1500)});
+var cursor=document.getElementById('cursor');var ring=document.getElementById('cursorRing');var mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cursor.style.transform='translate('+(mx-4)+'px,'+(my-4)+'px)'});
+function animRing(){rx+=(mx-rx)*0.15;ry+=(my-ry)*0.15;ring.style.transform='translate('+(rx-16)+'px,'+(ry-16)+'px)';requestAnimationFrame(animRing)}animRing();
+document.querySelectorAll('a,.service-card,.swiper-slide').forEach(function(el){el.addEventListener('mouseenter',function(){ring.style.width='48px';ring.style.height='48px'});el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px'})});
+var sp=document.getElementById('scrollProgress');window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;sp.style.width=(window.scrollY/h*100)+'%'});
+new Swiper('.gallery-swiper',{slidesPerView:1,spaceBetween:20,pagination:{el:'.swiper-pagination',clickable:true},breakpoints:{640:{slidesPerView:2},1024:{slidesPerView:3}},autoplay:{delay:3000},loop:true});
+gsap.registerPlugin(ScrollTrigger);gsap.utils.toArray('.reveal').forEach(function(el){ScrollTrigger.create({trigger:el,start:'top 85%',onEnter:function(){el.classList.add('visible')},onLeaveBack:function(){el.classList.remove('visible')}})});
+document.querySelectorAll('.service-card').forEach(function(card){card.addEventListener('mousemove',function(e){var r=card.getBoundingClientRect();var x=e.clientX-r.left;var y=e.clientY-r.top;var rx=((y-r.height/2)/r.height)*-10;var ry=((x-r.width/2)/r.width)*10;card.style.transform='perspective(1000px) rotateX('+rx+'deg) rotateY('+ry+'deg) translateY(-4px)'});card.addEventListener('mouseleave',function(){card.style.transform='perspective(1000px) rotateX(0) rotateY(0)'})});
 </script>
-</body></html>
+</body>
+</html>
