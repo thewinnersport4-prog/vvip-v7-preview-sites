@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>123ERAmakelaar Amsterdam | OnyxDigital</title>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{
+            --onyx:#0a0a0c;
+            --onyx-card:#111114;
+            --gold:#c5a572;
+            --gold-bright:#e0c896;
+            --white:#f8f7f4;
+            --gray:#9a9a9a;
+            --accent:rgba(197,165,114,0.15);
+        }
+        html,body{background:var(--onyx);color:var(--white);font-family:'Inter',sans-serif;overflow-x:hidden}
+        body{cursor:none}
+        a{color:inherit;text-decoration:none}
+        
+        /* Custom Cursor */
+        .cursor{position:fixed;width:20px;height:20px;border:2px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.2s ease,opacity 0.3s ease;mix-blend-mode:difference}
+        .cursor-dot{position:fixed;width:6px;height:6px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:99999;transition:transform 0.1s ease}
+        .cursor.hover{transform:scale(2.5);background:transparent;border-width:1px}
+        
+        /* Scroll Progress */
+        .scroll-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-bright));z-index:9998;transition:width 0.1s ease}
+        
+        /* Preloader */
+        #preloader{position:fixed;inset:0;background:var(--onyx);display:flex;align-items:center;justify-content:center;z-index:10000;transition:opacity 0.6s ease,visibility 0.6s ease}
+        #preloader .loader-text{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);letter-spacing:8px;text-transform:uppercase;animation:pulse 1.5s ease infinite}
+        @keyframes pulse{0%,100%{opacity:0.3}50%{opacity:1}}
+        #preloader.hidden{opacity:0;visibility:hidden}
+        
+        /* Navbar */
+        nav{position:fixed;top:0;left:0;right:0;padding:24px 48px;display:flex;justify-content:space-between;align-items:center;z-index:100;backdrop-filter:blur(10px);background:rgba(10,10,12,0.5);transition:padding 0.3s ease}
+        nav .logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--gold);letter-spacing:2px}
+        nav .nav-links{display:flex;gap:32px;align-items:center}
+        nav .nav-links a{font-size:0.875rem;color:var(--gray);text-transform:uppercase;letter-spacing:1px;transition:color 0.3s ease}
+        nav .nav-links a:hover{color:var(--gold)}
+        nav .whatsapp-btn{background:var(--gold);color:var(--onyx);padding:10px 24px;border-radius:30px;font-weight:600;font-size:0.85rem;letter-spacing:1px;text-transform:uppercase;transition:all 0.3s ease}
+        nav .whatsapp-btn:hover{background:var(--gold-bright);transform:translateY(-2px)}
+        
+        /* Hero */
+        .hero{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+        .hero-bg{position:absolute;inset:0;background:url('https://loremflickr.com/1920/1080/real-estate,property,architecture?lock=7c2d0657') center/cover;z-index:0}
+        .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,12,0.7) 0%,rgba(10,10,12,0.5) 50%,var(--onyx) 100%);z-index:1}
+        .hero-content{position:relative;z-index:2;text-align:center;padding:0 24px}
+        .hero .brand-name{font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:600;letter-spacing:2px;line-height:1.2;opacity:0}
+        .hero .tagline{font-size:1.2rem;color:var(--gold);letter-spacing:6px;text-transform:uppercase;margin-top:16px;opacity:0}
+        .hero .city-tag{font-size:0.9rem;color:var(--gray);letter-spacing:3px;text-transform:uppercase;margin-top:12px;opacity:0}
+        .hero .cta-btn{display:inline-block;margin-top:40px;padding:16px 48px;border:2px solid var(--gold);border-radius:40px;font-size:0.9rem;letter-spacing:2px;text-transform:uppercase;transition:all 0.3s ease;opacity:0}
+        .hero .cta-btn:hover{background:var(--gold);color:var(--onyx);transform:translateY(-4px);box-shadow:0 10px 30px rgba(197,165,114,0.3)}
+        
+        /* Section */
+        section{padding:120px 48px;position:relative}
+        .section-title{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--white);text-align:center;margin-bottom:16px;font-weight:600}
+        .section-subtitle{text-align:center;color:var(--gold);font-size:0.9rem;letter-spacing:4px;text-transform:uppercase;margin-bottom:60px}
+        
+        /* About */
+        .about-content{max-width:800px;margin:0 auto;text-align:center}
+        .about-content p{font-size:1.1rem;color:var(--gray);line-height:1.8;margin-top:24px}
+        
+        /* 3D Tilt Cards */
+        .tilt-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px;max-width:1400px;margin:0 auto}
+        .tilt-card{background:var(--onyx-card);border-radius:20px;overflow:hidden;position:relative;perspective:1000px;transition:transform 0.3s ease}
+        .tilt-card img{width:100%;height:300px;object-fit:cover;transition:transform 0.5s ease}
+        .tilt-card:hover img{transform:scale(1.1)}
+        .tilt-card-content{padding:28px}
+        .tilt-card-number{position:absolute;top:-20px;left:20px;width:50px;height:50px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:700;color:var(--onyx)}
+        .tilt-card h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--white);margin-top:16px}
+        .tilt-card p{color:var(--gray);margin-top:12px;font-size:0.95rem;line-height:1.6}
+        
+        /* Services */
+        .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;max-width:1200px;margin:0 auto}
+        .service-card{background:var(--onyx-card);padding:40px 32px;border-radius:16px;border:1px solid rgba(197,165,114,0.1);transition:all 0.3s ease;opacity:0;transform:translateY(40px)}
+        .service-card:hover{border-color:var(--gold);transform:translateY(-8px);box-shadow:0 10px 40px rgba(197,165,114,0.1)}
+        .service-number{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--gold);opacity:0.4}
+        .service-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--white);margin-top:12px}
+        .service-card p{color:var(--gray);margin-top:12px;font-size:0.9rem;line-height:1.6}
+        
+        /* Gallery */
+        .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;max-width:1400px;margin:0 auto;padding:0 24px}
+        .gallery-grid img{width:100%;height:280px;object-fit:cover;border-radius:12px;transition:all 0.3s ease}
+        .gallery-grid img:hover{transform:scale(0.98);filter:brightness(1.1) saturate(1.2)}
+        .lightbox{position:fixed;inset:0;background:rgba(10,10,12,0.95);display:none;align-items:center;justify-content:center;z-index:200;cursor:pointer}
+        .lightbox img{max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 0 60px rgba(0,0,0,0.5)}
+        .lightbox.active{display:flex}
+        
+        /* Contact */
+        .contact-section{background:var(--onyx-card);text-align:center}
+        .contact-actions{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+        .contact-btn{display:inline-flex;align-items:center;gap:12px;padding:18px 48px;border-radius:40px;font-size:0.9rem;letter-spacing:2px;text-transform:uppercase;transition:all 0.3s ease}
+        .contact-btn.whatsapp{background:#25D366;color:#fff}
+        .contact-btn.whatsapp:hover{background:#1fa755;transform:translateY(-3px);box-shadow:0 8px 30px rgba(37,211,102,0.3)}
+        .contact-btn.portfolio{border:2px solid var(--gold);color:var(--gold)}
+        .contact-btn.portfolio:hover{background:var(--gold);color:var(--onyx);transform:translateY(-3px)}
+        
+        /* Footer */
+        footer{padding:40px 48px;text-align:center;background:var(--onyx);border-top:1px solid rgba(197,165,114,0.1)}
+        footer .brand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold)}
+        footer p{color:var(--gray);font-size:0.85rem;margin-top:8px}
+        
+        /* Scroll reveal */
+        .reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s ease,transform 0.8s ease}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        
+        /* Responsive */
+        @media(max-width:768px){
+            .hero .brand-name{font-size:2.5rem}
+            section{padding:80px 24px}
+            nav{padding:16px 24px}
+            .services-grid,.gallery-grid{grid-template-columns:1fr}
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+    
+    <!-- Scroll Progress -->
+    <div class="scroll-progress"></div>
+    
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-text">OnyxDigital</div>
+    </div>
+    
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">OnyxDigital</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="https://wa.me/9233390025902" class="whatsapp-btn">WhatsApp</a>
+        </div>
+    </nav>
+    
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="brand-name">123ERAmakelaar Amsterdam</h1>
+            <div class="tagline">Finding Your Perfect Space</div>
+            <div class="city-tag">Amsterdam | OnyxDigital Preview</div>
+            <a href="https://wa.me/9233390025902" class="cta-btn">Contact Us</a>
+        </div>
+    </div>
+    
+    <!-- About -->
+    <section id="about">
+        <div class="about-content reveal">
+            <h2 class="section-title">Welcome to 123ERAmakelaar Amsterdam</h2>
+            <div class="section-subtitle">Crafting Excellence in Real Estate</div>
+            <p>At 123ERAmakelaar Amsterdam, we redefine what it means to be a premier real estate establishment in Amsterdam. Our commitment to quality, attention to detail, and passion for what we do sets us apart from the rest.</p>
+            <p>From the moment you walk through our doors, you'll experience a level of service and craftsmanship that is rarely found. We've built our reputation on trust, quality, and an unwavering dedication to exceeding expectations.</p>
+        </div>
+    </section>
+    
+    <!-- 3D Tilt Cards -->
+    <section style="padding:80px 48px">
+        <div class="tilt-container reveal">
+            <div class="tilt-card">
+                <div class="tilt-card-number">01</div>
+                <img src="https://loremflickr.com/800/600/modern-house?lock=59ce37bd" alt="Image 1">
+                <div class="tilt-card-content">
+                    <h3>Crafted With Passion</h3>
+                    <p>Every project is approached with meticulous attention to detail and creative vision.</p>
+                </div>
+            </div>
+            <div class="tilt-card">
+                <div class="tilt-card-number">02</div>
+                <img src="https://loremflickr.com/800/600/luxury-apartment?lock=afa9325d" alt="Image 2">
+                <div class="tilt-card-content">
+                    <h3>Built On Trust</h3>
+                    <p>We believe in building lasting relationships through quality work and honest service.</p>
+                </div>
+            </div>
+            <div class="tilt-card">
+                <div class="tilt-card-number">03</div>
+                <img src="https://loremflickr.com/800/600/property-interior?lock=6d33a819" alt="Image 3">
+                <div class="tilt-card-content">
+                    <h3>Driven By Excellence</h3>
+                    <p>Our standards are uncompromising——we deliver nothing but the very best.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services -->
+    <section id="services">
+        <h2 class="section-title reveal">Our Services</h2>
+        <div class="section-subtitle reveal">What We Offer</div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-number">01</div>
+                <h3>Property Valuation</h3>
+                <p>Crafted with precision and care to deliver results that speak for themselves.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-number">02</div>
+                <h3>Buyer Representation</h3>
+                <p>Crafted with precision and care to deliver results that speak for themselves.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-number">03</div>
+                <h3>Seller Marketing</h3>
+                <p>Crafted with precision and care to deliver results that speak for themselves.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-number">04</div>
+                <h3>Investment Advisory</h3>
+                <p>Crafted with precision and care to deliver results that speak for themselves.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery -->
+    <section id="gallery">
+        <h2 class="section-title reveal">Gallery</h2>
+        <div class="section-subtitle reveal">A Glimpse of Our World</div>
+        <div class="gallery-grid reveal">
+            <img src="https://loremflickr.com/800/600/modern-house?lock=59ce37bd" alt="Gallery image" class="gallery-img" loading="lazy">
+            <img src="https://loremflickr.com/800/600/luxury-apartment?lock=afa9325d" alt="Gallery image" class="gallery-img" loading="lazy">
+            <img src="https://loremflickr.com/800/600/property-interior?lock=6d33a819" alt="Gallery image" class="gallery-img" loading="lazy">
+            <img src="https://loremflickr.com/800/600/real-estate-agent?lock=590900f1" alt="Gallery image" class="gallery-img" loading="lazy">
+            <img src="https://loremflickr.com/800/600/city-apartment?lock=d117319d" alt="Gallery image" class="gallery-img" loading="lazy">
+            <img src="https://loremflickr.com/800/600/home-interior?lock=ba12fb8c" alt="Gallery image" class="gallery-img" loading="lazy">
+        </div>
+    </section>
+    
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <img src="" id="lightbox-img">
+    </div>
+    
+    <!-- Contact -->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title reveal">Let's Connect</h2>
+        <div class="section-subtitle reveal">Ready to Elevate Your Experience?</div>
+        <p class="reveal" style="color:var(--gray);max-width:600px;margin:24px auto;">Experience the OnyxDigital difference. Contact us today for a consultation, or explore our portfolio to see what we can do for you.</p>
+        <div class="contact-actions reveal">
+            <a href="https://wa.me/9233390025902" class="contact-btn whatsapp">WhatsApp Us</a>
+            <a href="https://onyx-digital-sidd.vercel.app/" class="contact-btn portfolio" target="_blank">View Our Portfolio</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="brand">OnyxDigital</div>
+        <p>Premium Digital Solutions | onyx-digital-sidd.vercel.app</p>
+    </footer>
+    
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {{
+            setTimeout(function() {{
+                document.getElementById('preloader').classList.add('hidden');
+            }}, 800);
+        }});
+        
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+        document.addEventListener('mousemove', function(e) {{
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorDot.style.left = (e.clientX - 3) + 'px';
+            cursorDot.style.top = (e.clientY - 3) + 'px';
+        }});
+        document.querySelectorAll('a,button,img,.service-card,.tilt-card').forEach(function(el) {{
+            el.addEventListener('mouseenter', function() {{ cursor.classList.add('hover'); }});
+            el.addEventListener('mouseleave', function() {{ cursor.classList.remove('hover'); }});
+        }});
+        
+        // Scroll progress
+        window.addEventListener('scroll', function() {{
+            const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            document.querySelector('.scroll-progress').style.width = scrolled + '%';
+        }});
+        
+        // GSAP animations
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.to('.hero .brand-name', {{ opacity: 1, y: 0, duration: 1, delay: 0.3, ease: 'power3.out' }});
+        gsap.to('.hero .tagline', {{ opacity: 1, y: 0, duration: 1, delay: 0.6, ease: 'power3.out' }});
+        gsap.to('.hero .city-tag', {{ opacity: 1, y: 0, duration: 1, delay: 0.8, ease: 'power3.out' }});
+        gsap.to('.hero .cta-btn', {{ opacity: 1, y: 0, duration: 1, delay: 1, ease: 'power3.out' }});
+        
+        // Scroll reveal
+        gsap.utils.toArray('.reveal').forEach(function(el) {{
+            ScrollTrigger.create({{
+                trigger: el,
+                start: 'top 85%',
+                onEnter: function() {{ el.classList.add('visible'); }},
+                onLeaveBack: function() {{ el.classList.remove('visible'); }}
+            }});
+        }});
+        
+        // Service cards stagger
+        gsap.utils.toArray('.service-card').forEach(function(card, i) {{
+            ScrollTrigger.create({{
+                trigger: card,
+                start: 'top 85%',
+                onEnter: function() {{
+                    gsap.to(card, {{ opacity: 1, y: 0, duration: 0.6, delay: i * 0.1, ease: 'power3.out' }});
+                }}
+            }});
+        }});
+        
+        // 3D Tilt effect
+        document.querySelectorAll('.tilt-card').forEach(function(card) {{
+            card.addEventListener('mousemove', function(e) {{
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateY = ((x - centerX) / centerX) * 10;
+                const rotateX = ((centerY - y) / centerY) * 10;
+                card.style.transform = `perspective(1000px) rotateX(${{rotateX}}deg) rotateY(${{rotateY}}deg) scale3d(1.02,1.02,1.02)`;
+            }});
+            card.addEventListener('mouseleave', function() {{
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1,1,1)';
+            }});
+        }});
+        
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        document.querySelectorAll('.gallery-img').forEach(function(img) {{
+            img.addEventListener('click', function() {{
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+            }});
+        }});
+        lightbox.addEventListener('click', function() {{
+            lightbox.classList.remove('active');
+        }});
+        
+        // Scroll to section
+        document.querySelectorAll('nav a[href^="#"]').forEach(function(link) {{
+            link.addEventListener('click', function(e) {{
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {{
+                    gsap.to(window, {{ duration: 1, scrollTo: target.offsetTop - 60, ease: 'power3.inOut' }});
+                }}
+            }});
+        }});
+    </script>
+</body>
+</html>
