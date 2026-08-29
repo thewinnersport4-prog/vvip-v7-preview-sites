@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Restaurant Hyde Oslo | OnyxDigital Premium Website Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;cursor:none}
+:root{--onyx:#0a0a0a;--gold:#c9a96e;--light:#f5f5f0;--accent:#e8d5b5}
+body{font-family:'Inter',sans-serif;background:var(--onyx);color:var(--light);overflow-x:hidden}
+.cursor{position:fixed;width:20px;height:20px;border:2px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transition:transform .1s;mix-blend-mode:difference}
+.cursor-dot{position:fixed;width:6px;height:6px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:99999}
+.scroll-progress{position:fixed;top:0;left:0;height:3px;background:var(--gold);z-index:9998}
+.preloader{position:fixed;inset:0;background:var(--onyx);display:flex;align-items:center;justify-content:center;z-index:10000;transition:opacity .5s}
+.preloader-text{font-size:2rem;font-weight:900;color:var(--gold);letter-spacing:.3em;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;opacity:.15;background:url('https://loremflickr.com/1920/1080/restaurant?lock=10') center/cover}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 2rem}
+.brand-mark{font-size:.875rem;letter-spacing:.4em;color:var(--gold);margin-bottom:1rem;text-transform:uppercase}
+.hero h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:900;line-height:1;letter-spacing:-.02em;margin-bottom:1.5rem}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:1.25rem;color:var(--accent);max-width:600px;margin:0 auto 2rem;font-weight:300}
+.cta-btn{display:inline-flex;align-items:center;gap:.75rem;padding:1rem 2.5rem;background:var(--gold);color:var(--onyx);text-decoration:none;font-weight:700;border-radius:50px;transition:transform .3s,box-shadow .3s}
+.cta-btn:hover{transform:scale(1.05);box-shadow:0 20px 40px rgba(201,169,110,.3)}
+.cta-btn.outline{background:transparent;border:2px solid var(--gold);margin-left:1rem}
+.section{padding:6rem 2rem;max-width:1200px;margin:0 auto}
+.section-label{font-size:.875rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem}
+.section-title{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.1;margin-bottom:2rem}
+.section-title span{color:var(--gold)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-top:3rem}
+.service-card{background:rgba(255,255,255,.03);border:1px solid rgba(201,169,110,.2);border-radius:20px;padding:2.5rem;transition:transform .3s,border-color .3s}
+.service-card:hover{transform:translateY(-10px);border-color:var(--gold)}
+.service-number{font-size:1rem;font-weight:900;color:var(--gold);opacity:.5;margin-bottom:1rem}
+.service-card h3{font-size:1.25rem;font-weight:700;margin-bottom:.75rem}
+.service-card p{font-size:.875rem;color:var(--accent);line-height:1.6}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:3rem}
+.gallery-item{aspect-ratio:1;border-radius:15px;overflow:hidden;position:relative;transition:transform .3s}
+.gallery-item:hover{transform:scale(1.03)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.swiper-container{max-width:1200px;margin:3rem auto 0;border-radius:20px;overflow:hidden}
+.swiper-slide img{width:100%;height:400px;object-fit:cover}
+.swiper-pagination-bullet{background:var(--gold)!important}
+.tilt-card{perspective:1000px;margin-top:3rem}
+.tilt-inner{transition:transform .6s;transform-style:preserve-3d}
+.tilt-content{background:rgba(255,255,255,.05);border:1px solid rgba(201,169,110,.3);border-radius:20px;padding:3rem;text-align:center}
+.tilt-content img{width:80px;height:80px;border-radius:50%;margin-bottom:1.5rem}
+.whatsapp-float{position:fixed;bottom:2rem;right:2rem;width:60px;height:60px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:999;text-decoration:none;box-shadow:0 10px 30px rgba(37,211,102,.4);transition:transform .3s}
+.whatsapp-float:hover{transform:scale(1.1)}
+.whatsapp-float i{font-size:2rem;color:#fff}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:5rem}
+.about img{width:100%;border-radius:20px}
+.about-text h2{font-size:2.5rem;font-weight:900;margin-bottom:1.5rem}
+.about-text p{font-size:1rem;line-height:1.8;color:var(--accent);margin-bottom:1rem}
+.footer{background:#050505;padding:4rem 2rem 2rem;text-align:center;margin-top:4rem}
+.footer-brand{font-size:1.5rem;font-weight:900;color:var(--gold);margin-bottom:1rem}
+.footer-links{display:flex;justify-content:center;gap:2rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.footer-links a{color:var(--accent);text-decoration:none;font-size:.875rem}
+.footer-copy{font-size:.75rem;color:#555}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
+.reveal.active{opacity:1;transform:translateY(0)}
+.preview-badge{position:fixed;top:1rem;left:1rem;background:var(--gold);color:var(--onyx);padding:.5rem 1rem;border-radius:50px;font-size:.75rem;font-weight:700;z-index:9997}
+@media(max-width:768px){.about{grid-template-columns:1fr}.cursor,.cursor-dot{display:none}*{cursor:auto}}
+</style></head><body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="preloader" id="preloader"><div class="preloader-text">ONYXDIGITAL</div></div>
+<div class="preview-badge">PREVIEW BY ONYXDIGITAL</div>
+<div class="scroll-progress" id="scrollProgress" style="width:0"></div>
+<section class="hero"><div class="hero-bg"></div><div class="hero-content">
+<div class="brand-mark">OnyxDigital Premium Preview</div>
+<h1>Restaurant Hyde Oslo<br><span>Restaurant</span></h1>
+<p>A stunning website crafted by OnyxDigital for Restaurant Hyde Oslo in Oslo. Premium design, smooth animations, and powerful conversions.</p>
+<a href="https://wa.me/9233390025902" class="cta-btn"><i class="fab fa-whatsapp"></i> Get This Website</a>
+<a href="https://onyx-digital-sidd.vercel.app/" class="cta-btn outline"><i class="fas fa-arrow-right"></i> View Portfolio</a>
+</div></section>
+<section class="section reveal">
+<div class="section-label">Our Services</div>
+<div class="section-title">What Makes <span>Restaurant Hyde Oslo</span> Stand Out</div>
+<div class="services-grid">
+<div class="service-card"><div class="service-number">01</div><h3>Premium Quality</h3><p>We deliver exceptional Restaurant services in Oslo with the highest standards and attention to detail.</p></div>
+<div class="service-card"><div class="service-number">02</div><h3>Expert Team</h3><p>Our experienced professionals are dedicated to providing you with outstanding results every time.</p></div>
+<div class="service-card"><div class="service-number">03</div><h3>Customer First</h3><p>We put our clients at the heart of everything we do, ensuring a seamless and memorable experience.</p></div>
+<div class="service-card"><div class="service-number">04</div><h3>Modern Approach</h3><p>Combining tradition with innovation to deliver Restaurant solutions that exceed expectations.</p></div>
+</div></section>
+<section class="section reveal">
+<div class="section-label">Gallery</div>
+<div class="section-title">Our <span>Work</span></div>
+<div class="gallery">
+<div class="gallery-item"><img src="https://loremflickr.com/600/600/restaurant?lock=1" alt="Restaurant"></div>
+<div class="gallery-item"><img src="https://loremflickr.com/600/600/food?lock=2" alt="Restaurant"></div>
+<div class="gallery-item"><img src="https://loremflickr.com/600/600/dining?lock=3" alt="Restaurant"></div>
+<div class="gallery-item"><img src="https://loremflickr.com/600/600/restaurant,food?lock=4" alt="Restaurant"></div>
+</div></section>
+<section class="section reveal"><div class="tilt-card"><div class="tilt-inner"><div class="tilt-content">
+<img src="https://loremflickr.com/160/160/restaurant?lock=5" alt="Restaurant Hyde Oslo">
+<h2 style="font-size:1.5rem;font-weight:700;margin-bottom:.5rem">Ready to Elevate Restaurant Hyde Oslo?</h2>
+<p style="font-size:.875rem;color:var(--accent);margin-bottom:1.5rem">Get a stunning website like this one for your business in Oslo</p>
+<a href="https://wa.me/9233390025902" style="display:inline-block;padding:.875rem 2rem;background:var(--gold);color:var(--onyx);text-decoration:none;font-weight:700;border-radius:50px"><i class="fab fa-whatsapp"></i> Contact OnyxDigital</a>
+</div></div></div></section>
+<div class="swiper-container reveal"><div class="swiper"><div class="swiper-wrapper">
+<div class="swiper-slide"><img src="https://loremflickr.com/1200/400/restaurant?lock=6" alt="Restaurant"></div>
+<div class="swiper-slide"><img src="https://loremflickr.com/1200/400/food?lock=7" alt="Restaurant"></div>
+<div class="swiper-slide"><img src="https://loremflickr.com/1200/400/dining?lock=8" alt="Restaurant"></div>
+</div><div class="swiper-pagination"></div></div></div>
+<section class="section reveal"><div class="about">
+<div><img src="https://loremflickr.com/600/600/restaurant,food?lock=9" alt="Restaurant Hyde Oslo"></div>
+<div class="about-text"><div class="section-label">About Us</div>
+<h2>Restaurant Hyde Oslo in Oslo</h2>
+<p>Restaurant Hyde Oslo is a premier Restaurant business located in Oslo. With a commitment to excellence and customer satisfaction, we have established ourselves as a trusted name in the community.</p>
+<p>This is a preview website created by <strong style="color:var(--gold)">OnyxDigital</strong> showcasing what your premium online presence could look like. Contact us to get your own custom-designed website.</p>
+<a href="https://wa.me/9233390025902" class="cta-btn"><i class="fab fa-whatsapp"></i> Get Your Website</a>
+</div></div></section>
+<footer class="footer"><div class="footer-brand">OnyxDigital</div>
+<div class="footer-links"><a href="https://onyx-digital-sidd.vercel.app/">Portfolio</a><a href="https://wa.me/9233390025902">WhatsApp</a></div>
+<p class="footer-copy" style="color:var(--accent)">Preview website for Restaurant Hyde Oslo | Restaurant | Oslo</p>
+<p class="footer-copy">Powered by OnyxDigital | +9233390025902</p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+window.addEventListener('load',()=>{setTimeout(()=>{const p=document.getElementById('preloader');p.style.opacity='0';setTimeout(()=>p.remove(),500)},800)});
+const cursor=document.getElementById('cursor'),dot=document.getElementById('cursorDot');
+document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX-10+'px';cursor.style.top=e.clientY-10+'px';dot.style.left=e.clientX-3+'px';dot.style.top=e.clientY-3+'px'});
+document.querySelectorAll('a,button,.service-card,.gallery-item').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.style.transform='scale(2)');el.addEventListener('mouseleave',()=>cursor.style.transform='scale(1)')});
+window.addEventListener('scroll',()=>{const s=window.scrollY/(document.body.scrollHeight-window.innerHeight)*100;document.getElementById('scrollProgress').style.width=s+'%'});
+gsap.registerPlugin(ScrollTrigger);
+gsap.from('.hero h1',{y:100,opacity:0,duration:1,delay:.3,ease:'power3.out'});
+gsap.from('.hero p',{y:50,opacity:0,duration:1,delay:.6,ease:'power3.out'});
+gsap.from('.cta-btn',{y:30,opacity:0,duration:1,delay:.9,ease:'power3.out',stagger:.1});
+gsap.utils.toArray('.reveal').forEach(el=>{gsap.fromTo(el,{opacity:0,y:60},{opacity:1,y:0,duration:.8,scrollTrigger:{trigger:el,start:'top 85%'}})});
+gsap.from('.service-card',{y:60,opacity:0,duration:.6,scrollTrigger:{trigger:'.services-grid',start:'top 80%'},stagger:.1});
+gsap.from('.gallery-item',{scale:.8,opacity:0,duration:.5,scrollTrigger:{trigger:'.gallery',start:'top 80%'},stagger:.1});
+new Swiper('.swiper',{pagination:{el:'.swiper-pagination',clickable:true},loop:true,autoplay:{delay:3000}});
+const tilt=document.querySelector('.tilt-card');if(tilt){tilt.addEventListener('mousemove',e=>{const r=tilt.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;tilt.querySelector('.tilt-inner').style.transform='rotateY('+x*30+'deg) rotateX('+ -y*30+'deg)'});tilt.addEventListener('mouseleave',()=>{tilt.querySelector('.tilt-inner').style.transform='rotateY(0) rotateX(0)'})}
+</script></body></html>
