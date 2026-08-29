@@ -1,311 +1,370 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FLORA Vienna | OnyxDigital Premium Web Design</title>
-<meta name="description" content="FLORA Vienna in Vienna, Austria — Premium Florist website designed by OnyxDigital. Elevate your digital presence.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--onyx:#0a0a0a;--gold:#c9a96e;--gold-light:#e8d5b0;--white:#f8f8f8;--grey:#1a1a1a;--grey-light:#2a2a2a}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--onyx);color:var(--white);overflow-x:hidden;cursor:none}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:var(--onyx)}
-::-webkit-scrollbar-thumb{background:var(--gold)}
-
-/* Preloader */
-.preloader{position:fixed;inset:0;background:var(--onyx);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .8s ease,visibility .8s ease}
-.preloader.hidden{opacity:0;visibility:hidden}
-.preloader-text{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--gold);letter-spacing:4px;animation:pulse 1.5s ease infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
-/* Custom Cursor */
-.cursor{position:fixed;width:12px;height:12px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:10000;transition:transform .15s ease,opacity .3s ease;mix-blend-mode:difference}
-.cursor-ring{position:fixed;width:40px;height:40px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transition:transform .3s ease,opacity .3s ease}
-.cursor.hover{transform:scale(2)}
-.cursor-ring.hover{transform:scale(1.5);border-color:var(--gold-light)}
-
-/* Scroll Progress */
-.scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));z-index:9998;width:0;transition:width .1s ease}
-
-/* Navigation */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;transition:background .4s ease,padding .4s ease}
-nav.scrolled{background:rgba(10,10,10,.95);backdrop-filter:blur(10px);padding:1rem 3rem;border-bottom:1px solid rgba(201,169,110,.2)}
-.logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--gold);letter-spacing:2px}
-.logo span{color:var(--white)}
-nav ul{display:flex;gap:2rem;list-style:none}
-nav ul li a{font-size:.85rem;letter-spacing:1px;text-transform:uppercase;opacity:.8;transition:opacity .3s,color .3s}
-nav ul li a:hover{opacity:1;color:var(--gold)}
-
-/* Hero */
-.hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:url('https://loremflickr.com/1920/1080/flower-bouquet/?lock=ca558f5e') center/cover no-repeat;transform:scale(1.1);filter:brightness(.35)}
-.hero-content{text-align:relative;z-index:2;text-align:center;padding:0 2rem}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,7vw,5.5rem);font-weight:900;line-height:1.1;margin-bottom:1.5rem;opacity:0;transform:translateY(40px)}
-.hero h1 span{color:var(--gold);display:block;font-size:clamp(1rem,3vw,1.8rem);font-family:'Inter',sans-serif;font-weight:300;letter-spacing:8px;text-transform:uppercase;margin-top:1rem}
-.hero p{font-size:1.1rem;max-width:600px;margin:0 auto 2rem;opacity:0;transform:translateY(30px);line-height:1.8}
-.hero-cta{display:inline-flex;align-items:center;gap:.8rem;padding:1rem 2.5rem;background:var(--gold);color:var(--onyx);font-weight:600;letter-spacing:1px;text-transform:uppercase;font-size:.85rem;opacity:0;transform:translateY(30px);transition:all .3s ease;border:none}
-.hero-cta:hover{background:var(--gold-light);transform:translateY(-5px);box-shadow:0 10px 30px rgba(201,169,110,.3)}
-
-/* Sections */
-section{padding:6rem 3rem}
-.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;margin-bottom:1rem;text-align:center}
-.section-title span{color:var(--gold)}
-.section-subtitle{text-align:center;color:rgba(248,248,248,.6);margin-bottom:4rem;font-size:1rem;letter-spacing:2px;text-transform:uppercase}
-
-/* About */
-.about{background:var(--grey)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:1200px;margin:0 auto}
-.about-text p{line-height:1.9;margin-bottom:1.5rem;color:rgba(248,248,248,.8)}
-.about-img{position:relative;border-radius:8px;overflow:hidden}
-.about-img img{width:100%;height:500px;object-fit:cover;transition:transform .8s ease}
-.about-img:hover img{transform:scale(1.05)}
-.about-img::after{content:'';position:absolute;inset:0;border:2px solid var(--gold);border-radius:8px;transform:translate(20px,20px);transition:transform .4s ease}
-.about-img:hover::after{transform:translate(10px,10px)}
-
-/* Services */
-.services{background:var(--onyx)}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;max-width:1200px;margin:0 auto}
-.service-card{background:var(--grey);padding:3rem 2rem;border-radius:8px;text-align:center;transition:all .4s ease;position:relative;overflow:hidden}
-.service-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--gold);transform:scaleX(0);transition:transform .4s ease;transform-origin:left}
-.service-card:hover::before{transform:scaleX(1)}
-.service-card:hover{transform:translateY(-10px);background:var(--grey-light)}
-.service-number{font-family:'Playfair Display',serif;font-size:3rem;color:var(--gold);opacity:.3;margin-bottom:1rem}
-.service-card h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:1rem}
-.service-card p{color:rgba(248,248,248,.6);font-size:.9rem;line-height:1.7}
-
-/* Swiper Gallery */
-.gallery{background:var(--grey)}
-.swiper{max-width:1200px;margin:0 auto;overflow:hidden;border-radius:8px}
-.swiper-slide{position:relative;overflow:hidden;border-radius:8px}
-.swiper-slide img{width:100%;height:400px;object-fit:cover;transition:transform .6s ease}
-.swiper-slide:hover img{transform:scale(1.1)}
-.swiper-pagination-bullet{background:var(--gold)!important}
-.swiper-button-prev,.swiper-button-next{color:var(--gold)!important}
-
-/* Grid Gallery with Lightbox */
-.grid-gallery{background:var(--onyx)}
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:1200px;margin:0 auto}
-.gallery-item{position:relative;overflow:hidden;border-radius:8px;cursor:pointer}
-.gallery-item img{width:100%;height:350px;object-fit:cover;transition:transform .5s ease}
-.gallery-item:hover img{transform:scale(1.1)}
-.gallery-item::after{content:'\f00e';font-family:'Font Awesome 5 Free';font-weight:900;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(10,10,10,.7);color:var(--gold);font-size:2rem;opacity:0;transition:opacity .3s ease}
-.gallery-item:hover::after{opacity:1}
-.lightbox{position:fixed;inset:0;background:rgba(10,10,10,.95);display:flex;align-items:center;justify-content:center;z-index:10000;opacity:0;visibility:hidden;transition:all .4s ease}
-.lightbox.active{opacity:1;visibility:visible}
-.lightbox img{max-width:90%;max-height:90%;border-radius:8px;border:2px solid var(--gold)}
-.lightbox-close{position:absolute;top:2rem;right:2rem;font-size:2rem;color:var(--gold);cursor:pointer}
-
-/* 3D Tilt Cards */
-.tilt-section{background:var(--grey)}
-.tilt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;max-width:1200px;margin:0 auto}
-.tilt-card{background:var(--grey-light);border-radius:12px;padding:2.5rem;position:relative;transform-style:preserve-3d;transition:transform .1s ease;cursor:pointer;border:1px solid rgba(201,169,110,.1)}
-.tilt-card h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold);margin-bottom:1rem}
-.tilt-card p{color:rgba(248,248,248,.7);line-height:1.7}
-.tilt-card-icon{font-size:2.5rem;color:var(--gold);margin-bottom:1.5rem;display:block}
-
-/* Contact */
-.contact{background:var(--onyx);text-align:center}
-.contact-info{max-width:600px;margin:0 auto}
-.contact-item{margin-bottom:1.5rem;display:flex;align-items:center;justify-content:center;gap:1rem}
-.contact-item .icon{color:var(--gold);font-size:1.5rem}
-.contact-item p{color:rgba(248,248,248,.8)}
-.whatsapp-btn{display:inline-flex;align-items:center;gap:1rem;padding:1.2rem 3rem;background:#25d366;color:#fff;font-weight:600;letter-spacing:1px;text-transform:uppercase;font-size:.9rem;margin-top:2rem;border-radius:50px;transition:all .3s ease}
-.whatsapp-btn:hover{transform:translateY(-5px);box-shadow:0 10px 40px rgba(37,211,102,.4)}
-
-/* Footer */
-footer{background:var(--grey);padding:3rem;text-align:center;border-top:1px solid rgba(201,169,110,.1)}
-footer p{color:rgba(248,248,248,.5);font-size:.85rem}
-footer a{color:var(--gold);transition:opacity .3s}
-footer a:hover{opacity:.8}
-
-/* Reveal animation */
-.reveal{opacity:0;transform:translateY(50px);transition:opacity .8s ease,transform .8s ease}
-.reveal.active{opacity:1;transform:translateY(0)}
-
-/* Responsive */
-@media(max-width:768px){
-nav{padding:1rem 1.5rem}
-nav ul{display:none}
-section{padding:4rem 1.5rem}
-.about-grid{grid-template-columns:1fr}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLORA Vienna | OnyxDigital</title>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{
+            --onyx:#0a0a0c;
+            --onyx-card:#111114;
+            --gold:#c5a572;
+            --gold-bright:#e0c896;
+            --white:#f8f7f4;
+            --gray:#9a9a9a;
+            --accent:rgba(197,165,114,0.15);
+        }
+        html,body{background:var(--onyx);color:var(--white);font-family:'Inter',sans-serif;overflow-x:hidden}
+        body{cursor:none}
+        a{color:inherit;text-decoration:none}
+        
+        /* Custom Cursor */
+        .cursor{position:fixed;width:20px;height:20px;border:2px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.2s ease,opacity 0.3s ease;mix-blend-mode:difference}
+        .cursor-dot{position:fixed;width:6px;height:6px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:99999;transition:transform 0.1s ease}
+        .cursor.hover{transform:scale(2.5);background:transparent;border-width:1px}
+        
+        /* Scroll Progress */
+        .scroll-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-bright));z-index:9998;transition:width 0.1s ease}
+        
+        /* Preloader */
+        #preloader{position:fixed;inset:0;background:var(--onyx);display:flex;align-items:center;justify-content:center;z-index:10000;transition:opacity 0.6s ease,visibility 0.6s ease}
+        #preloader .loader-text{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);letter-spacing:8px;text-transform:uppercase;animation:pulse 1.5s ease infinite}
+        @keyframes pulse{0%,100%{opacity:0.3}50%{opacity:1}}
+        #preloader.hidden{opacity:0;visibility:hidden}
+        
+        /* Navbar */
+        nav{position:fixed;top:0;left:0;right:0;padding:24px 48px;display:flex;justify-content:space-between;align-items:center;z-index:100;backdrop-filter:blur(10px);background:rgba(10,10,12,0.5);transition:padding 0.3s ease}
+        nav .logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--gold);letter-spacing:2px}
+        nav .nav-links{display:flex;gap:32px;align-items:center}
+        nav .nav-links a{font-size:0.875rem;color:var(--gray);text-transform:uppercase;letter-spacing:1px;transition:color 0.3s ease}
+        nav .nav-links a:hover{color:var(--gold)}
+        nav .whatsapp-btn{background:var(--gold);color:var(--onyx);padding:10px 24px;border-radius:30px;font-weight:600;font-size:0.85rem;letter-spacing:1px;text-transform:uppercase;transition:all 0.3s ease}
+        nav .whatsapp-btn:hover{background:var(--gold-bright);transform:translateY(-2px)}
+        
+        /* Hero */
+        .hero{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+        .hero-bg{position:absolute;inset:0;background:url('https://loremflickr.com/1920/1080/flowers,florist,bouquet?lock=650939fc') center/cover;z-index:0}
+        .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,12,0.7) 0%,rgba(10,10,12,0.5) 50%,var(--onyx) 100%);z-index:1}
+        .hero-content{position:relative;z-index:2;text-align:center;padding:0 24px}
+        .hero .brand-name{font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:600;letter-spacing:2px;line-height:1.2;opacity:0}
+        .hero .tagline{font-size:1.2rem;color:var(--gold);letter-spacing:6px;text-transform:uppercase;margin-top:16px;opacity:0}
+        .hero .city-tag{font-size:0.9rem;color:var(--gray);letter-spacing:3px;text-transform:uppercase;margin-top:12px;opacity:0}
+        .hero .cta-btn{display:inline-block;margin-top:40px;padding:16px 48px;border:2px solid var(--gold);border-radius:40px;font-size:0.9rem;letter-spacing:2px;text-transform:uppercase;transition:all 0.3s ease;opacity:0}
+        .hero .cta-btn:hover{background:var(--gold);color:var(--onyx);transform:translateY(-4px);box-shadow:0 10px 30px rgba(197,165,114,0.3)}
+        
+        /* Section */
+        section{padding:120px 48px;position:relative}
+        .section-title{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--white);text-align:center;margin-bottom:16px;font-weight:600}
+        .section-subtitle{text-align:center;color:var(--gold);font-size:0.9rem;letter-spacing:4px;text-transform:uppercase;margin-bottom:60px}
+        
+        /* About */
+        .about-content{max-width:800px;margin:0 auto;text-align:center}
+        .about-content p{font-size:1.1rem;color:var(--gray);line-height:1.8;margin-top:24px}
+        
+        /* 3D Tilt Cards */
+        .tilt-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px;max-width:1400px;margin:0 auto}
+        .tilt-card{background:var(--onyx-card);border-radius:20px;overflow:hidden;position:relative;perspective:1000px;transition:transform 0.3s ease}
+        .tilt-card img{width:100%;height:300px;object-fit:cover;transition:transform 0.5s ease}
+        .tilt-card:hover img{transform:scale(1.1)}
+        .tilt-card-content{padding:28px}
+        .tilt-card-number{position:absolute;top:-20px;left:20px;width:50px;height:50px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:700;color:var(--onyx)}
+        .tilt-card h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--white);margin-top:16px}
+        .tilt-card p{color:var(--gray);margin-top:12px;font-size:0.95rem;line-height:1.6}
+        
+        /* Services */
+        .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;max-width:1200px;margin:0 auto}
+        .service-card{background:var(--onyx-card);padding:40px 32px;border-radius:16px;border:1px solid rgba(197,165,114,0.1);transition:all 0.3s ease;opacity:0;transform:translateY(40px)}
+        .service-card:hover{border-color:var(--gold);transform:translateY(-8px);box-shadow:0 10px 40px rgba(197,165,114,0.1)}
+        .service-number{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--gold);opacity:0.4}
+        .service-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--white);margin-top:12px}
+        .service-card p{color:var(--gray);margin-top:12px;font-size:0.9rem;line-height:1.6}
+        
+        /* Gallery */
+        .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;max-width:1400px;margin:0 auto;padding:0 24px}
+        .gallery-grid img{width:100%;height:280px;object-fit:cover;border-radius:12px;transition:all 0.3s ease}
+        .gallery-grid img:hover{transform:scale(0.98);filter:brightness(1.1) saturate(1.2)}
+        .lightbox{position:fixed;inset:0;background:rgba(10,10,12,0.95);display:none;align-items:center;justify-content:center;z-index:200;cursor:pointer}
+        .lightbox img{max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 0 60px rgba(0,0,0,0.5)}
+        .lightbox.active{display:flex}
+        
+        /* Contact */
+        .contact-section{background:var(--onyx-card);text-align:center}
+        .contact-actions{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+        .contact-btn{display:inline-flex;align-items:center;gap:12px;padding:18px 48px;border-radius:40px;font-size:0.9rem;letter-spacing:2px;text-transform:uppercase;transition:all 0.3s ease}
+        .contact-btn.whatsapp{background:#25D366;color:#fff}
+        .contact-btn.whatsapp:hover{background:#1fa755;transform:translateY(-3px);box-shadow:0 8px 30px rgba(37,211,102,0.3)}
+        .contact-btn.portfolio{border:2px solid var(--gold);color:var(--gold)}
+        .contact-btn.portfolio:hover{background:var(--gold);color:var(--onyx);transform:translateY(-3px)}
+        
+        /* Footer */
+        footer{padding:40px 48px;text-align:center;background:var(--onyx);border-top:1px solid rgba(197,165,114,0.1)}
+        footer .brand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold)}
+        footer p{color:var(--gray);font-size:0.85rem;margin-top:8px}
+        
+        /* Scroll reveal */
+        .reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s ease,transform 0.8s ease}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        
+        /* Responsive */
+        @media(max-width:768px){
+            .hero .brand-name{font-size:2.5rem}
+            section{padding:80px 24px}
+            nav{padding:16px 24px}
+            .services-grid,.gallery-grid{grid-template-columns:1fr}
+        }
+    </style>
 </head>
 <body>
-<!-- Preloader -->
-<div class="preloader" id="preloader">
-<div class="preloader-text">OnyxDigital</div>
-</div>
-
-<!-- Custom Cursor -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<!-- Scroll Progress -->
-<div class="scroll-progress" id="scrollProgress"></div>
-
-<!-- Navigation -->
-<nav id="nav">
-<a href="#" class="logo">Onyx<span>Digital</span></a>
-<ul>
-<li><a href="#about">About</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#gallery">Gallery</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
-
-<!-- Hero -->
-<section class="hero">
-<div class="hero-bg"></div>
-<div class="hero-content">
-<h1 id="heroTitle">FLORA Vienna<span>Florist • Vienna, Austria</span></h1>
-<p id="heroText">A premium digital experience crafted by OnyxDigital — showcasing the finest florist services in Vienna. Designed to elevate your brand and attract more clients.</p>
-<a href="#contact" class="hero-cta" id="heroCta">Get In Touch →</a>
-</div>
-</section>
-
-<!-- About -->
-<section class="about" id="about">
-<div class="about-grid">
-<div class="about-text reveal">
-<h2 class="section-title" style="text-align:left">About <span>FLORA Vienna</span></h2>
-<p>FLORA Vienna is a premier florist establishment located in the heart of Vienna, Austria. With a commitment to excellence and a passion for florist, we deliver outstanding experiences to every client.</p>
-<p>Our team combines traditional craftsmanship with modern innovation, ensuring that every interaction exceeds expectations. Located at Vienna, Austria, we're proud to serve the Vienna community with dedication and expertise.</p>
-<p>This preview website is a demonstration of the premium digital presence OnyxDigital can create for your business — featuring elegant design, smooth animations, and a conversion-optimized layout.</p>
-</div>
-<div class="about-img reveal">
-<img src="https://loremflickr.com/1200/800/flower-bouquet/?lock=2681833a" alt="FLORA Vienna in Vienna">
-</div>
-</div>
-</section>
-
-<!-- Services -->
-<section class="services" id="services">
-<h2 class="section-title reveal">Our <span>Services</span></h2>
-<p class="section-subtitle reveal">Excellence in every detail</p>
-<div class="services-grid">
-<div class="service-card reveal"><div class="service-number">01</div><h3>Fresh Bouquets</h3><p>Professional Fresh Bouquets services delivered with expertise and attention to detail, tailored to meet your specific needs in Vienna.</p></div>
-<div class="service-card reveal"><div class="service-number">02</div><h3>Wedding Flowers</h3><p>Professional Wedding Flowers services delivered with expertise and attention to detail, tailored to meet your specific needs in Vienna.</p></div>
-<div class="service-card reveal"><div class="service-number">03</div><h3>Event Decor</h3><p>Professional Event Decor services delivered with expertise and attention to detail, tailored to meet your specific needs in Vienna.</p></div>
-<div class="service-card reveal"><div class="service-number">04</div><h3>Same-Day Delivery</h3><p>Professional Same-Day Delivery services delivered with expertise and attention to detail, tailored to meet your specific needs in Vienna.</p></div>
-</div>
-</section>
-
-<!-- Swiper Gallery -->
-<section class="gallery" id="gallery">
-<h2 class="section-title reveal">Gallery <span>Slider</span></h2>
-<p class="section-subtitle reveal">A visual journey</p>
-<div class="swiper reveal">
-<div class="swiper-wrapper">
-<div class="swiper-slide"><img src="https://loremflickr.com/1200/800/flower-bouquet/?lock=2681833a" alt="FLORA Vienna Gallery 1"></div>
-<div class="swiper-slide"><img src="https://loremflickr.com/1200/800/floral-arrangement/?lock=7a498c73" alt="FLORA Vienna Gallery 2"></div>
-<div class="swiper-slide"><img src="https://loremflickr.com/1200/800/flower-shop/?lock=dc0e0d2e" alt="FLORA Vienna Gallery 3"></div>
-<div class="swiper-slide"><img src="https://loremflickr.com/1200/800/wedding-flowers/?lock=ee1cf279" alt="FLORA Vienna Gallery 4"></div>
-</div>
-<div class="swiper-pagination"></div>
-<div class="swiper-button-prev"></div>
-<div class="swiper-button-next"></div>
-</div>
-</section>
-
-<!-- Grid Gallery with Lightbox -->
-<section class="grid-gallery">
-<h2 class="section-title reveal">Portfolio <span>Grid</span></h2>
-<p class="section-subtitle reveal">Click to expand</p>
-<div class="gallery-grid">
-<div class="gallery-item reveal" onclick="openLightbox('https://loremflickr.com/1200/800/flower-bouquet/?lock=2681833a')"><img src="https://loremflickr.com/1200/800/flower-bouquet/?lock=2681833a" alt="Gallery 1"></div>
-<div class="gallery-item reveal" onclick="openLightbox('https://loremflickr.com/1200/800/floral-arrangement/?lock=7a498c73')"><img src="https://loremflickr.com/1200/800/floral-arrangement/?lock=7a498c73" alt="Gallery 2"></div>
-<div class="gallery-item reveal" onclick="openLightbox('https://loremflickr.com/1200/800/flower-shop/?lock=dc0e0d2e')"><img src="https://loremflickr.com/1200/800/flower-shop/?lock=dc0e0d2e" alt="Gallery 3"></div>
-<div class="gallery-item reveal" onclick="openLightbox('https://loremflickr.com/1200/800/wedding-flowers/?lock=ee1cf279')"><img src="https://loremflickr.com/1200/800/wedding-flowers/?lock=ee1cf279" alt="Gallery 4"></div>
-</div>
-</section>
-<div class="lightbox" id="lightbox" onclick="closeLightbox()"><span class="lightbox-close">✕</span><img src="" id="lightboxImg"></div>
-
-<!-- 3D Tilt Cards -->
-<section class="tilt-section">
-<h2 class="section-title reveal">Why Choose <span>Us</span></h2>
-<p class="section-subtitle reveal">The OnyxDigital advantage</p>
-<div class="tilt-grid">
-<div class="tilt-card reveal" data-tilt>
-<span class="tilt-card-icon">✦</span>
-<h3>Premium Design</h3>
-<p>Every website we create is crafted with meticulous attention to detail, ensuring a luxurious digital presence that sets you apart from competitors.</p>
-</div>
-<div class="tilt-card reveal" data-tilt>
-<span class="tilt-card-icon">⚡</span>
-<h3>Lightning Fast</h3>
-<p>Optimized for speed and performance, our websites load instantly and provide a seamless experience across all devices and platforms.</p>
-</div>
-<div class="tilt-card reveal" data-tilt>
-<span class="tilt-card-icon">◈</span>
-<h3>SEO Optimized</h3>
-<p>Built with search engine optimization in mind, helping your business rank higher and attract more organic traffic from potential clients.</p>
-</div>
-</div>
-</section>
-
-<!-- Contact -->
-<section class="contact" id="contact">
-<h2 class="section-title reveal">Get In <span>Touch</span></h2>
-<p class="section-subtitle reveal">Let's elevate your digital presence</p>
-<div class="contact-info reveal">
-<div class="contact-item"><span class="icon">📍</span><p>Vienna, Austria</p></div>
-<div class="contact-item"><span class="icon">📞</span><p>+43 676 6500085</p></div>
-<div class="contact-item"><span class="icon">🌐</span><p>https://www.floraarrangements.store</p></div>
-</div>
-<a href="https://wa.me/9233390025902" class="whatsapp-btn" target="_blank">💬 Chat on WhatsApp</a>
-</section>
-
-<!-- Footer -->
-<footer>
-<p>Website designed by <a href="https://onyx-digital-sidd.vercel.app/" target="_blank">OnyxDigital</a> — Premium Web Design & Development</p>
-<p style="margin-top:.5rem">© 2026 OnyxDigital. All rights reserved.</p>
-</footer>
-
-<!-- Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-// Preloader
-window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('preloader').classList.add('hidden'),800)});
-
-// Custom Cursor
-const cursor=document.getElementById('cursor'),cursorRing=document.getElementById('cursorRing');
-document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';cursorRing.style.left=(e.clientX-20)+'px';cursorRing.style.top=(e.clientY-20)+'px'});
-document.querySelectorAll('a,button,.gallery-item,.tilt-card,.service-card').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.classList.add('hover');cursorRing.classList.add('hover')});el.addEventListener('mouseleave',()=>{cursor.classList.remove('hover');cursorRing.classList.remove('hover')})});
-
-// Scroll Progress
-window.addEventListener('scroll',()=>{const h=document.documentElement;const s=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;document.getElementById('scrollProgress').style.width=s+'%';if(window.scrollY>50)document.getElementById('nav').classList.add('scrolled');else document.getElementById('nav').classList.remove('scrolled')});
-
-// GSAP Animations
-gsap.registerPlugin(ScrollTrigger);
-gsap.to('#heroTitle',{opacity:1,y:0,duration:1,delay:.3,ease:'power3.out'});
-gsap.to('#heroText',{opacity:1,y:0,duration:1,delay:.6,ease:'power3.out'});
-gsap.to('#heroCta',{opacity:1,y:0,duration:1,delay:.9,ease:'power3.out'});
-gsap.to('.hero-bg',{scale:1,duration:2,ease:'power2.out'});
-
-// Reveal on scroll
-document.querySelectorAll('.reveal').forEach(el=>{ScrollTrigger.create({trigger:el,start:'top 85%',onEnter:()=>el.classList.add('active')})});
-
-// Swiper
-new Swiper('.swiper',{loop:true,autoplay:{delay:3000},pagination:{el:'.swiper-pagination'},navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'}});
-
-// Lightbox
-function openLightbox(src){document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('active')}
-function closeLightbox(){document.getElementById('lightbox').classList.remove('active')}
-
-// 3D Tilt
-document.querySelectorAll('[data-tilt]').forEach(card=>{card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();const x=e.clientX-r.left;const y=e.clientY-r.top;const cx=r.width/2;const cy=r.height/2;const rx=(y-cy)/15;const ry=(cx-x)/15;card.style.transform='perspective(800px) rotateX('+rx+'deg) rotateY('+ry+'deg) scale(1.05)'});card.addEventListener('mouseleave',()=>card.style.transform='perspective(800px) rotateX(0) rotateY(0) scale(1)')});
-</script>
+    <!-- Custom cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+    
+    <!-- Scroll Progress -->
+    <div class="scroll-progress"></div>
+    
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-text">OnyxDigital</div>
+    </div>
+    
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">OnyxDigital</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="https://wa.me/9233390025902" class="whatsapp-btn">WhatsApp</a>
+        </div>
+    </nav>
+    
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="brand-name">FLORA Vienna</h1>
+            <div class="tagline">Nature's Finest Creations</div>
+            <div class="city-tag">Vienna | OnyxDigital Preview</div>
+            <a href="https://wa.me/9233390025902" class="cta-btn">Contact Us</a>
+        </div>
+    </div>
+    
+    <!-- About -->
+    <section id="about">
+        <div class="about-content reveal">
+            <h2 class="section-title">Welcome to FLORA Vienna</h2>
+            <div class="section-subtitle">Crafting Excellence in Florist</div>
+            <p>At FLORA Vienna, we redefine what it means to be a premier florist establishment in Vienna. Our commitment to quality, attention to detail, and passion for what we do sets us apart from the rest.</p>
+            <p>From the moment you walk through our doors, you'll experience a level of service and craftsmanship that is rarely found. We've built our reputation on trust, quality, and an unwavering dedication to exceeding expectations.</p>
+        </div>
+    </section>
+    
+    <!-- 3D Tilt Cards -->
+    <section style="padding:80px 48px">
+        <div class="tilt-container reveal">
+            <div class="tilt-card">
+                <div class="tilt-card-number">01</div>
+                <img src="https://loremflickr.com/800/600/flower-bouquet?lock=59c4b6da" alt="Image 1">
+                <div class="tilt-card-content">
+                    <h3>Crafted With Passion</h3>
+                    <p>Every project is approached with meticulous attention to detail and creative vision.</p>
+                </div>
+            </div>
+            <div class="tilt-card">
+                <div class="tilt-card-number">02</div>
+                <img src="https://loremflickr.com/800/600/florist-shop?lock=5d09d3cb" alt="Image 2">
+                <div class="tilt-card-content">
+                    <h3>Built On Trust</h3>
+                    <p>We believe in building lasting relationships through quality work and honest service.</p>
+                </div>
+            </div>
+            <div class="tilt-card">
+                <div class="tilt-card-number">03</div>
+                <img src="https://loremflickr.com/800/600/wedding-flowers?lock=1b779c76" alt="Image 3">
+                <div class="tilt-card-content">
+                    <h3>Driven By Excellence</h3>
+                    <p>Our standards are uncompromising——we deliver nothing but the very best.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services -->
+    <section id="services">
+        <h2 class="section-title reveal">Our Services</h2>
+        <div class="section-subtitle reveal">What We Offer</div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-number">01</div>
+                <h3>Custom Bouquets</h3>
+                <p>Crafted with precision and care to deliver results that speak for themselves.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-number">02</div>
+                <h3>Wedding Florals</h3>
+                <p>Crafted with precision and care to deliver results that speak for themselves.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-number">03</div>
+                <h3>Event Styling</h3>
+                <p>Crafted with precision and care to deliver results that speak for themselves.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-number">04</div>
+                <h3>Flower Subscriptions</h3>
+                <p>Crafted with precision and care to deliver results that speak for themselves.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery -->
+    <section id="gallery">
+        <h2 class="section-title reveal">Gallery</h2>
+        <div class="section-subtitle reveal">A Glimpse of Our World</div>
+        <div class="gallery-grid reveal">
+            <img src="https://loremflickr.com/800/600/flower-bouquet?lock=59c4b6da" alt="Gallery image" class="gallery-img" loading="lazy">
+            <img src="https://loremflickr.com/800/600/florist-shop?lock=5d09d3cb" alt="Gallery image" class="gallery-img" loading="lazy">
+            <img src="https://loremflickr.com/800/600/wedding-flowers?lock=1b779c76" alt="Gallery image" class="gallery-img" loading="lazy">
+            <img src="https://loremflickr.com/800/600/flower-arrangement?lock=8cb9e33b" alt="Gallery image" class="gallery-img" loading="lazy">
+            <img src="https://loremflickr.com/800/600/roses?lock=66777206" alt="Gallery image" class="gallery-img" loading="lazy">
+            <img src="https://loremflickr.com/800/600/spring-flowers?lock=7001cd02" alt="Gallery image" class="gallery-img" loading="lazy">
+        </div>
+    </section>
+    
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <img src="" id="lightbox-img">
+    </div>
+    
+    <!-- Contact -->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title reveal">Let's Connect</h2>
+        <div class="section-subtitle reveal">Ready to Elevate Your Experience?</div>
+        <p class="reveal" style="color:var(--gray);max-width:600px;margin:24px auto;">Experience the OnyxDigital difference. Contact us today for a consultation, or explore our portfolio to see what we can do for you.</p>
+        <div class="contact-actions reveal">
+            <a href="https://wa.me/9233390025902" class="contact-btn whatsapp">WhatsApp Us</a>
+            <a href="https://onyx-digital-sidd.vercel.app/" class="contact-btn portfolio" target="_blank">View Our Portfolio</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="brand">OnyxDigital</div>
+        <p>Premium Digital Solutions | onyx-digital-sidd.vercel.app</p>
+    </footer>
+    
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {{
+            setTimeout(function() {{
+                document.getElementById('preloader').classList.add('hidden');
+            }}, 800);
+        }});
+        
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+        document.addEventListener('mousemove', function(e) {{
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorDot.style.left = (e.clientX - 3) + 'px';
+            cursorDot.style.top = (e.clientY - 3) + 'px';
+        }});
+        document.querySelectorAll('a,button,img,.service-card,.tilt-card').forEach(function(el) {{
+            el.addEventListener('mouseenter', function() {{ cursor.classList.add('hover'); }});
+            el.addEventListener('mouseleave', function() {{ cursor.classList.remove('hover'); }});
+        }});
+        
+        // Scroll progress
+        window.addEventListener('scroll', function() {{
+            const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            document.querySelector('.scroll-progress').style.width = scrolled + '%';
+        }});
+        
+        // GSAP animations
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.to('.hero .brand-name', {{ opacity: 1, y: 0, duration: 1, delay: 0.3, ease: 'power3.out' }});
+        gsap.to('.hero .tagline', {{ opacity: 1, y: 0, duration: 1, delay: 0.6, ease: 'power3.out' }});
+        gsap.to('.hero .city-tag', {{ opacity: 1, y: 0, duration: 1, delay: 0.8, ease: 'power3.out' }});
+        gsap.to('.hero .cta-btn', {{ opacity: 1, y: 0, duration: 1, delay: 1, ease: 'power3.out' }});
+        
+        // Scroll reveal
+        gsap.utils.toArray('.reveal').forEach(function(el) {{
+            ScrollTrigger.create({{
+                trigger: el,
+                start: 'top 85%',
+                onEnter: function() {{ el.classList.add('visible'); }},
+                onLeaveBack: function() {{ el.classList.remove('visible'); }}
+            }});
+        }});
+        
+        // Service cards stagger
+        gsap.utils.toArray('.service-card').forEach(function(card, i) {{
+            ScrollTrigger.create({{
+                trigger: card,
+                start: 'top 85%',
+                onEnter: function() {{
+                    gsap.to(card, {{ opacity: 1, y: 0, duration: 0.6, delay: i * 0.1, ease: 'power3.out' }});
+                }}
+            }});
+        }});
+        
+        // 3D Tilt effect
+        document.querySelectorAll('.tilt-card').forEach(function(card) {{
+            card.addEventListener('mousemove', function(e) {{
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateY = ((x - centerX) / centerX) * 10;
+                const rotateX = ((centerY - y) / centerY) * 10;
+                card.style.transform = `perspective(1000px) rotateX(${{rotateX}}deg) rotateY(${{rotateY}}deg) scale3d(1.02,1.02,1.02)`;
+            }});
+            card.addEventListener('mouseleave', function() {{
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1,1,1)';
+            }});
+        }});
+        
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        document.querySelectorAll('.gallery-img').forEach(function(img) {{
+            img.addEventListener('click', function() {{
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+            }});
+        }});
+        lightbox.addEventListener('click', function() {{
+            lightbox.classList.remove('active');
+        }});
+        
+        // Scroll to section
+        document.querySelectorAll('nav a[href^="#"]').forEach(function(link) {{
+            link.addEventListener('click', function(e) {{
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {{
+                    gsap.to(window, {{ duration: 1, scrollTo: target.offsetTop - 60, ease: 'power3.inOut' }});
+                }}
+            }});
+        }});
+    </script>
 </body>
 </html>
