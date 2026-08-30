@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyrus Natural Gold Warsaw | OnyxDigital Elite</title>
+<link rel="preconnect" href="https://loremflickr.com">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--onyx:#0a0a0a;--gold:#c9a96e;--gold-light:#e8d5a0;--dark:#111;--light:#f5f5f5}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--onyx);color:var(--light);cursor:none;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.custom-cursor{position:fixed;width:20px;height:20px;border:2px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transition:width .3s,height .3s,background .3s;mix-blend-mode:difference}
+.custom-cursor.hover{width:50px;height:50px;background:rgba(201,169,110,.2)}
+.cursor-dot{position:fixed;width:6px;height:6px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:10000}
+.hero{height:100vh;background:url('https://loremflickr.com/1920/1080/jewelry?lock=101')center/cover fixed;display:flex;align-items:center;justify-content:center;text-align:center;position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,10,10,.95),rgba(10,10,10,.5))}
+.hero-content{position:relative;z-index:2}
+.badge{display:inline-block;padding:8px 24px;border:1px solid var(--gold);border-radius:100px;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;opacity:0}
+.hero h1{font-size:5rem;font-weight:700;letter-spacing:-2px;margin-bottom:16px;opacity:0}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:1.3rem;opacity:.8;margin-bottom:40px;opacity:0}
+.hero .btn{display:inline-block;padding:16px 48px;background:var(--gold);color:var(--onyx);font-weight:600;border-radius:50px;font-size:16px;transition:all .3s;opacity:0}
+.hero .btn:hover{background:var(--gold-light);transform:translateY(-3px);box-shadow:0 10px 40px rgba(201,169,110,.4)}
+.brand{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9998;text-align:center} 
+.brand-logo{font-size:3rem;font-weight:900;letter-spacing:-2px;color:var(--gold);opacity:0}
+section{padding:100px 20px;max-width:1200px;margin:0 auto}
+.section-title{font-size:2.5rem;font-weight:700;margin-bottom:60px;text-align:center;opacity:0}
+.section-title span{color:var(--gold)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-text h3{font-size:2rem;margin-bottom:20px;color:var(--gold)}
+.about-text p{font-size:1.05rem;line-height:1.8;opacity:.8;margin-bottom:16px}
+.about-img{border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.about-img img{width:100%;height:400px;object-fit:cover;display:block}
+.services{background:rgba(255,255,255,.02)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:40px}
+.tilt-card{background:rgba(255,255,255,.03);border:1px solid rgba(201,169,110,.2);border-radius:20px;padding:40px;text-align:center;transition:transform .2s;transform-style:preserve-3d;cursor:none}
+.tilt-card:hover{border-color:var(--gold)}
+.tilt-card img{width:80px;height:80px;border-radius:50%;object-fit:cover;margin-bottom:20px}
+.tilt-card h4{font-size:1.3rem;color:var(--gold);margin-bottom:10px}
+.tilt-card p{font-size:.95rem;opacity:.7;line-height:1.6}
+.swiper-container{max-width:1000px;margin:60px auto 0}
+.swiper-slide{border-radius:15px;overflow:hidden}
+.swiper-slide img{width:100%;height:350px;object-fit:cover;display:block}
+.swiper-button-prev,.swiper-button-next{color:var(--gold)!important}
+.swiper-pagination-bullet{background:var(--gold)!important;opacity:.5!important}
+.swiper-pagination-bullet-active{opacity:1!important}
+.cta{background:linear-gradient(135deg,var(--dark),var(--onyx));padding:100px 20px;text-align:center}
+.cta h2{font-size:3rem;margin-bottom:20px;opacity:0}
+.cta h2 span{color:var(--gold)}
+.cta p{font-size:1.2rem;opacity:.7;margin-bottom:40px;opacity:0}
+.cta-btn{display:inline-flex;align-items:center;gap:12px;padding:18px 52px;background:var(--gold);color:var(--onyx);font-weight:700;border-radius:50px;font-size:18px;text-decoration:none;transition:all .3s;opacity:0}
+.cta-btn:hover{background:var(--gold-light);transform:translateY(-3px);box-shadow:0 15px 50px rgba(201,169,110,.4)}
+.cta-btn svg{width:24px;height:24px}
+footer{background:var(--dark);padding:40px 20px;text-align:center;border-top:1px solid rgba(201,169,110,.1)}
+.footer-brand{font-size:1.5rem;font-weight:900;color:var(--gold);margin-bottom:10px}
+footer p{font-size:.9rem;opacity:.5;margin-bottom:5px}
+footer a{color:var(--gold);text-decoration:none}
+@media(max-width:768px){.hero h1{font-size:2.5rem}.about-grid{grid-template-columns:1fr}.services-grid{grid-template-columns:1fr}.cta h2{font-size:2rem}}
+</style>
+</head>
+<body>
+<div class="custom-cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="brand" id="preloader">
+<div class="brand-logo">OnyxDigital</div>
+</div>
+<section class="hero">
+<div class="hero-content">
+<div class="badge">OnyxDigital Elite Preview</div>
+<h1>Cyrus Natural Gold Warsaw</h1>
+<p>Jewelry &bull; Warsaw, Poland</p>
+<a href="https://wa.me/9233390025902" class="btn hero-btn">Get Your Website</a>
+</div>
+</section>
+<section class="about">
+<h2 class="section-title reveal">About <span>Cyrus Natural Gold Warsaw</span></h2>
+<div class="about-grid">
+<div class="about-text reveal-up">
+<h3>Experience Excellence in Jewelry</h3>
+<p>Welcome to Cyrus Natural Gold Warsaw, where we redefine jewelry in Warsaw. Our team of dedicated professionals brings years of expertise and passion to every client interaction.</p>
+<p>Located in the heart of Warsaw, we combine traditional excellence with modern innovation to deliver an unmatched experience for every customer.</p>
+<p>This is a preview website generated by <a href="https://onyx-digital-sidd.vercel.app/" style="color:var(--gold)">OnyxDigital</a> - demonstrating what your premium website could look like.</p>
+</div>
+<div class="about-img reveal-up">
+<img src="https://loremflickr.com/800/600/gold-jewelry?lock=102" alt="Cyrus Natural Gold Warsaw">
+</div>
+</div>
+</section>
+<section class="services">
+<h2 class="section-title reveal">Our <span>Services</span></h2>
+<div class="services-grid">
+<div class="tilt-card" data-tilt>
+<img src="https://loremflickr.com/400/400/jewelry?lock=110" alt="Custom Jewelry">
+<h4>Custom Jewelry</h4>
+<p>Professional custom jewelry services delivered with the highest standards of quality and care in Warsaw.</p>
+</div>
+<div class="tilt-card" data-tilt>
+<img src="https://loremflickr.com/400/400/gold-jewelry?lock=111" alt="Jewelry Repair">
+<h4>Jewelry Repair</h4>
+<p>Professional jewelry repair services delivered with the highest standards of quality and care in Warsaw.</p>
+</div>
+<div class="tilt-card" data-tilt>
+<img src="https://loremflickr.com/400/400/diamond?lock=112" alt="Luxury Watches">
+<h4>Luxury Watches</h4>
+<p>Professional luxury watches services delivered with the highest standards of quality and care in Warsaw.</p>
+</div>
+</div>
+</section>
+<section class="gallery">
+<h2 class="section-title reveal">Our <span>Portfolio</span></h2>
+<div class="swiper-container">
+<div class="swiper-wrapper"><div class="swiper-slide"><img src="https://loremflickr.com/600/400/jewelry?lock=103" alt="Gallery"></div>
+<div class="swiper-slide"><img src="https://loremflickr.com/600/400/gold-jewelry?lock=104" alt="Gallery"></div>
+<div class="swiper-slide"><img src="https://loremflickr.com/600/400/diamond?lock=105" alt="Gallery"></div>
+<div class="swiper-slide"><img src="https://loremflickr.com/600/400/luxury-watches?lock=106" alt="Gallery"></div>
+<div class="swiper-slide"><img src="https://loremflickr.com/600/400/jewelry?lock=107" alt="Gallery"></div>
+<div class="swiper-slide"><img src="https://loremflickr.com/600/400/gold-jewelry?lock=108" alt="Gallery"></div>
+</div>
+<div class="swiper-pagination"></div>
+<div class="swiper-button-prev"></div>
+<div class="swiper-button-next"></div>
+</div>
+</section>
+<section class="cta">
+<h2 class="reveal">Ready to Elevate <span>Your Business?</span></h2>
+<p class="reveal">Get a premium website like this for your business today.</p>
+<a href="https://wa.me/9233390025902" class="cta-btn reveal">
+<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01C18.15 3.04 15.66 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.25 3.75.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+Contact Us on WhatsApp
+</a>
+<br><br>
+<a href="https://onyx-digital-sidd.vercel.app/" style="color:var(--gold);font-size:14px">View Our Portfolio</a>
+</section>
+<footer>
+<div class="footer-brand">OnyxDigital</div>
+<p>Premium Websites &bull; Warsaw, Poland</p>
+<p>WhatsApp: +92 333 90025902</p>
+<p><a href="https://onyx-digital-sidd.vercel.app/">onyx-digital-sidd.vercel.app</a></p>
+<p>This is a demo preview website. &copy; 2026 OnyxDigital.</p>
+</footer>
+<script>
+// Custom cursor
+const cursor=document.getElementById('cursor'),cursorDot=document.getElementById('cursorDot');
+let cx=0,cy=0;document.addEventListener('mousemove',e=>{cx=e.clientX;cy=e.clientY;cursorDot.style.left=cx+'px';cursorDot.style.top=cy+'px'});
+function animateCursor(){const c=cursor;c.style.left=cx+'px';c.style.top=cy+'px';requestAnimationFrame(animateCursor)}animateCursor();
+document.querySelectorAll('a,button,.tilt-card').forEach(el=>el.addEventListener('mouseenter',()=>cursor.classList.add('hover')));
+document.querySelectorAll('a,button,.tilt-card').forEach(el=>el.addEventListener('mouseleave',()=>cursor.classList.remove('hover')));
+// 3D tilt cards
+document.querySelectorAll('.tilt-card').forEach(card=>{card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();const x=e.clientX-r.left-r.width/2;const y=e.clientY-r.top-r.height/2;card.style.transform=`perspective(800px) rotateY(${x/10}deg) rotateX(${-y/10}deg) translateZ(10px)`}});card.addEventListener('mouseleave',()=>card.style.transform='')});
+// Preloader
+gsap.to('.brand-logo',{opacity:1,scale:1,duration:.5,delay:.3,ease:"power2.out"});
+gsap.to('#preloader',{opacity:0,duration:.8,delay:1.5,onComplete:()=>document.getElementById('preloader').style.display='none'});
+// Hero animations
+gsap.to('.badge',{opacity:1,y:0,duration:.8,delay:2,ease:"power2.out"});
+gsap.to('.hero h1',{opacity:1,y:0,duration:1,delay:2.2,ease:"power3.out"});
+gsap.to('.hero p',{opacity:1,duration:.8,delay:2.8}) ;
+gsap.to('.hero-btn',{opacity:1,duration:.8,delay:3});
+// ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
+gsap.utils.toArray('.reveal').forEach(el=>{gsap.fromTo(el,{opacity:0,y:80},{opacity:1,y:0,duration:1,scrollTrigger:{trigger:el,start:"top 80%"}})});
+gsap.utils.toArray('.reveal-up').forEach(el=>{gsap.fromTo(el,{opacity:0,y:60},{opacity:1,y:0,duration:1,scrollTrigger:{trigger:el,start:"top 85%"}})});
+gsap.utils.toArray('.section-title').forEach(el=>{gsap.fromTo(el,{opacity:0,y:80},{opacity:1,y:0,duration:1,scrollTrigger:{trigger:el,start:"top 80%"}})});
+// Swiper
+new Swiper('.swiper-container',{slidesPerView:1.5,spaceBetween:30,loop:true,autoplay:{delay:3000},pagination:{el:'.swiper-pagination',clickable:true},navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'},breakpoints:{640:{slidesPerView:2},1024:{slidesPerView:3}}});
+</script>
+</body>
+</html>
